@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.js.pjt.mapper.OrderMapper">
+	<insert id="insertOrder">
+		<selectKey resultType="int" keyProperty="ordNo" order="BEFORE">
+			select order_seq.nextval form dual;
+		</selectKey>
+		insert into order1 values(#{ordNo},#{ordCustNo},#{ordSumQty},#{ordSumAmt},#{ordStatDvce},sysdate,1,null)
+	</insert>
+	<update id="updateOrder">
+		update order1 set ord_custco=#{ordCustNo},ord_sum_qty=#{ordSumQty}
+		,ord_sum_amt=#{ordSumAmt},ord_stat_dvce=#{ordStatDvce} where ord_no=#{ordNo}
+	</update>
+	<delete id="deleteOrder">
+		delete order1 where ord_no=#{ordNo}
+	</delete>
+	<select id="selectOrder" resultType="com.js.pjt.vo.OrderVO">
+		select * from order1 where ord_no=#{ordNo}
+	</select>
+	<select id="selectOrderList" resultType="com.js.pjt.vo.OrderVO">
+		select ORD_NO as ordNo,ORD_CUSTNO as ordCustNo,ORD_SUM_QTY as ordSumQty,ORD_STAT_DVCE as ordStatDvce,ORD_DTTM as ordDttm from order1 order by ord_no desc
+	</select>
+</mapper>

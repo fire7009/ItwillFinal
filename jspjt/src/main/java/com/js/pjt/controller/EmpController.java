@@ -27,8 +27,8 @@ public class EmpController {
 
 	// 사원 게시판 페이지
 	@RequestMapping(value = "/emp_board", method = RequestMethod.GET)
-	public void GetEmpBoard() {
-
+	public String display() {
+		return "emp/emp_board";
 	}
 
 

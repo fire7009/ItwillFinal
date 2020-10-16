@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -13,26 +16,26 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/favicon.ico" type="image/x-icon">
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/css/bootstrap.min.css">
     <!-- Fonts  -->
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/simple-line-icons.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/simple-line-icons.css">
     <!-- Switchery -->
-    <link rel="stylesheet" href="assets/plugins/switchery/switchery.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/plugins/switchery/switchery.min.css">
     <!-- CSS Animate -->
-    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/animate.css">
     <!-- DataTables-->
-    <link rel="stylesheet" href="assets/plugins/dataTables/css/dataTables.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/plugins/dataTables/css/dataTables.css">
     <!-- Custom styles for this theme -->
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
     <!-- Feature detection -->
-    <script src="assets/js/vendor/modernizr-2.6.2.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/modernizr-2.6.2.min.js"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script src="assets/js/vendor/html5shiv.js"></script>
-    <script src="assets/js/vendor/respond.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/html5shiv.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/respond.min.js"></script>
     <![endif]-->
 </head>
 
@@ -68,7 +71,7 @@
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="meta">
                             <span class="avatar">
-                                <img src="assets/img/profile.jpg" class="img-circle" alt="">
+                                <img src="${pageContext.request.contextPath}/resources/assets/img/profile.jpg" class="img-circle" alt="">
                             </span>
                         <span class="text">Mike Adams</span>
                         <span class="caret"></span>
@@ -126,7 +129,7 @@
         <aside class="sidebar sidebar-left">
             <div class="sidebar-profile">
                 <div class="avatar">
-                    <img class="img-circle profile-image" src="assets/img/profile.jpg" alt="profile">
+                    <img class="img-circle profile-image" src="${pageContext.request.contextPath}/resources/assets/img/profile.jpg" alt="profile">
                     <i class="on border-dark animated bounceIn"></i>
                 </div>
                 <div class="profile-body dropdown">
@@ -293,42 +296,20 @@
                                                 </thead>
 
                                                 <tbody>
+                                                <c:forEach var="order" items="${orderList }">
                                                     <tr>
-                                                        <td>Tiger Nixon</td>
-                                                        <td>System Architect</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>61</td>
-                                                        <td>2011/04/25</td>
-                                                        <td>$320,800</td>
+                                                        <td>${order.ordDttm }</td>
+                                                        <td>${order.ordNo }</td>
+                                                        <td>${order.ordCustNo }</td>
+                                                        <td>${order.ordCustNo }</td>
+                                                        <td>${order.ordSumQty }</td>
+                                                        <td>${order.ordStatDvce }</td>
                                                         <td>
-                                                            <span>수정</span>
-                                                            /<span>삭제</span>
+                                                            <span><a>수정</a></span>
+                                                            /<span><a>삭제</a></span>
                                                         </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>ixon</td>
-                                                        <td>System Architect</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>61</td>
-                                                        <td>2011/04/25</td>
-                                                        <td>$320,800</td>
-                                                        <td>
-                                                            <span>수정</span>
-                                                            /<span>삭제</span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Nixon</td>
-                                                        <td>System Architect</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>61</td>
-                                                        <td>2011/04/25</td>
-                                                        <td>$320,800</td>
-                                                        <td>
-                                                            <span>수정</span>
-                                                            /<span>삭제</span>
-                                                        </td>
-                                                    </tr>
+                                                    </tr>                                                
+                                                </c:forEach>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -417,7 +398,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <span class="avatar">
-                        <img src="assets/img/avatar3.png" class="img-circle" alt="">
+                        <img src="${pageContext.request.contextPath}/resources/assets/img/avatar3.png" class="img-circle" alt="">
                           <i class="on animated bounceIn"></i>
                         </span>
                             </div>
@@ -431,7 +412,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <span class="avatar">
-                        <img src="assets/img/avatar1.png" class="img-circle" alt="">
+                        <img src="${pageContext.request.contextPath}/resources/assets/img/avatar1.png" class="img-circle" alt="">
                           <i class="on animated bounceIn"></i>
                         </span>
                             </div>
@@ -445,7 +426,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <span class="avatar">
-                        <img src="assets/img/avatar2.png" class="img-circle" alt="">
+                        <img src="${pageContext.request.contextPath}/resources/assets/img/avatar2.png" class="img-circle" alt="">
                           <i class="on animated bounceIn"></i>
                         </span>
                             </div>
@@ -459,7 +440,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <span class="avatar">
-                        <img src="assets/img/avatar4.jpg" class="img-circle" alt="">
+                        <img src="${pageContext.request.contextPath}/resources/assets/img/avatar4.jpg" class="img-circle" alt="">
                           <i class="on animated bounceIn"></i>
                         </span>
                             </div>
@@ -473,7 +454,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <span class="avatar">
-                        <img src="assets/img/avatar5.png" class="img-circle" alt="">
+                        <img src="${pageContext.request.contextPath}/resources/assets/img/avatar5.png" class="img-circle" alt="">
                           <i class="away animated bounceIn"></i>
                         </span>
                             </div>
@@ -487,7 +468,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <span class="avatar">
-                        <img src="assets/img/avatar6.png" class="img-circle" alt="">
+                        <img src="${pageContext.request.contextPath}/resources/assets/img/avatar6.png" class="img-circle" alt="">
                           <i class="on animated bounceIn"></i>
                         </span>
                             </div>
@@ -501,7 +482,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <span class="avatar">
-                        <img src="assets/img/avatar7.png" class="img-circle" alt="">
+                        <img src="${pageContext.request.contextPath}/resources/assets/img/avatar7.png" class="img-circle" alt="">
                           <i class="on animated bounceIn"></i>
                         </span>
                             </div>
@@ -515,7 +496,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <span class="avatar">
-                        <img src="assets/img/avatar8.png" class="img-circle off" alt="">
+                        <img src="${pageContext.request.contextPath}/resources/assets/img/avatar8.png" class="img-circle off" alt="">
                           <i class="off animated bounceIn"></i>
                         </span>
                             </div>
@@ -529,7 +510,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <span class="avatar">
-                        <img src="assets/img/avatar9.png" class="img-circle off" alt="">
+                        <img src="${pageContext.request.contextPath}/resources/assets/img/avatar9.png" class="img-circle off" alt="">
                           <i class="off animated bounceIn"></i>
                         </span>
                             </div>
@@ -556,16 +537,16 @@
     
     <!--/Config demo-->
     <!--Global JS-->
-    <script src="assets/js/vendor/jquery-1.11.1.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/plugins/navgoco/jquery.navgoco.min.js"></script>
-    <script src="assets/plugins/switchery/switchery.min.js"></script>
-    <script src="assets/plugins/pace/pace.min.js"></script>
-      <script src="assets/plugins/fullscreen/jquery.fullscreen-min.js"></script>
-    <script src="assets/js/src/app.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-1.11.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/plugins/navgoco/jquery.navgoco.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/plugins/switchery/switchery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/plugins/pace/pace.min.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/assets/plugins/fullscreen/jquery.fullscreen-min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/src/app.js"></script>
     <!--Page Leve JS -->
-    <script src="assets/plugins/dataTables/js/jquery.dataTables.js"></script>
-    <script src="assets/plugins/dataTables/js/dataTables.bootstrap.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/plugins/dataTables/js/jquery.dataTables.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/plugins/dataTables/js/dataTables.bootstrap.js"></script>
     <script>
     $(document).ready(function() {
         $('#example').dataTable();
