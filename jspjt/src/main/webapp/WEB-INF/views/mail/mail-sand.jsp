@@ -523,8 +523,25 @@
             });
         }); 
     	
-    $("#deptSelect").bind("chance",function(){
-    	alert("ddd");
+    	
+    $("#deptSelect").bind("change",function(){
+    	alert($('#deptSelect').val());
+    	
+    	var deptData = {dentNo : $('#deptSelect').val()};
+    	$.ajax({
+        	url: "detpMemberList",
+        	type: "GET",
+        	//dataType: "json",
+        	data: deptData,
+        	success: function(result){
+        		alert("success");
+        		
+        	},
+        	error : function(xhr, type) {
+                alert('server error occoured')
+            }
+               });
+
     });
 		
    
@@ -537,6 +554,7 @@
     			 TITLE :  $('#subject').val(),
     			 CONTENT :  $('#contnet').val(),
     	        };
+    	 
     	$.ajax({
     	url: "sendMail",
     	type: "POST",

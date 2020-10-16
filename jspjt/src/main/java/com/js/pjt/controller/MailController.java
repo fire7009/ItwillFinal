@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.js.pjt.service_serviceimp.TestService;
@@ -92,5 +93,15 @@ public class MailController {
 		logger.info("Welcome sendMailCount The client locale is {}.");
 		//HashMap<String, Object> map = service.getMailCount();
 		return service.getMailCount();
+	}
+	
+	@RequestMapping(value = "/detpMemberList", method = RequestMethod.GET)
+	@ResponseBody
+	public HashMap<String, Object> getDetpMemberList(@RequestParam int deptNo) throws Exception {
+		System.out.println("deptNo="+deptNo);
+		HashMap<String, Object> map = null;
+		logger.info("Welcome detpMemberList The client locale is {}.");
+		
+		return map;
 	}
 }
