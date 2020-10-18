@@ -15,23 +15,8 @@ public class OrderDAOimp implements OrderDAO {
 	private SqlSession sqlSession;
 
 	@Override
-	public int insertOrder(OrderVO order) {
-		return sqlSession.getMapper(OrderMapper.class).insertOrder(order);
-	}
-
-	@Override
-	public int updateOrder(int orderNo, OrderVO order) {
-		return sqlSession.getMapper(OrderMapper.class).updateOrder(orderNo, order);
-	}
-
-	@Override
-	public int deleteOrder(int orderNo) {
-		return sqlSession.getMapper(OrderMapper.class).deleteOrder(orderNo);
-	}
-
-	@Override
-	public OrderVO selectOrder(int orderNo) {
-		return sqlSession.getMapper(OrderMapper.class).selectOrder(orderNo);
+	public int deleteOrder(int ordNo) {
+		return sqlSession.getMapper(OrderMapper.class).deleteOrder(ordNo);
 	}
 
 	@Override
@@ -39,5 +24,26 @@ public class OrderDAOimp implements OrderDAO {
 		return sqlSession.getMapper(OrderMapper.class).selectOrderList();
 	}
 
+	@Override
+	public OrderVO selectCustOrder(String ordCustNm) {
+		return sqlSession.getMapper(OrderMapper.class).selectCustOrder(ordCustNm);
+	}
+
+	@Override
+	public OrderVO selectProdOrder(String ordProdNm) {
+		return sqlSession.getMapper(OrderMapper.class).selectProdOrder(ordProdNm);
+	}
+
+	@Override
+	public List<OrderVO> selectOrder(String ordProdNm, String ordCustNm) {
+		return sqlSession.getMapper(OrderMapper.class).selectOrder(ordProdNm, ordCustNm);
+	}
+
+	@Override
+	public List<OrderVO> selectAndOrder(String ordProdNm, String ordCustNm) {
+		return sqlSession.getMapper(OrderMapper.class).selectAndOrder(ordProdNm, ordCustNm);
+	}
+
+	
 	
 }

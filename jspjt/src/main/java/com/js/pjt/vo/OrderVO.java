@@ -1,18 +1,23 @@
 package com.js.pjt.vo;
 
 /*
- ORD_NO        NOT NULL NUMBER(8)   주문번호
-ORD_CUSTNO    NOT NULL NUMBER(8)   고객번호
+ * 이름            널?       유형           
+------------- -------- ------------ 
+ORD_NO        NOT NULL NUMBER(8)   주문번호
+ORD_CUSTNM    NOT NULL VARCHAR2(30) 고객명
+ORD_PRODNM    NOT NULL VARCHAR2(30) 상품명
 ORD_SUM_QTY   NOT NULL NUMBER      주문총수량
 ORD_SUM_AMT   NOT NULL NUMBER      주문총금액
 ORD_STAT_DVCE NOT NULL NUMBER(4)   주문구분코드
 ORD_DTTM      NOT NULL DATE        주문일시
-ORD_CNCL_YN   NOT NULL VARCHAR2(1) 주문취소여부  1이 취소
+ORD_CNCL_YN   NOT NULL VARCHAR2(1) 주문취소여부  0이 취소
 ORD_CNCL_DTTM          DATE		   주문취소일시
+
 */
 public class OrderVO {
 	int ordNo;
-	int ordCustNo;
+	String ordCustNm;
+	String ordProdNm;
 	int ordSumQty;
 	int ordSumAmt;
 	int ordStatDvce;
@@ -32,12 +37,20 @@ public class OrderVO {
 		this.ordNo = ordNo;
 	}
 
-	public int getOrdCustNo() {
-		return ordCustNo;
+	public String getOrdCustNm() {
+		return ordCustNm;
 	}
 
-	public void setOrdCustNo(int ordCustNo) {
-		this.ordCustNo = ordCustNo;
+	public void setOrdCustNm(String ordCustNm) {
+		this.ordCustNm = ordCustNm;
+	}
+
+	public String getOrdProdNm() {
+		return ordProdNm;
+	}
+
+	public void setOrdProdNm(String ordProdNm) {
+		this.ordProdNm = ordProdNm;
 	}
 
 	public int getOrdSumQty() {
@@ -87,6 +100,4 @@ public class OrderVO {
 	public void setOrdCnclDttm(String ordCnclDttm) {
 		this.ordCnclDttm = ordCnclDttm;
 	}
-	
-	
 }

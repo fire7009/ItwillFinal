@@ -38,11 +38,6 @@ public class EmpController {
 
 	}
 
-	// 사원등록 페이지
-	@RequestMapping(value = "/pages-sign-up", method = RequestMethod.GET)
-	public void GetRegMember() {
-
-	}
 
 	
 
