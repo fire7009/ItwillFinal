@@ -509,7 +509,7 @@
     <script>
    
     	$(document).ready(function() {
-    		//alert($('#memberSelect').val());
+    		//alert($('#memberSelect').val()); 
     		
             $.ajax({
                 type : 'get',
