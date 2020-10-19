@@ -26,11 +26,7 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value="/emp/pages-sign-up", method = RequestMethod.POST)
-	public String signIn(@ModelAttribute EmployeeVO employee) throws IllegalStateException, IOException{
-		System.out.println(employee.getEmpNo());
-		System.out.println(employee.getDeptNo());
-		System.out.println(employee.getPosDvcd());
-		System.out.println(employee.getDeptNo());
+	public String signIn(@ModelAttribute("employee") EmployeeVO employee) throws IllegalStateException, IOException {
 		if(employee.getFile().isEmpty()) {
 			return "emp/pages-sign-up";			
 		}
@@ -46,7 +42,7 @@ public class EmployeeController {
 		
 		employeeService.addEmployee(employee);
 		
-		return "/";
+		return "emp/pages-sign-up";
 	}
 	
 }

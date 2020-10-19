@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 ,file_path varchar2(100) not null,file_nm varchar2(50) not null,emp_nm varchar2(30) not null
 ,birth_dt varchar2(10) not null,gender varchar2(5) not null,mobile_phn_no varchar2(13) not null
 ,email_addr varchar2(50) not null,hire_dt varchar2(10) not null,resgn_yn varchar2(5) not null
-,resgn_dt varchar2(10) not null,reg_dttm varchar2(15) not null);
+,resgn_dt varchar2(10),reg_dttm varchar2(15) not null);
 
 이름            널?       유형            
 ------------- -------- ------------- 
