@@ -516,7 +516,7 @@
                 url : 'getMailCount',
                 dataType : 'json',
                 success : function(data) {
-                	//$("#count").text("받은편지("+data.COUNT+")");
+                	//$("#count").text("받은편지("+data.COUNT+") ");
                 	$("#count1").text(data.COUNT);
                 },
                 error : function(xhr, type) {
