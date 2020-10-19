@@ -55,11 +55,10 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "/myevent", method = RequestMethod.GET)
-	public @ResponseBody  List<HashMap<String, Object>> mtevent() throws Exception{
+	@ResponseBody
+	public List<HashMap<String, Object>> mtevent() throws Exception{
 		logger.info("Welcome myevent! The client locale is {}.");
 		List<HashMap<String, Object>> map = service.getList();
-		
-		
 		
 		return map;
 	}

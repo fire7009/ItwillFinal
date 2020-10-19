@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.js.pjt.mapper.ProductMapper">
+	
+	<insert id="insertProduct" parameterType="com.js.pjt.vo.ProductVO">
+		insert into product values(#{prod_no},#{prod_nm}, #{prod_detl}, #{prod_price}, #{stck_qty},'N', 'N', sysdate, 'N', sysdate)
+	</insert>
+	
+	<select id="selectProduct" resultType="com.js.pjt.vo.ProductVO">
+		select*from product where prod_no=#{prod_no}
+	</select>
+	
+	<select id="selectListProduct" resultType="com.js.pjt.vo.ProductVO">
+		select*from product
+	</select>
+   
+   	<update id="updateProduct">
+   		update product set dlvr_cmpl_yn,dlvr_cmpl_dttm where dlvr_cmpl_yn=#{dlvr_cmpl_yn},dlvr_cmpl_dttm=sysdate
+   	</update>
+   	
+   	<delete id="deleteProduct">
+   		delete * from product where dlvr_no=#{prod_no}
+   	</delete>
+</mapper>

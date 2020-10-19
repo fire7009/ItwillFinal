@@ -12,16 +12,16 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="resources/assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/css/bootstrap.min.css">
     <!-- Fonts  -->
-    <link rel="stylesheet" href="resources/assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="resources/assets/css/simple-line-icons.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/simple-line-icons.css">
     <!-- CSS Animate -->
-    <link rel="stylesheet" href="resources/assets/css/animate.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/animate.css">
     <!-- Custom styles for this theme -->
-    <link rel="stylesheet" href="resources/assets/css/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
     <!-- Feature detection -->
-    <script src="resources/assets/js/vendor/modernizr-2.6.2.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/modernizr-2.6.2.min.js"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="assets/js/vendor/html5shiv.js"></script>
@@ -196,6 +196,7 @@
 													<div class="col-md-12 center">
 														<button class="btn btn-primary m-r-5" type="button" id="searchBtn">검색</button>
 														<button class="btn btn-default" type="reset">초기화</button>
+														<button class="btn btn-primary m-r-5" type="button"><a href="${pageContext.request.contextPath}/mulryu_insert">물류추가</a></button>
 													</div>
 												</form>
 											</div>
@@ -205,17 +206,41 @@
 								<table class="table table-striped table-bordered" id="example">
 									<thead>
 										<tr>
-											<th>날짜</th>
-											<th>거래처명</th>
-											<th>생산원가</th>
-											<th>수금금액</th>
-											<th>순매출액</th>
-											<th>비고</th>
-											<th>변경</th>
+											<th>상품번호</th>
+											<th>상품명</th>
+											<th>상품상세</th>
+											<th>상품단가</th>
+											<th>재고수량</th>
+											<th>판매여부</th>
+											<th>품절여부</th>
+											<th>등록일시</th>
+											<th>삭제여부</th>
+											<th>삭제일시</th>
+	
 										</tr>
 									</thead>
-									<tbody id="salesListLine">
-									
+										<tbody>
+									<!-- 테이블 출력 -->
+									<c:forEach var="product" items="${productList}">
+                                                    <tr>
+                                                        <td>${product.prod_no }</td>
+                                                        <td>${product.prod_nm }</td>
+                                                        <td>${product.prod_detl }</td>
+                                                        <td>${product.prod_price }</td>
+                                                        <td>${product.stck_qty }</td>
+                                                        <td>${product.sales_yn }</td>
+                                                        <td>${product.so_yn }</td>
+                                                        <td>${product.reg_dttm }</td>
+                                                        <td>${product.del_yn }</td>
+                                                        <td>${product.del_dttm }</td>
+                                                       
+                                                        <td>
+                                                            <span><a>수정</a></span>
+                                                            /<span><input type="button" value="삭제"></span>
+                                                        </td>
+                                                    </tr>                                                
+                                                </c:forEach>
+						
 									</tbody>
 								</table>
 							</div>
@@ -299,11 +324,11 @@
     </aside>
     <!--/sidebar right end-->
     <!--Global JS-->
-    <script src="resources/assets/js/vendor/jquery-1.11.1.min.js"></script>
-    <script src="resources/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="resources/assets/plugins/navgoco/jquery.navgoco.min.js"></script>
-    <script src="resources/assets/plugins/pace/pace.min.js"></script>
-    <script src="resources/assets/js/src/app.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-1.11.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/plugins/navgoco/jquery.navgoco.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/plugins/pace/pace.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/src/app.js"></script>
 
 </body>
 

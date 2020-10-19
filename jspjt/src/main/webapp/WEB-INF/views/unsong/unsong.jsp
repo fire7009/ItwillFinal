@@ -1,31 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <!DOCTYPE html>
 
 <html class="no-js">
 <!--<![endif]-->
 
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>NeuBoard</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/css/bootstrap.min.css">
     <!-- Fonts  -->
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/simple-line-icons.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/simple-line-icons.css">
     <!-- CSS Animate -->
-    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/animate.css">
     <!-- Custom styles for this theme -->
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
     <!-- Feature detection -->
-    <script src="assets/js/vendor/modernizr-2.6.2.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/modernizr-2.6.2.min.js"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script src="assets/js/vendor/html5shiv.js"></script>
-    <script src="assets/js/vendor/respond.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/html5shiv.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/respond.min.js"></script>
     <![endif]-->
 </head>
 
@@ -92,10 +94,6 @@
 					<li class="active" id="mainTab">
 						<a data-toggle="tab" href="#default-tab-1">데이터 검색/조회</a>
 					</li>
-					<c:if test=""></c:if>
-					<li class="">
-						<a data-toggle="tab" href="#default-tab-2">데이터 입력</a>
-					</li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane fade active in" id="default-tab-1">
@@ -120,31 +118,25 @@
 												<form class="form-horizontal" method="post" id="searchForm">
 													<div class="col-md-9">
 														<div class="form-group">
-															<label class="control-label col-md-3">배송기사명</label>
+															<label class="control-label col-md-3">배송번호</label>
 															<div class="col-md-9">
 																<input class="form-control" type="text" id="s_carrierName">
 															</div>
 														</div>
 														<div class="form-group">
-															<label class="control-label col-md-3">운송업체명</label>
+															<label class="control-label col-md-3">주문번호</label>
 															<div class="col-md-9">
 																<input class="form-control" type="text" id="s_carrierCompanyName">
 															</div>
 														</div>
 														<div class="form-group">
-															<label class="control-label col-md-3">지점명</label>
+															<label class="control-label col-md-3">배송자사원번호</label>
 															<div class="col-md-9">
 																<input class="form-control" type="text" id="s_carrierBranch">
 															</div>
 														</div>
 														<div class="form-group">
-															<label class="control-label col-md-3">지점주소</label>
-															<div class="col-md-9">
-																<input class="form-control" type="text" id="s_carrierCompanyAddress">
-															</div>
-														</div>
-														<div class="form-group">
-															<label class="col-md-3 control-label">상태</label>
+															<label class="col-md-3 control-label">배송완료여부</label>
 															<div class="col-md-9">
 																<label class="radio-inline"><input checked name="carrierState" type="radio" value="2" checked> 전체</label>
 																<label class="radio-inline"><input name="carrierState" type="radio" value="1"> 배송가능</label>
@@ -164,20 +156,31 @@
 								<table class="table table-striped table-bordered" id="example">
 									<thead>
 										<tr>
-											<th>코드</th>
-											<th>배송기사명</th>
-											<th>기사 연락처</th>
-											<th>운송업체명</th>
-											<th>지점명</th>
-											<th>지점주소</th>
-											<th>업체연락처</th>
-											<th>상태</th>
-											<th>비고</th>
-											<th>변경</th>
+											<th>배송번호</th>
+											<th>주문번호</th>
+											<th>배송자사원번호</th>
+											<th>배송시작일시</th>
+											<th>배송완료여부</th>
+											<th>배송완료일시</th>
 										</tr>
 									</thead>
-									<tbody id="carrierListLine">
-									
+									<tbody>
+									<!-- 테이블 출력 -->
+									<c:forEach var="delivery" items="${deliveryList }">
+                                                    <tr>
+                                                        <td>${delivery.dlvr_no }</td>
+                                                        <td>${delivery.ord_no }</td>
+                                                        <td>${delivery.dlvr_empno }</td>
+                                                        <td>${delivery.dlvr_strt_dttm }</td>
+                                                        <td>${delivery.dlvr_cmpl_yn }</td>
+                                                        <td>${delivery.dlvr_cmpl_dttm }</td>
+                                                        <td>
+                                                            <span><a>수정</a></span>
+                                                            /<span><input type="button" value="삭제" onclick="deleteBtn(${delivery.dlvr_no });"></span>
+                                                        </td>
+                                                    </tr>                                                
+                                                </c:forEach>
+						
 									</tbody>
 								</table>
 							</div>
@@ -190,87 +193,15 @@
 									<i class="fa fa-expand"></i> <i class="fa fa-chevron-down"></i> <i class="fa fa-times"></i>
 								</div>
 							</div>
-							<div class="panel-body">
-								<div class="col-md-12">
-									<form class="form-horizontal" method="post">
-										<div class="form-group">
-											<label class="col-md-3 control-label">코드</label>
-											<div class="col-md-9">
-												<input class="form-control" id="carrierCode" placeholder="" type="text">
-												<span class="message disabled" id="codeMsg"></span>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-3 control-label">배송기사명</label>
-											<div class="col-md-9">
-												<input class="form-control" id="carrierName" placeholder="" type="text">
-												<span class="message disabled" id="nameMsg"></span>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-3 control-label">기사 연락처</label>
-											<div class="col-md-9">
-												<input class="form-control" id="carrierPhone" placeholder="" type="text">
-												<span class="message disabled" id="phoneMsg"></span>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-3 control-label">운송업체명</label>
-											<div class="col-md-9">
-												<input class="form-control" id="carrierCompanyName" placeholder="" type="text">
-												<span class="message disabled" id="companyNameMsg"></span>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-3 control-label">지점명</label>
-											<div class="col-md-9">
-												<input class="form-control" id="carrierBranch" placeholder="" type="text">
-												<span class="message disabled" id="branchMsg"></span>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-3 control-label">지점주소</label>
-											<div class="col-md-9">
-												<input class="form-control" id="carrierCompanyAddress" placeholder="" type="text">
-												<span class="message disabled" id="companyAddressMsg"></span>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-3 control-label">업체연락처</label>
-											<div class="col-md-9">
-												<input class="form-control" id="carrierCompanyPhone" placeholder="" type="text">
-												<span class="message disabled" id="companyPhoneMsg"></span>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-3 control-label">비고</label>
-											<div class="col-md-9">
-												<input class="form-control" id="carrierMemo" placeholder="기록사항이 있을 경우 입력하세요." type="text">
-												<span class="message disabled" id="memoMsg"></span>
-											</div>
-										</div>
-										<div class="col-md-12 center">
-											<button class="btn btn-primary m-r-5" type="button" id="insertBtn">등록</button>
-											<button class="btn btn-default" type="reset">초기화</button>
-										</div>
-									</form>
+							
+								</div>
 								</div>
 							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-</section><!--main content end-->
-                </div>
-            </div>
-        </div>
-                </div>
-            </section>
-        </section>
-        <!--main content end-->
-    </section>
+							
+			<button class="btn btn-primary m-r-5" type="button" style="float:right;"><a href="${pageContext.request.contextPath}/unsong_insert">배송추가</a></button>
+</section>
+<!--main content end-->
+
     <!--sidebar right start-->
     <aside id="sidebar-right">
         <h4 class="sidebar-title">contact List</h4>
@@ -301,12 +232,23 @@
     </aside>
     <!--/sidebar right end-->
     <!--Global JS-->
-    <script src="assets/js/vendor/jquery-1.11.1.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/plugins/navgoco/jquery.navgoco.min.js"></script>
-    <script src="assets/plugins/pace/pace.min.js"></script>
-    <script src="assets/js/src/app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    
+    <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-1.11.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/plugins/navgoco/jquery.navgoco.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/plugins/pace/pace.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/src/app.js"></script>
 
+	<script type="text/javascript">
+		function deleteBtn(dlvr_no){
+			var chk=confirm("정말 삭제하시겠습니까?");
+			if(chk){
+				location.href="${pageContext.request.contextPath}/unsong_delete?dlvr_no="+dlvr_no;
+			}
+		}
+	
+	</script>
 </body>
 
 </html>
