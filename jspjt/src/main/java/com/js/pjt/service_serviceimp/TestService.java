@@ -18,4 +18,7 @@ public interface TestService {
 	public List<HashMap<String, Object>> getSendMailList();
 	public HashMap<String, Object> getSendMailCount();
 	public HashMap<String, Object> getMailCount();
+	public List<HashMap<String, Object>> deptMemberList(int deptNo);
+	public HashMap<String, Object> viewMail(int msgNo);
+	public void mailReadCheck(int msgNo);
 }

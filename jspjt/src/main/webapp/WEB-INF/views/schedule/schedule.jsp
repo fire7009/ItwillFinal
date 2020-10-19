@@ -158,8 +158,8 @@
 								<div class="col-xs-12">
 									<label class="col-xs-4" for="edit-type">구분</label> 
 									<select class="inputModal" name="edit-type" id="edit-type">
-										<option value="10">사내일정</option>
-										<option value="20" selected="selected">개인일정</option>
+										<option value="사내일정">사내일정</option>
+										<option value="개인일정" selected="selected">개인일정</option>
 									</select>
 								</div>
 							</div>
@@ -246,7 +246,7 @@
     
     
     
-    <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>  
+    <script src="${pageContext.request.contextPath}/resources/js/main1.js"></script>  
     <script src="${pageContext.request.contextPath}/resources/js/addEvent.js"></script>
      <script src="${pageContext.request.contextPath}/resources/js/editEvents.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/etcSetting.js"></script>
@@ -290,9 +290,10 @@
         modalTitle.html('일정 수정');
         editTitle.val(event.title);
         editStart.val(event.start.format('YYYY-MM-DD HH:mm'));
+       // alert(event.type);
         editType.val(event.type);
         editDesc.val(event.description);
-        editColor.val(event.backgroundColor).css('color', event.backgroundColor);
+       
 
         addBtnContainer.hide();
         modifyBtnContainer.show();
@@ -305,10 +306,8 @@
                 start: editStart.val(),
                 end: editEnd.val(),
                 description: editDesc.val(),
-                type: editType.val(),
-                username: '사나',
-                backgroundColor: editColor.val(),
-                textColor: '#ffffff',
+                //type: editType.val(),
+                
                 allDay: false
             };
     	
@@ -345,17 +344,16 @@
 
             eventModal.modal('hide');
 
-            /*event.allDay = statusAllDay;
+            event.allDay = statusAllDay;
             event.title = editTitle.val();
             event.start = startDate;
             event.end = displayDate;
             event.type = editType.val();
-            event.backgroundColor = editColor.val();
-            event.description = editDesc.val();*/
+            event.description = editDesc.val();
             
            
 
-            $("#calendar").fullCalendar('updateEvent', event);
+            //$("#calendar").fullCalendar('updateEvent', event);
     		
             //일정 업데이트
             $.ajax({

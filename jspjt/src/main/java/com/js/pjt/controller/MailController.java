@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,6 +42,14 @@ public class MailController {
 	@RequestMapping(value = "/mail-sand", method = RequestMethod.GET)
 	public void GetSendMali() {
 
+	}
+	//메일 보기
+	@RequestMapping(value = "/viewMail", method = RequestMethod.GET)
+	//@ResponseBody
+	public void GetViewMali(@RequestParam int msgNo,Model model) {
+		model.addAttribute("viewMail", service.viewMail(msgNo));
+		System.out.println(service.viewMail(msgNo));
+		service.mailReadCheck(msgNo);
 	}
 
 	// ajax 메일리스트 메소드
@@ -97,11 +106,10 @@ public class MailController {
 	
 	@RequestMapping(value = "/detpMemberList", method = RequestMethod.GET)
 	@ResponseBody
-	public HashMap<String, Object> getDetpMemberList(@RequestParam int deptNo) throws Exception {
-		System.out.println("deptNo="+deptNo);
-		HashMap<String, Object> map = null;
+	public List<HashMap<String, Object>> getDetpMemberList(@RequestParam int deptNo) throws Exception {
+		//System.out.println("deptNo="+deptNo);
 		logger.info("Welcome detpMemberList The client locale is {}.");
 		
-		return map;
+		return service.deptMemberList(deptNo);
 	}
 }

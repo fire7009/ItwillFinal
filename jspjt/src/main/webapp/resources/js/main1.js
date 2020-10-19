@@ -157,7 +157,7 @@
         	    	 }
         	    	 
         	          if (array.ALLDAY && array.STRT_DT.substring(0,10) !== array.END_DT.substring(0,10)) {
-        	        	  array.ENDDATE = moment(array.ENDDATE).add(2, 'days').toISOString().slice(0,10);  // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력       
+        	        	  array.END_DT = moment(array.END_DT).add(2, 'days').toISOString().slice(0,10);  // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력       
         	          }
         	          
         	          if(array.SCH_DVCD===10){

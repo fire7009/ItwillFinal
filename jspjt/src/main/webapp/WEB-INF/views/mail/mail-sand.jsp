@@ -200,8 +200,8 @@
                                                 </div>
                                                 
                                                 <div class="form-group">
-                                                    <select class="form-control input-lg">
-                                                        <option value="">.input-lg</option>
+                                                    <select class="form-control input-lg" id="memberSelect">
+                                                        
                                     				</select>
                                                    
                                                 </div>
@@ -509,6 +509,8 @@
     <script>
    
     	$(document).ready(function() {
+    		//alert($('#memberSelect').val());
+    		
             $.ajax({
                 type : 'get',
                 url : 'getMailCount',
@@ -527,30 +529,36 @@
     $("#deptSelect").bind("change",function(){
     	alert($('#deptSelect').val());
     	
-    	var deptData = {dentNo : $('#deptSelect').val()};
+    	var deptData = {deptNo : $('#deptSelect').val()};
     	$.ajax({
         	url: "detpMemberList",
         	type: "GET",
-        	//dataType: "json",
         	data: deptData,
+        	dataType: "json",
         	success: function(result){
-        		alert("success");
+        		//<option value="0">부서</option>
+        		var str = "";
+        		$.each(result, function(){
+        			str += "<option value="+this.EMP_NO+">"+this.EMP_NM+"</option>";	
+        		});
+        		$("#memberSelect").append(str);
         		
         	},
         	error : function(xhr, type) {
                 alert('server error occoured')
             }
-               });
+        });
 
     });
 		
    
     
     $("#sendMail").submit( function(event){
+    	alert($('#memberSelect').val());
     	event.preventDefault();
     	 var eventData = { 
     			 DISP_EMPNO : '10',
-    			 RECP_EMPNO : '20' ,
+    			 RECP_EMPNO : $('#memberSelect').val() ,
     			 TITLE :  $('#subject').val(),
     			 CONTENT :  $('#contnet').val(),
     	        };
@@ -561,6 +569,7 @@
     	//dataType: "json",
     	data: eventData,
     	success: function(result){
+    		alert($("#memberSelect").val());
     		alert("success");
     		location.href="mail-inbox";
     	},

@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
 <html class="no-js">
-
+<!--<![endif] -->
 
 <head>
     <meta charset="utf-8">
@@ -34,50 +37,10 @@
     <script src="assets/js/vendor/html5shiv.js"></script>
     <script src="assets/js/vendor/respond.min.js"></script>
     <![endif]-->
-     <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-1.11.1.min.js"></script>
+    
+
     <script type="text/javascript">
-    $(document).ready(function() {
-     
-        $.ajax({
-            type : 'get',
-            url : 'getmail',
-            dataType : 'json',
-            success : function(data) {
-            	 var str = "<tr>";
-             	
-            	$.each(data, function(){
-                    str += "<tr class='unread'>";
-                    str += "<td><input type='checkbox' class='mail-checkbox icheck'></td>";
-                    //str += "<td><i class='fa fa-star'></i></td>";
-                    if(this.RECP_YN==='n'){
-                    	 str += "<td class='message'><a href='viewMail?msgNo="+this.MSG_NO+"'><span class='title'><b>"+this.EMP_NM+"</span> - "+this.CONTENT+"</b></a></td>";
-                    }else{
-                    	 str += "<td class='message'><a href='viewMail?msgNo="+this.MSG_NO+"'><span class='title'>"+this.EMP_NM+"</span> - "+this.CONTENT+"</a></td>";
-                    }
-                   
-                    str += "<td class='text-right'> <i class='fa fa-paperclip'></i>"+new Date(this.DISP_DTTM).toISOString().slice(0,10)+"</td>";
-                    str += "</tr>";
-                   });
-            	$("#mailTable").append(str);
-            },
-            error : function(xhr, type) {
-                alert('server error occoured')
-            }
-        });
-        
-        $.ajax({
-            type : 'get',
-            url : 'getMailCount',
-            dataType : 'json',
-            success : function(data) {
-            	$("#count").text("받은편지("+data.COUNT+")");
-            	$("#count1").text(data.COUNT);
-            },
-            error : function(xhr, type) {
-                alert('server error occoured')
-            }
-        });
-    }); 
+    
     </script>
 </head>
 
@@ -113,7 +76,7 @@
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="meta">
                             <span class="avatar">
-                                <!-- <img src="assets/img/profile.jpg" class="img-circle" alt="">-->
+                                <img src="assets/img/profile.jpg" class="img-circle" alt="">
                             </span>
                         <span class="text">Mike Adams</span>
                         <span class="caret"></span>
@@ -167,21 +130,20 @@
                 </li>
             </ul>
         </header>
-        
-        <!-- left sidebar start -->
+        <!--sidebar left start-->
        	<c:import url="/WEB-INF/views/leftSidebar.jsp">
        		<c:param name="leftSidebar" value="leftSidebar"></c:param>
 		</c:import>
-		 <!-- left sidebar end -->
+        <!--sidebar left end-->
         <!--main content start-->
-        <section class="main-content-wrapper">
+         <section class="main-content-wrapper">
             <section id="main-content" class="animated fadeInUp">
                 <!--mail wrapper start-->
                 <div class="row">
                     <div class="col-md-2 col-sm-12" id="compose-wrapper">
                         <div class="panel">
                             <aside class="panel-body">
-                                <a href="mail-sand" class="btn btn-primary btn-block">메일쓰기</a>
+                                <a href="" class="btn btn-primary btn-block">메일쓰기</a>
                                 <ul class="nav nav-pills nav-stacked compose-nav">
                                     <li class="active">
                                         <a href="mail-inbox"> <i class="fa fa-inbox"></i> 받은편지함
@@ -189,8 +151,8 @@
                                         </a>
                                     </li>
                                   
-                                    <li >
-                                        <a href="send-inbox"> <i class="fa fa-envelope-o"></i> 보낸편지함</a>
+                                    <li>
+                                        <a href="#"> <i class="fa fa-envelope-o"></i> 보낸편지함</a>
                                     </li>
                                    
                                     <li>
@@ -203,70 +165,56 @@
                        
 
                     </div>
-                    <div class="col-md-8 col-sm-12" id="inbox-wrapper">
+                      <div class="col-md-6 col-sm-12" id="view-mail-wrapper">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <header>
+                                    <h2>New Message</h2>
+                                </header>
+                                <div class="row view-mail-header">
+                                    <div class="col-md-12">
+                                        <div class="view-mail-reply pull-right">
+                                           
+                                            
+                             
+                                        </div>
+                                    </div>
+                                </div>
 
-                        <section class="panel">
-                            <header class="panel-heading wht-bg">
-                                <h4 class="gen-case" id="count">받은편지 (83)
-                        <form action="" class="pull-right mail-src-position">
-                            <div class="input-append ">
-                                <input type="text" class="form-control" placeholder="검색">
-                            </div>
-                        </form>
-                       </h4>
-                            </header>
-                            <div class="panel-body minimal">
-                                <div class="mail-option">
-                                    <div class="pull-left mail-checkbox ">
-                                       &nbsp; <input type="checkbox" class="mail-checkbox icheck">&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </div>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-                                            	전체 <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">None</a>
-                                            </li>
-                                            <li><a href="#">Read</a>
-                                            </li>
-                                            <li><a href="#">Unread</a>
-                                            </li>
-                                            <li><a href="#">Starred</a>
-                                            </li>
-                                            <li><a href="#">Unstarred</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="btn-group">
-                                        <a data-original-title="Refresh" data-placement="top" data-toggle="tooltip" href="#" class="btn btn-default btn-sm tooltips">
-                                            <i class=" fa fa-refresh"></i>
-                                        </a>
-                                    </div>
-
+                                <div class="row">
+                                    <div class="col-md-12">
+                                    <form action="" id="sendMail" method="post">
+                                        <div class="panel view-compose-body">
+                                            <div class="panel-body">
                                    
-                                    
+                                                <div class="form-group">
+                                                    
+                                                    <label class="form-control">제목 : ${viewMail.TITLE}</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    
+                                                    <label class="form-control">보낸사람 : ${viewMail.EMP_NM}</label>
+                                                </div>
 
-                                </div>
-                                <div class="table-responsive pull">
-                                    <table id='mailTable'  class="table table-inbox table-hover">
-                                        <tbody>
+                                                <textarea class="textarea form-control" rows="5" cols="40" id="contnet"  placeholder="Enter text ..." style="width: 100%; height: 200px">
+                                                	${viewMail.CONTENT}
+                                                </textarea>
+                                            </div>
+                                          
                                            
-                                            
-                                           
-                                            
-                                           
-
-                                        </tbody>
-                                    </table>
-
+                                        </div>
+                                        </form>
+                                    </div>
+                                    </div>
                                 </div>
                             </div>
-                        </section>
 
+
+                        </div>
                     </div>
                    
                 </div>
-                </div>
+               
                 <!--mail wrapper end-->
             </section>
         </section>
@@ -293,7 +241,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <span class="avatar">
-                         <!-- <img src="assets/img/profile.jpg" class="img-circle" alt="">-->
+                        <img src="assets/img/avatar3.png" class="img-circle" alt="">
                           <i class="on animated bounceIn"></i>
                         </span>
                             </div>
@@ -307,7 +255,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <span class="avatar">
-                       <!-- <img src="assets/img/profile.jpg" class="img-circle" alt="">-->
+                         <!-- <img src="assets/img/profile.jpg" class="img-circle" alt="">-->
                           <i class="on animated bounceIn"></i>
                         </span>
                             </div>
@@ -321,7 +269,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <span class="avatar">
-                        <!-- <img src="assets/img/profile.jpg" class="img-circle" alt="">-->
+                         <!-- <img src="assets/img/profile.jpg" class="img-circle" alt="">-->
                           <i class="on animated bounceIn"></i>
                         </span>
                             </div>
@@ -335,7 +283,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <span class="avatar">
-                        <!-- <img src="assets/img/profile.jpg" class="img-circle" alt="">-->
+                         <!-- <img src="assets/img/profile.jpg" class="img-circle" alt="">-->
                           <i class="on animated bounceIn"></i>
                         </span>
                             </div>
@@ -349,7 +297,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <span class="avatar">
-                        <!-- <img src="assets/img/profile.jpg" class="img-circle" alt="">-->
+                        <img src="assets/img/avatar5.png" class="img-circle" alt="">
                           <i class="away animated bounceIn"></i>
                         </span>
                             </div>
@@ -531,7 +479,7 @@
     </div>
     <!--/Config demo-->
     <!--Global JS-->
-   
+    <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-1.11.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/plugins/navgoco/jquery.navgoco.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/plugins/switchery/switchery.min.js"></script>
@@ -541,11 +489,33 @@
     <!--Page Level JS-->
     <script src="${pageContext.request.contextPath}/resources/assets/plugins/icheck/js/icheck.min.js"></script>
     <script>
-    $(document).ready(function() {
-        app.customCheckbox();
-        $('.tooltips').tooltip()
-
-    });
+   
+    	$(document).ready(function() {
+    		//alert($('#memberSelect').val());
+    		$("#contnet").attr("readonly"true);
+    		
+            $.ajax({
+                type : 'get',
+                url : 'getMailCount',
+                dataType : 'json',
+                success : function(data) {
+                	//$("#count").text("받은편지("+data.COUNT+")");
+                	$("#count1").text(data.COUNT);
+                },
+                error : function(xhr, type) {
+                    alert('server error occoured')
+                }
+            });
+        }); 
+    	
+    	
+ 
+		
+   
+    
+  
+    
+    
     </script>
 
 </body>

@@ -80,6 +80,27 @@ public class TestDAOImp implements TestDAO {
 	}
 
 
+	@Override
+	public List<HashMap<String, Object>> deptMemberList(int deptNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(TestMapper.class).deptMemberList(deptNo);
+	}
+
+
+	@Override
+	public HashMap<String, Object> viewMail(int msgNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(TestMapper.class).viewMail(msgNo);
+	}
+
+
+	@Override
+	public void mailReadCheck(int msgNo) {
+		sqlSession.getMapper(TestMapper.class).mailReadCheck(msgNo);
+		
+	}
+
+
 	
 	
   
