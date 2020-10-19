@@ -279,14 +279,15 @@
 					    			html+="<td>"+this.ordCustNm+"</td>";
 					    			html+="<td>"+this.ordProdNm+"</td>";
 					    			html+="<td>"+this.ordSumQty+"</td>";
-					    			if(this.ordCnclYn==1){
 					    			html+="<td><span><a href='javascript:orderCancle("+this.ordNo+")'style='color:red;'>발주취소</a></span></td>";
-					    			} else if(this.ordCnclYn==0){
-					    				html+="<td><span>취소완료</span></td>";
-					    			}
 				    			}
-				    		});
 				    		html+="</tr>";
+				    		});
+				    		if(html==""){
+			    				html="<tr><td style='text-align: center;' colspan='6'><검색된 항목이 없습니다></td></tr>";
+					    		$('#tbody').html(html);
+			    				return;
+			    			}
 				    		$('#example').dataTable().fnDestroy();
 				    		$('#tbody').html(html);
 				    		$('#example').dataTable();

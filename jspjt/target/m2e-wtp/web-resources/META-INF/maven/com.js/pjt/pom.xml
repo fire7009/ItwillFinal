@@ -227,6 +227,14 @@
 		    <version>4.2</version>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/org.mindrot/jbcrypt -->
+		<!-- => 암호화 처리 기능을 제공하는 라이브러리 -->
+		<dependency>
+		    <groupId>org.mindrot</groupId>
+		    <artifactId>jbcrypt</artifactId>
+		    <version>0.4</version>
+		</dependency>
+		
 	</dependencies>
 
 	<repositories>
