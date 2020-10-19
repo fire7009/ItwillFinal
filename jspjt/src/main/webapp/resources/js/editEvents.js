@@ -95,7 +95,7 @@ var editEvent = function (event, element, view) {
         
        
 
-        $("#calendar").fullCalendar('updateEvent', event);
+       //$("#calendar").fullCalendar('updateEvent', event);
 		
         //일정 업데이트
         $.ajax({

@@ -1,4 +1,5 @@
 package com.js.pjt.vo;
+<<<<<<< HEAD
 
 public class ProductVO {
 	private int prod_no;//상품번호
@@ -71,5 +72,37 @@ public class ProductVO {
 	public void setDel_dttm(String del_dttm) {
 		this.del_dttm = del_dttm;
 	}
+=======
+/*
+ 	CREATE TABLE product1(prod_no number(8) not null primary key, prod_nm varchar2(300));
+ 	
+ 	PROD_NO NOT NULL NUMBER(8)     
+	PROD_NM          VARCHAR2(300)
+ */
+public class ProductVO {
+	int prodNo;
+	String prodNm;
+	
+	public ProductVO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getProdNo() {
+		return prodNo;
+	}
+
+	public void setProdNo(int prodNo) {
+		this.prodNo = prodNo;
+	}
+
+	public String getProdNm() {
+		return prodNm;
+	}
+
+	public void setProdNm(String prodNm) {
+		this.prodNm = prodNm;
+	}
+	
+>>>>>>> branch 'master' of https://github.com/fire7009/ItwillFinal
 	
 }

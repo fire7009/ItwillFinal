@@ -47,56 +47,79 @@
                                 <span>NEU</span>BOARD</a>
                         </div>
                     </header>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                          <h3 class="panel-title">     
-                           	사원등록
-                        </h3>  
-                    </div>
-                    <div class="panel-body">
-                        
-                        <form role="form">
-                         <div class="form-group">
-                                <label for="exampleInputPassword1">아이디</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Id">
-                            </div>
-                             <div class="form-group">
-                                <label for="exampleInputPassword1">비밀번호</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                            </div>
-                              <div class="form-group">
-                                <label for="exampleInputPassword1">비밀번호 확인</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Retype password">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">이름</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter name">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">전화번호</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter phone">
-                            </div>
-                             <div class="form-group">
-                                <label for="exampleInputPassword1">부서</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter department">
-                            </div>
-                            <div class="form-group">
-                                        <label for="exampleInputFile">사원사진</label>
-                                        <input type="file" id="exampleInputFile">
-                                        <p class="help-block">Example block-level help text here.</p>
-                                    </div>
-                           <a href="index.html" class="btn btn-primary btn-block">등록</a>
-                        </form>
-
-                    </div>
-                </div>
+	                <div class="panel panel-primary">
+	                    <div class="panel-heading">
+	                          <h3 class="panel-title">     
+	                           	사원등록
+	                        </h3>  
+	                    </div>
+	                    <div class="panel-body">
+	                        
+	                        <form id="singnIn" method="post" enctype="multipart/form-data">
+	                        <div class="form-group">
+								    <label for="exampleInputPassword1">사원번호</label>
+								    <input type="text" class="form-control" name="empNo" id="empNo" placeholder="사원번호" value="${employee.empNo }">
+								</div>
+								<div class="form-group">
+								    <label for="exampleInputPassword1">부서번호</label>
+								    <input type="text" class="form-control" name="deptNo" id="deptNo" placeholder="부서번호" value="${employee.deptNo }">
+								</div>
+								<div class="form-group">
+								    <label for="exampleInputPassword1">직급구분코드</label>
+								    <input type="text" class="form-control" name="posDvcd" id="posDvcd" placeholder="직급구분코드" value="${employee.posDvcd }">
+								</div>
+								<div class="form-group">
+								    <label for="exampleInputPassword1">아이디</label>
+								    <input type="text" class="form-control" name="lgnId" id="lgnId" placeholder="아이디" value="${employee.lgnId }">
+								</div>
+								 <div class="form-group">
+								    <label for="exampleInputPassword1">비밀번호</label>
+								    <input type="password" class="form-control" name="passwd" id="passwd" placeholder="비밀번호">
+								</div>
+								  <div class="form-group">
+								    <label for="exampleInputPassword1">비밀번호 확인</label>
+								    <input type="password" class="form-control" name="" id="passwd2" placeholder="비밀번호를 한번 더 입력해주세요">
+								</div>
+								<div class="form-group">
+								    <label for="exampleInputEmail1">이름</label>
+								    <input type="text" class="form-control" name="empNm" id="empNm" placeholder="이름을 입력해주세요" value="${employee.empNm }">
+								</div>
+								<div class="form-group">
+								    <label for="exampleInputEmail1">생일</label>
+								    <input type="text" class="form-control" name="birthDt" id="birthDt" placeholder="생일을 입력해주세요" value="${employee.birthDt }">
+								</div>
+								<div class="form-group">
+								    <label for="exampleInputPassword1">핸드폰번호</label>
+								    <input type="text" class="form-control" name="mobilePhnNo" id="mobilePhnNo" placeholder="핸드폰번호를 입력해주세요" value="${employee.mobilePhnNo }">
+								</div>
+								<div class="form-group">
+								    <label for="exampleInputPassword1">이메일</label>
+								    <input type="email" class="form-control" name="emailAddr" id="emailAddr" placeholder="이메일을 입력해주세요" value="${employee.emailAddr }">
+								</div>
+								<div class="form-group">
+								    <label for="exampleInputPassword1">입사일</label>
+								    <input type="text" class="form-control" name="hireDt" id="hireDt" placeholder="입사일" value="${employee.hireDt }">
+								</div>
+								<div class="form-group">
+								    <label for="exampleInputEmail1">성별</label>
+								    <input type="text" class="form-control" name="gender" id="gender" placeholder="생일을 입력해주세요">
+								</div>
+								<div class="form-group">
+								    <label for="exampleInputFile">사원사진</label>
+								    <input type="file" id="file" name="file">
+								</div>
+								<button type="submit" class="btn btn-primary btn-block">등록</button>
+	                        </form>
+	                    </div>
+	                </div>
                 </div>
             </div>
         </div>
-
+	
     </section>
     <!--Global JS-->
     <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-1.11.1.min.js"></script>
+
     <script src="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/plugins/navgoco/jquery.navgoco.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/plugins/pace/pace.min.js"></script>

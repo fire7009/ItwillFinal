@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.js.pjt.vo.ProductVO;
 
+<<<<<<< HEAD
 
 
 public interface ProductService {
@@ -12,4 +13,8 @@ public interface ProductService {
 	public List<ProductVO>selectListProduct()throws Exception;
 	public void updateProduct(String prod_detl)throws Exception;
 	public void deleteProduct(int prod_no)throws Exception;
+=======
+public interface ProductService {
+	List<ProductVO> selectProductList();
+>>>>>>> branch 'master' of https://github.com/fire7009/ItwillFinal
 }

@@ -16,39 +16,41 @@ public class OrderServiceImp implements OrderService {
 	
 	@Transactional
 	@Override
-	public OrderVO addOrder(OrderVO order) {
-		
-		orderDAO.insertOrder(order);
-		
-		return orderDAO.selectOrder(order.getOrdNo());
-	}
-	
-	@Transactional
-	@Override
-	public OrderVO updateOrder(String orderNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Transactional
-	@Override
-	public OrderVO deleteOrder(String orderNo) {
-		// TODO Auto-generated method stub
+	public OrderVO deleteOrder(int ordNo) {
+		orderDAO.deleteOrder(ordNo);
 		return null;
 	}
 
-	@Transactional
-	@Override
-	public OrderVO selectOrder(String orderNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Transactional
 	@Override
 	public List<OrderVO> selectOrderList() {
 		
 		return orderDAO.selectOrderList();
+	}
+
+	@Transactional
+	@Override
+	public OrderVO selectCustOrder(String ordCustNm) {
+		return orderDAO.selectCustOrder(ordCustNm);
+	}
+
+	@Transactional
+	@Override
+	public OrderVO selectProdOrder(String ordProdNm) {
+		return orderDAO.selectProdOrder(ordProdNm);
+	}
+
+
+	@Override
+	public List<OrderVO> selectOrder(String ordProdNm, String ordCustNm) {
+		return orderDAO.selectOrder(ordProdNm, ordCustNm);
+	}
+
+
+	@Override
+	public List<OrderVO> selectAndOrder(String ordProdNm, String ordCustNm) {
+		return orderDAO.selectAndOrder(ordProdNm, ordCustNm);
 	}
 
 }

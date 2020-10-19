@@ -48,8 +48,13 @@
             	$.each(data, function(){
                     str += "<tr class='unread'>";
                     str += "<td><input type='checkbox' class='mail-checkbox icheck'></td>";
-                    str += "<td><i class='fa fa-star'></i></td>";
-                    str += "<td class='message'><a href='#'><span class='title'>"+this.TITLE+"</span> - "+this.CONTENT+"</a></td>";
+                    //str += "<td><i class='fa fa-star'></i></td>";
+                    if(this.RECP_YN==='n'){
+                    	 str += "<td class='message'><a href='viewMail?msgNo="+this.MSG_NO+"'><span class='title'><b>"+this.EMP_NM+"</span> - "+this.CONTENT+"</b></a></td>";
+                    }else{
+                    	 str += "<td class='message'><a href='viewMail?msgNo="+this.MSG_NO+"'><span class='title'>"+this.EMP_NM+"</span> - "+this.CONTENT+"</a></td>";
+                    }
+                   
                     str += "<td class='text-right'> <i class='fa fa-paperclip'></i>"+new Date(this.DISP_DTTM).toISOString().slice(0,10)+"</td>";
                     str += "</tr>";
                    });

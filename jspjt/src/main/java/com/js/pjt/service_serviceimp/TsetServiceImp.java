@@ -84,6 +84,30 @@ public class TsetServiceImp implements TestService {
 		// TODO Auto-generated method stub
 		return dao.getMailCount();
 	}
+
+
+
+	@Override
+	public List<HashMap<String, Object>> deptMemberList(int deptNo) {
+		// TODO Auto-generated method stub
+		return dao.deptMemberList(deptNo);
+	}
+
+
+
+	@Override
+	public HashMap<String, Object> viewMail(int msgNo) {
+		// TODO Auto-generated method stub
+		return dao.viewMail(msgNo);
+	}
+
+
+
+	@Override
+	public void mailReadCheck(int msgNo) {
+		dao.mailReadCheck(msgNo);
+		
+	}
 	
 	
 

@@ -67,7 +67,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <a href="/pjt/mail/mail-inbox" class="btn btn-primary btn-block">로그인</a>
+                                        <a href="/pjt/main" class="btn btn-primary btn-block">로그인</a>
                                        
                                     </div>
                                 </div>

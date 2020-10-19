@@ -41,17 +41,12 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public void gettest(Locale locale, Model model) {
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public void getmain(Locale locale, Model model) {
 		
 		
 	}
 	
-	@RequestMapping(value = "/test", method = RequestMethod.POST)
-	public String posttest(Locale locale, Model model) {
-		
-		return "test";
-	}
 	
 	
 	@RequestMapping(value = "/myevent", method = RequestMethod.GET)
