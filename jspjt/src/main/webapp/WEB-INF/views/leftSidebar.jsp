@@ -82,10 +82,17 @@
                             </li>
                         </ul>
                     </li>
-                    <li >
-                        <a href="schedule" title="Dashboard">
+                    <li class="nav-dropdown">
+                        <a href="#" title="Dashboard">
                             <i class="fa  fa-fw fa-tachometer"></i> 업체 관리
                         </a>
+                        <ul class="nav-sub">
+                            <li>
+                                <a href="/pjt/orderList" title="Sliders &amp; Progress">
+                                      		발주현황
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li >
                         <a href="schedule" title="Dashboard">

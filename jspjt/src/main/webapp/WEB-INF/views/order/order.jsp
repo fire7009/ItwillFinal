@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>   
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -13,26 +17,26 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/favicon.ico" type="image/x-icon">
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/css/bootstrap.min.css">
     <!-- Fonts  -->
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/simple-line-icons.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/simple-line-icons.css">
     <!-- Switchery -->
-    <link rel="stylesheet" href="assets/plugins/switchery/switchery.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/plugins/switchery/switchery.min.css">
     <!-- CSS Animate -->
-    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/animate.css">
     <!-- DataTables-->
-    <link rel="stylesheet" href="assets/plugins/dataTables/css/dataTables.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/plugins/dataTables/css/dataTables.css">
     <!-- Custom styles for this theme -->
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
     <!-- Feature detection -->
-    <script src="assets/js/vendor/modernizr-2.6.2.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/modernizr-2.6.2.min.js"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script src="assets/js/vendor/html5shiv.js"></script>
-    <script src="assets/js/vendor/respond.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/html5shiv.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/respond.min.js"></script>
     <![endif]-->
 </head>
 
@@ -122,73 +126,11 @@
                 </li>
             </ul>
         </header>
-        <!--sidebar left start-->
-        <aside class="sidebar sidebar-left">
-            <div class="sidebar-profile">
-                <div class="avatar">
-                    <img class="img-circle profile-image" src="assets/img/profile.jpg" alt="profile">
-                    <i class="on border-dark animated bounceIn"></i>
-                </div>
-                <div class="profile-body dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><h4>Mike Adams <span class="caret"></span></h4></a>
-                    <small class="title">Front-end Developer</small>
-                    <ul class="dropdown-menu animated fadeInRight" role="menu">
-                        <li class="profile-progress">
-                            <h5>
-                                <span>80%</span>
-                                <small>Profile complete</small>
-                            </h5>
-                            <div class="progress progress-xs">
-                                <div class="progress-bar progress-bar-primary" style="width: 80%">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="javascript:void(0);">
-                                <span class="icon"><i class="fa fa-user"></i>
-                                </span>My Account</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);">
-                                <span class="icon"><i class="fa fa-envelope"></i>
-                                </span>Messages</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);">
-                                <span class="icon"><i class="fa fa-cog"></i>
-                                </span>Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="javascript:void(0);">
-                                <span class="icon"><i class="fa fa-sign-out"></i>
-                                </span>Logout</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <nav>
-                <h5 class="sidebar-header">Navigation</h5>
-                <ul class="nav nav-pills nav-stacked">
-                    <li class="active">
-                        <a href="index.html" title="Dashboard">
-                            <i class="fa  fa-fw fa-tachometer"></i> 메인
-                        </a>
-                    </li>
-                    <li class="nav-dropdown">
-                        <a href="#" title="Forms">
-                            <i class="fa  fa-fw fa-edit"></i> 주문관리
-                        </a>
-                        <ul class="nav-sub">
-                            <li><a href="orderlist.html" title="Components">발주</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
-        <!--sidebar left end-->
+        <!-- left sidebar start -->
+       	<c:import url="/WEB-INF/views/leftSidebar.jsp">
+       		<c:param name="leftSidebar" value="leftSidebar"></c:param>
+		</c:import>
+		 <!-- left sidebar end -->
         <!--main content start-->
         <section class="main-content-wrapper">
             <div class="pageheader">
@@ -208,10 +150,10 @@
                     <div class="col-md-12">
                         <ul class="nav nav-tabs">
                             <li class="active">
-                                <a data-toggle="tab" href="#table" aria-expanded="true">발주현황</a>
+                                <a data-toggle="tab" href="#table" aria-expanded="true" id="tableBtn">발주현황</a>
                             </li>
                             <li class="">
-                                <a data-toggle="tab" href="#profile1" aria-expanded="false">발주</a>
+                                <a data-toggle="tab" href="#cancle" aria-expanded="false" id="cancleBtn">취소현황</a>
                             </li>
                         </ul>
 
@@ -219,7 +161,7 @@
                             <div class="">
                                 <div class="actions pull-right">
                                     <i class="fa fa-expand"></i>
-                                    <i class="fa fa-chevron-down"></i>
+                                    <i class="fa fa-chevron-up"></i>
                                 </div>
                             </div>
                             <div class="panel-body">
@@ -234,48 +176,56 @@
                                                         <i class="fa fa-chevron-down"></i>
                                                     </div>
                                                 </div>
-                                                <div class="panel-body" >
-                                                    <div class="select-group" style="width: 900px; margin: 0 auto; margin-top: 30px;">
-                                                        <table>
-                                                            <tr>
-                                                                <th style="width: 200px;"></th>
-                                                                <th style="width: 700px;"></th>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    업체명
-                                                                </td>
-                                                                <td>
-                                                                    <select class="form-control input-lg">
-                                                                        <option value="">업체명을 선택하세요</option>
-                                                                    </select>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    담당직원
-                                                                </td>
-                                                                <td>
-                                                                    <select class="form-control input-lg">
-                                                                        <option value="">담당직원을 선택하세요</option>
-                                                                    </select>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    상품명
-                                                                </td>
-                                                                <td>
-                                                                    <select class="form-control input-lg">
-                                                                        <option value="">상품명을 선택하세요</option>
-                                                                    </select>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                        <div style="width: 900px; text-align: center; margin-top: 30px;">
-                                                            <button type="button" class="btn btn-success">검색</button>
-                                                            <button type="button" class="btn btn-success">초기화</button>
-                                                        </div>
+                                                <div class="panel-body" style="display: none;">
+                                                    <div class="select-group" style="width: 500px; margin: 0 auto; margin-top: 30px;">
+                                                    
+	                                                        <table>
+	                                                            <tr>
+	                                                                <th style="width: 100px;"></th>
+	                                                                <th style="width: 400px;"></th>
+	                                                            </tr>
+	                                                            <tr>
+	                                                                <td>
+	                                                                    업체명
+	                                                                </td>
+	                                                                <td>
+	                                                                    <select class="form-control input-lg" name="ordCustNm" id="ordCustNm">
+	                                                                        <option value="">업체명을 선택하세요</option>
+	                                                                        <c:forEach var="custom" items="${customerList }">
+	                                                                        <c:if test="${custom.custNm==customer}">
+	                                                                        <option value="${custom.custNm }" selected="selected">${custom.custNm }</option>
+	                                                                        </c:if>
+	                                                                        <c:if test="${custom.custNm!=customer}">
+	                                                                        <option value="${custom.custNm }">${custom.custNm }</option>
+	                                                                        </c:if>
+	                                                                        </c:forEach>
+	                                                                    </select>
+	                                                                </td>	
+	                                                            </tr>
+	                                                            <tr>
+	                                                                <td>
+	                                                                    상품명
+	                                                                </td>
+	                                                                <td>
+	                                                                    <select class="form-control input-lg" name="ordProdNm" id="ordProdNm">
+	                                                                        <option value="">상품명을 선택하세요</option>
+	                                                                        <c:forEach var="prod" items="${productList }">
+	                                                                        <c:if test="${prod.prodNm==product }">
+	                                                                        <option value="${prod.prodNm }" selected="selected">${prod.prodNm }</option>
+	                                                                        </c:if>
+	                                                                        <c:if test="${prod.prodNm!=product }">
+	                                                                        <option value="${prod.prodNm }">${prod.prodNm }</option>
+	                                                                        </c:if>
+	                                                                        </c:forEach>
+	                                                                    </select>
+	                                                                </td>
+	                                                            </tr>
+	                                                        </table>
+	                                                        <div style="width: 500px; text-align: center; margin-top: 30px;">
+	                                                            <button type="button" class="btn btn-success" onclick="search();">검색</button>
+	                                                            <button type="button" class="btn btn-success" id="reset">초기화</button>
+	                                                        </div>
+                                
                                                     </div>
                                                 </div>
                                             </div>
@@ -285,106 +235,16 @@
                                                         <th>날짜</th>
                                                         <th>주문번호</th>
                                                         <th>업체명</th>
-                                                        <th>담당직원</th>
                                                         <th>상품명</th>
                                                         <th>수량</th>
                                                         <th>상태</th>
                                                     </tr>
                                                 </thead>
 
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Tiger Nixon</td>
-                                                        <td>System Architect</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>61</td>
-                                                        <td>2011/04/25</td>
-                                                        <td>$320,800</td>
-                                                        <td>
-                                                            <span>수정</span>
-                                                            /<span>삭제</span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>ixon</td>
-                                                        <td>System Architect</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>61</td>
-                                                        <td>2011/04/25</td>
-                                                        <td>$320,800</td>
-                                                        <td>
-                                                            <span>수정</span>
-                                                            /<span>삭제</span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Nixon</td>
-                                                        <td>System Architect</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>61</td>
-                                                        <td>2011/04/25</td>
-                                                        <td>$320,800</td>
-                                                        <td>
-                                                            <span>수정</span>
-                                                            /<span>삭제</span>
-                                                        </td>
-                                                    </tr>
+                                                <tbody id="tbody">
+
                                                 </tbody>
                                             </table>
-                                        </div>
-                                        <div class="tab-pane" id="profile1">
-                                            <div class="panel panel-info">
-                                                <div class="panel-body" >
-                                                    <div class="select-group" style="width: 600px; margin: 0 auto; margin-top: 30px;">
-                                                        <table>
-                                                            <tr>
-                                                                <th style="width: 100px;"></th>
-                                                                <th style="width: 500px;"></th>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    업체명
-                                                                </td>
-                                                                <td>
-                                                                    <select class="form-control input-lg">
-                                                                        <option value="">업체를 선택하세요</option>
-                                                                    </select>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    담당직원
-                                                                </td>
-                                                                <td>
-                                                                    <input type="text" class="form-control" value="담당직원" readonly>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    상품명
-                                                                </td>
-                                                                <td>
-                                                                    <select class="form-control input-lg">
-                                                                        <option value="">상품을 선택하세요</option>
-                                                                    </select>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    수량
-                                                                </td>
-                                                                <td>
-                                                                    <input type="text" class="form-control">
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                        <div style=" text-align: center; margin-top: 30px;">
-                                                            <button type="button" class="btn btn-success">발주</button>
-                                                            <button type="button" class="btn btn-success">초기화</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -392,185 +252,142 @@
                         </div>
                     </div>
                 </div>
+			    <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-1.11.1.min.js"></script>
+                <script type="text/javascript">
+			    function orderCancle(ordNo){
+			    	if(confirm("정말로 취소하시겠습니까?")){
+			    		location.href="order_delete/"+ordNo;
+			    	}
+			    }
+			    </script>
+			    <script type="text/javascript">
+			    display();
+			    var stat=1;
+			    function display(){
+				    $.ajax({
+				    	type: "GET",
+				    	url: "order_list",
+				    	dataType: "json",
+				    	success: function(json) {
+				    		var html="";
+				    		$(json).each(function(){
+				    			if(this.ordCnclYn==stat){
+					    			var date=this.ordDttm
+					    			html+="<tr style='text-align: right;'>";
+					    			html+="<td>"+date.substring(0,10)+"</td>";
+					    			html+="<td>"+this.ordNo+"</td>";
+					    			html+="<td>"+this.ordCustNm+"</td>";
+					    			html+="<td>"+this.ordProdNm+"</td>";
+					    			html+="<td>"+this.ordSumQty+"</td>";
+					    			if(this.ordCnclYn==1){
+					    			html+="<td><span><a href='javascript:orderCancle("+this.ordNo+")'style='color:red;'>발주취소</a></span></td>";
+					    			} else if(this.ordCnclYn==0){
+					    				html+="<td><span>취소완료</span></td>";
+					    			}
+				    			}
+				    		});
+				    		html+="</tr>";
+				    		$('#example').dataTable().fnDestroy();
+				    		$('#tbody').html(html);
+				    		$('#example').dataTable();
+				    	},
+				    	error:function(xhr) {
+				    		$('#tbody').text("응답오류 = "+xhr.status);
+				    	}
+				    });
+			    }
+			    
+			    function search() {
+			    	var ordCustNm=$("#ordCustNm").val();
+			    	var ordProdNm=$("#ordProdNm").val();
+			    	$.ajax({
+			    		type: "POST",
+			    		url: "search_order",
+			    		data: {"ordCustNm":ordCustNm, "ordProdNm":ordProdNm},
+			    		dataType: "json",
+		    			success: function(json) {
+					    	//alert("성공"+ordProdNm);
+		    				//alert("성공"+ordCustNm);
+				    		var html="";
+				    		$(json).each(function(){
+				    			if(this.ordCnclYn==stat){
+					    			var date=this.ordDttm
+					    			html+="<tr style='text-align: right;'>";
+					    			html+="<td>"+date.substring(0,10)+"</td>";
+					    			html+="<td>"+this.ordNo+"</td>";
+					    			html+="<td>"+this.ordCustNm+"</td>";
+					    			html+="<td>"+this.ordProdNm+"</td>";
+					    			html+="<td>"+this.ordSumQty+"</td>";
+					    			if(this.ordCnclYn==1){
+					    			html+="<td><span><a href='javascript:orderCancle("+this.ordNo+")'style='color:red;'>발주취소</a></span></td>";
+					    			} else if(this.ordCnclYn==0){
+					    				html+="<td><span>취소완료</span></td>";
+					    			}
+						    		html+="</tr>";
+				    			}
+				    		});
+				    		if(html==""){
+			    				html+="<tr><td style='text-align: center;' colspan='6'><검색된 항목이 없습니다></td></tr>";
+					    		$('#tbody').html(html);
+			    				return;
+			    			}
+				    		$('#example').dataTable().fnDestroy();
+				    		$('#tbody').html(html);
+				    		$('#example').dataTable();
+				    	},
+				    	error:function(xhr) {
+				    		$('#tbody').text("응답오류 = "+xhr.status);
+				    	}
+				    });
+			    }
+			    
+			    $("#cancleBtn").on('click', function(){
+			    	$('#ordProdNm').find('option').removeAttr('selected');
+			    	$('#ordProdNm').find('option:first').attr('selected','selected');
+			    	$('#ordCustNm').find('option').removeAttr('selected');
+			    	$('#ordCustNm').find('option:first').attr('selected','selected');
+			    	stat=0;
+			    	display();
+			    })
+			    $("#tableBtn").on('click', function(){
+			    	$('#ordProdNm').find('option').removeAttr('selected');
+			    	$('#ordProdNm').find('option:first').attr('selected','selected');
+			    	$('#ordCustNm').find('option').removeAttr('selected');
+			    	$('#ordCustNm').find('option:first').attr('selected','selected');
+			    	stat=1;
+			    	display();
+			    })
+			    $("#reset").on('click', function(){
+			    	$('#ordProdNm').find('option').removeAttr('selected');
+			    	$('#ordProdNm').find('option:first').attr('selected','selected');
+			    	$('#ordCustNm').find('option').removeAttr('selected');
+			    	$('#ordCustNm').find('option:first').attr('selected','selected');
+			    	stat=1;
+			    	display();
+			    })
+			    </script>
             </section>
         </section>
         <!--main content end-->
     </section>
-    <!--sidebar right start-->
-    <aside id="sidebar-right">
-        <h4 class="sidebar-title">contact List</h4>
-        <div id="contact-list-wrapper">
-            <div class="heading">
-                <ul>
-                    <li class="new-contact"><a href="javascript:void(0)"><i class="fa fa-plus"></i></a>
-                    </li>
-                    <li>
-                        <input type="text" class="search" placeholder="Search">
-                        <button type="submit" class="btn btn-sm btn-search"><i class="fa fa-search"></i>
-                        </button>
-                    </li>
-                </ul>
-            </div>
-            <div id="contact-list">
-                <ul>
-                    <li>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <span class="avatar">
-                        <img src="assets/img/avatar3.png" class="img-circle" alt="">
-                          <i class="on animated bounceIn"></i>
-                        </span>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="name">Ashley Bell </div>
-                                <small class="location text-muted"><i class="icon-pointer"></i> Sarasota, FL</small>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <span class="avatar">
-                        <img src="assets/img/avatar1.png" class="img-circle" alt="">
-                          <i class="on animated bounceIn"></i>
-                        </span>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="name">Brian Johnson </div>
-                                <small class="location text-muted"><i class="icon-pointer"></i> San Francisco, CA</small>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <span class="avatar">
-                        <img src="assets/img/avatar2.png" class="img-circle" alt="">
-                          <i class="on animated bounceIn"></i>
-                        </span>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="name">Chris Jones </div>
-                                <small class="location text-muted"><i class="icon-pointer"></i> Brooklyn, NY</small>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <span class="avatar">
-                        <img src="assets/img/avatar4.jpg" class="img-circle" alt="">
-                          <i class="on animated bounceIn"></i>
-                        </span>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="name">Erica Hill </div>
-                                <small class="location text-muted"><i class="icon-pointer"></i> Palo Alto, Ca</small>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <span class="avatar">
-                        <img src="assets/img/avatar5.png" class="img-circle" alt="">
-                          <i class="away animated bounceIn"></i>
-                        </span>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="name">Greg Smith </div>
-                                <small class="location text-muted"><i class="icon-pointer"></i> London, UK</small>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <span class="avatar">
-                        <img src="assets/img/avatar6.png" class="img-circle" alt="">
-                          <i class="on animated bounceIn"></i>
-                        </span>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="name">Jason Kendall</div>
-                                <small class="location text-muted"><i class="icon-pointer"></i> New York, NY </small>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <span class="avatar">
-                        <img src="assets/img/avatar7.png" class="img-circle" alt="">
-                          <i class="on animated bounceIn"></i>
-                        </span>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="name">Kristen Davis </div>
-                                <small class="location text-muted"><i class="icon-pointer"></i> Greenville, SC</small>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <span class="avatar">
-                        <img src="assets/img/avatar8.png" class="img-circle off" alt="">
-                          <i class="off animated bounceIn"></i>
-                        </span>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="name">Michael Shepard </div>
-                                <small class="location text-muted"><i class="icon-pointer"></i> Vancouver, BC</small>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <span class="avatar">
-                        <img src="assets/img/avatar9.png" class="img-circle off" alt="">
-                          <i class="off animated bounceIn"></i>
-                        </span>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="name">Paul Allen</div>
-                                <small class="location text-muted"><i class="icon-pointer"></i> Savannah, GA</small>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div id="contact-user">
-                <div class="chat-user active"><span><i class="icon-bubble"></i></span>
-                </div>
-                <div class="email-user"><span><i class="icon-envelope-open"></i></span>
-                </div>
-                <div class="call-user"><span><i class="icon-call-out"></i></span>
-                </div>
-            </div>
-        </div>
-    </aside>
-    <!--sidebar right end-->
-    <!--Config demo-->
-    
-    <!--/Config demo-->
+   
     <!--Global JS-->
-    <script src="assets/js/vendor/jquery-1.11.1.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/plugins/navgoco/jquery.navgoco.min.js"></script>
-    <script src="assets/plugins/switchery/switchery.min.js"></script>
-    <script src="assets/plugins/pace/pace.min.js"></script>
-      <script src="assets/plugins/fullscreen/jquery.fullscreen-min.js"></script>
-    <script src="assets/js/src/app.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-1.11.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/plugins/navgoco/jquery.navgoco.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/plugins/switchery/switchery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/plugins/pace/pace.min.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/assets/plugins/fullscreen/jquery.fullscreen-min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/src/app.js"></script>
     <!--Page Leve JS -->
-    <script src="assets/plugins/dataTables/js/jquery.dataTables.js"></script>
-    <script src="assets/plugins/dataTables/js/dataTables.bootstrap.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/plugins/dataTables/js/jquery.dataTables.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/plugins/dataTables/js/dataTables.bootstrap.js"></script>
     <script>
     $(document).ready(function() {
-        $('#example').dataTable();
     });
+    
     </script>
+    
 </body>
 
 </html>

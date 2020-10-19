@@ -165,6 +165,7 @@ canvas {
 }
 #header button.sidebar-toggle,
 #header button#toggle-profile,
+#header button#toggle-fullscreen,
 #header button.options {
   width: 60px;
   height: 60px;
@@ -179,13 +180,16 @@ canvas {
 #header button.sidebar-toggle:hover,
 #header button.sidebar-toggle:active,
 #header button#toggle-profile:hover,
-#header button#toggle-profile:active {
+#header button#toggle-profile:active,
+#header button#toggle-fullscreen:hover,
+#header button#toggle-fullscreen:active {
   box-shadow: none;
   outline: none!important;
   border: none;
 }
 #header button.sidebar-toggle:focus,
-#header button#toggle-profile:focus {
+#header button#toggle-profile:focus,
+#header button#toggle-fullscreen:focus {
   outline: none;
   border: none;
 }
@@ -1943,16 +1947,30 @@ fieldset[disabled] .btn-warning.active {
   font-weight: bold;
   margin-top: 10px;
 }
+body.fullscreen-widget-active {
+  overflow: hidden;
+  position: fixed;
+}
+body.fullscreen-widget-active .animated {
+  -webkit-animation-fill-mode: none;
+  animation-fill-mode: none;
+  animation-name: none;
+}
+body.fullscreen-widget-active .panel .panel-heading .actions > .fa-chevron-down,
+body.fullscreen-widget-active .panel .panel-heading .actions > .fa-times {
+  display: none;
+}
 .panel.widget-fullscreen {
-  display: block!important;
-  z-index: 9999!important;
-  position: fixed!important;
-  width: 100%!important;
-  height: 100%!important;
-  top: 0!important;
-  right: 0!important;
-  left: 0!important;
-  bottom: 0!important;
+  display: block;
+  z-index: 9999;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  overflow-y: auto;
 }
 .tab-wrapper {
   margin-bottom: 20px;
@@ -1965,7 +1983,7 @@ fieldset[disabled] .btn-warning.active {
   border-radius: 0;
 }
 .tab-wrapper .tab-content {
-  border: 1px solid #ddd;
+  
   border-top: 0;
   padding: 10px 15px;
 }
@@ -3308,19 +3326,162 @@ label.valid {
   border-radius: 0;
   border: solid 10px rgba(255, 255, 255, 0.6);
 }
+.mail-option ul li {
+  list-style: none;
+}
+#view-mail-wrapper header {
+  color: #a2a2a2;
+}
+#view-mail-wrapper header h2 {
+  border-bottom: 1px solid #ddd;
+  padding: 0 0 15px 0;
+}
+#view-mail-wrapper header p {
+  position: absolute;
+  right: 35px;
+  top: 20px;
+}
+#view-mail-wrapper .view-mail-header {
+  padding-top: 5px;
+}
+#view-mail-wrapper .view-mail-header img {
+  margin-right: 10px;
+}
+#view-mail-wrapper .view-mail-reply {
+  margin-top: 12px;
+}
+#view-mail-wrapper .view-mail-body {
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+  margin-top: 15px;
+}
+#view-mail-wrapper .view-mail-body p {
+  line-height: 1.8em;
+}
+#view-mail-wrapper .view-mail-body .panel-footer,
+#view-mail-wrapper .view-compose-body .panel-footer {
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+  padding: 15px 0;
+}
+#view-mail-wrapper .view-mail-body .panel-footer h5 {
+  display: inline-block;
+}
+#view-mail-wrapper .view-mail-body .panel-footer .attchments {
+  padding: 0 8px;
+  text-transform: lowercase;
+}
+#view-mail-wrapper .view-mail-body .panel-footer button.pull-right {
+  margin: 0 0 0px 8px;
+}
+.send-options {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  position: absolute;
+  right: 45px;
+  top: 22px;
+}
+.send-options a {
+  color: #979797;
+}
+#form-group-cc,
+#form-group-bcc {
+  display: none;
+}
+.compose-nav > li + li {
+  margin-left: 0;
+  margin-top: 0px;
+}
+.compose-nav li a,
+.compose-nav li a:visited {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+  border-top: 1px solid #f2f3f6;
+  padding: 15px;
+  border-right: 3px solid rgba(0, 0, 0, 0);
+  color: #5D5F63;
+}
+.compose-nav > li.active > a,
+.compose-nav > li.active > a:hover,
+.compose-nav > li.active > a:focus {
+  background: #f9f9f9;
+  color: #556b8d;
+  border-left: 3px solid #556b8d;
+  margin-left: -3px;
+}
+.compose-nav > li > a:hover,
+.compose-nav > li > a:focus {
+  background: #f9f9f9;
+  color: #556b8d;
+  border-left: 3px solid #556b8d;
+  margin-left: -3px;
+}
+.mail-checkbox {
+  margin: 0 15px 0 8px;
+}
+.mail-option .btn-group .fa-refresh,
+.pag-left,
+.pag-right {
+  color: #fff;
+}
+.inbox-pag li {
+  float: left;
+  margin-left: 5px;
+}
+.inbox-pag li span {
+  display: inline-block;
+  margin-top: 7px;
+  margin-right: 5px;
+}
+.compose-nav {
+  margin: 15px -15px 0 -15px;
+}
+.table-inbox span.title {
+  display: block;
+  font-weight: bold;
+}
+.table-inbox tr {
+  background: #f9f9f9;
+}
+.table-inbox tr.unread {
+  background: #fff;
+}
+.table-inbox a,
+.table-inbox a:visited {
+  color: #5D5F63;
+}
+.table-inbox .unread a,
+.table-inbox .unread a:visited {
+  color: #556b8d;
+}
+.table-inbox .fa-star {
+  color: #edce8c;
+}
 .theme-default #header {
   background: #fff;
 }
 .theme-default #header .logo,
 .theme-default #header button.sidebar-toggle,
 .theme-default #header button#toggle-profile,
+.theme-default #header button#toggle-fullscreen,
 .theme-default #header .nav li.profile > a {
   color: #1d212a;
 }
 .theme-default #header button.sidebar-toggle:hover,
 .theme-default #header button.sidebar-toggle:active,
 .theme-default #header button#toggle-profile:hover,
-.theme-default #header button#toggle-profile:active {
+.theme-default #header button#toggle-profile:active,
+.theme-default #header button#toggle-fullscreen:hover,
+.theme-default #header button#toggle-fullscreen:active {
   background: #f6f8f8;
 }
 .theme-default #header .nav li.profile > a:hover,
@@ -3376,13 +3537,16 @@ label.valid {
 }
 .theme-dark #header button.sidebar-toggle,
 .theme-dark #header button#toggle-profile,
+.theme-dark #header button#toggle-fullscreen,
 .theme-dark #header .nav li.profile > a {
   color: #1d212a;
 }
 .theme-dark #header button.sidebar-toggle:hover,
 .theme-dark #header button.sidebar-toggle:active,
 .theme-dark #header button#toggle-profile:hover,
-.theme-dark #header button#toggle-profile:active {
+.theme-dark #header button#toggle-profile:active,
+.theme-dark #header button#toggle-fullscreen:hover,
+.theme-dark #header button#toggle-fullscreen:active {
   background: #f6f8f8;
 }
 .theme-dark #header .nav li.profile > a:hover,
@@ -3438,13 +3602,16 @@ label.valid {
 }
 .theme-dark-full #header button.sidebar-toggle,
 .theme-dark-full #header button#toggle-profile,
+.theme-dark-full #header button#toggle-fullscreen,
 .theme-dark-full #header .nav li.profile > a {
   color: #fff;
 }
 .theme-dark-full #header button.sidebar-toggle:hover,
 .theme-dark-full #header button.sidebar-toggle:active,
 .theme-dark-full #header button#toggle-profile:hover,
-.theme-dark-full #header button#toggle-profile:active {
+.theme-dark-full #header button#toggle-profile:active,
+.theme-dark-full #header button#toggle-fullscreen:hover,
+.theme-dark-full #header button#toggle-fullscreen:active {
   background: #272d39;
 }
 .theme-dark-full #header .nav li.profile > a:hover,
@@ -3500,13 +3667,16 @@ label.valid {
 }
 .theme-blue #header button.sidebar-toggle,
 .theme-blue #header button#toggle-profile,
+.theme-blue #header button#toggle-fullscreen,
 .theme-blue #header .nav li.profile > a {
   color: #1d212a;
 }
 .theme-blue #header button.sidebar-toggle:hover,
 .theme-blue #header button.sidebar-toggle:active,
 .theme-blue #header button#toggle-profile:hover,
-.theme-blue #header button#toggle-profile:active {
+.theme-blue #header button#toggle-profile:active,
+.theme-blue #header button#toggle-fullscreen:hover,
+.theme-blue #header button#toggle-fullscreen:active {
   background: #f6f8f8;
 }
 .theme-blue #header .nav li.profile > a:hover,
@@ -3562,13 +3732,16 @@ label.valid {
 }
 .theme-blue-full #header button.sidebar-toggle,
 .theme-blue-full #header button#toggle-profile,
+.theme-blue-full #header button#toggle-fullscreen,
 .theme-blue-full #header .nav li.profile > a {
   color: #fff;
 }
 .theme-blue-full #header button.sidebar-toggle:hover,
 .theme-blue-full #header button.sidebar-toggle:active,
 .theme-blue-full #header button#toggle-profile:hover,
-.theme-blue-full #header button#toggle-profile:active {
+.theme-blue-full #header button#toggle-profile:active,
+.theme-blue-full #header button#toggle-fullscreen:hover,
+.theme-blue-full #header button#toggle-fullscreen:active {
   background: #238acc;
 }
 .theme-blue-full #header .nav li.profile > a:hover,
@@ -3624,13 +3797,16 @@ label.valid {
 }
 .theme-grey #header button.sidebar-toggle,
 .theme-grey #header button#toggle-profile,
+.theme-grey #header button#toggle-fullscreen,
 .theme-grey #header .nav li.profile > a {
   color: #1d212a;
 }
 .theme-grey #header button.sidebar-toggle:hover,
 .theme-grey #header button.sidebar-toggle:active,
 .theme-grey #header button#toggle-profile:hover,
-.theme-grey #header button#toggle-profile:active {
+.theme-grey #header button#toggle-profile:active,
+.theme-grey #header button#toggle-fullscreen:hover,
+.theme-grey #header button#toggle-fullscreen:active {
   background: #f6f8f8;
 }
 .theme-grey #header .nav li.profile > a:hover,
@@ -3686,13 +3862,16 @@ label.valid {
 }
 .theme-grey-full #header button.sidebar-toggle,
 .theme-grey-full #header button#toggle-profile,
+.theme-grey-full #header button#toggle-fullscreen,
 .theme-grey-full #header .nav li.profile > a {
   color: #fff;
 }
 .theme-grey-full #header button.sidebar-toggle:hover,
 .theme-grey-full #header button.sidebar-toggle:active,
 .theme-grey-full #header button#toggle-profile:hover,
-.theme-grey-full #header button#toggle-profile:active {
+.theme-grey-full #header button#toggle-profile:active,
+.theme-grey-full #header button#toggle-fullscreen:hover,
+.theme-grey-full #header button#toggle-fullscreen:active {
   background: #9ea7ac;
 }
 .theme-grey-full #header .nav li.profile > a:hover,
@@ -3748,13 +3927,16 @@ label.valid {
 }
 .theme-green #header button.sidebar-toggle,
 .theme-green #header button#toggle-profile,
+.theme-green #header button#toggle-fullscreen,
 .theme-green #header .nav li.profile > a {
   color: #1d212a;
 }
 .theme-green #header button.sidebar-toggle:hover,
 .theme-green #header button.sidebar-toggle:active,
 .theme-green #header button#toggle-profile:hover,
-.theme-green #header button#toggle-profile:active {
+.theme-green #header button#toggle-profile:active,
+.theme-green #header button#toggle-fullscreen:hover,
+.theme-green #header button#toggle-fullscreen:active {
   background: #f6f8f8;
 }
 .theme-green #header .nav li.profile > a:hover,
@@ -3810,13 +3992,16 @@ label.valid {
 }
 .theme-green-full #header button.sidebar-toggle,
 .theme-green-full #header button#toggle-profile,
+.theme-green-full #header button#toggle-fullscreen,
 .theme-green-full #header .nav li.profile > a {
   color: #fff;
 }
 .theme-green-full #header button.sidebar-toggle:hover,
 .theme-green-full #header button.sidebar-toggle:active,
 .theme-green-full #header button#toggle-profile:hover,
-.theme-green-full #header button#toggle-profile:active {
+.theme-green-full #header button#toggle-profile:active,
+.theme-green-full #header button#toggle-fullscreen:hover,
+.theme-green-full #header button#toggle-fullscreen:active {
   background: #2ccbc3;
 }
 .theme-green-full #header .nav li.profile > a:hover,
@@ -3872,13 +4057,16 @@ label.valid {
 }
 .theme-red #header button.sidebar-toggle,
 .theme-red #header button#toggle-profile,
+.theme-red #header button#toggle-fullscreen,
 .theme-red #header .nav li.profile > a {
   color: #1d212a;
 }
 .theme-red #header button.sidebar-toggle:hover,
 .theme-red #header button.sidebar-toggle:active,
 .theme-red #header button#toggle-profile:hover,
-.theme-red #header button#toggle-profile:active {
+.theme-red #header button#toggle-profile:active,
+.theme-red #header button#toggle-fullscreen:hover,
+.theme-red #header button#toggle-fullscreen:active {
   background: #f6f8f8;
 }
 .theme-red #header .nav li.profile > a:hover,
@@ -3934,13 +4122,16 @@ label.valid {
 }
 .theme-red-full #header button.sidebar-toggle,
 .theme-red-full #header button#toggle-profile,
+.theme-red-full #header button#toggle-fullscreen,
 .theme-red-full #header .nav li.profile > a {
   color: #fff;
 }
 .theme-red-full #header button.sidebar-toggle:hover,
 .theme-red-full #header button.sidebar-toggle:active,
 .theme-red-full #header button#toggle-profile:hover,
-.theme-red-full #header button#toggle-profile:active {
+.theme-red-full #header button#toggle-profile:active,
+.theme-red-full #header button#toggle-fullscreen:hover,
+.theme-red-full #header button#toggle-fullscreen:active {
   background: #e67373;
 }
 .theme-red-full #header .nav li.profile > a:hover,
@@ -3996,13 +4187,16 @@ label.valid {
 }
 .theme-dark-blue-full #header button.sidebar-toggle,
 .theme-dark-blue-full #header button#toggle-profile,
+.theme-dark-blue-full #header button#toggle-fullscreen,
 .theme-dark-blue-full #header .nav li.profile > a {
   color: #fff;
 }
 .theme-dark-blue-full #header button.sidebar-toggle:hover,
 .theme-dark-blue-full #header button.sidebar-toggle:active,
 .theme-dark-blue-full #header button#toggle-profile:hover,
-.theme-dark-blue-full #header button#toggle-profile:active {
+.theme-dark-blue-full #header button#toggle-profile:active,
+.theme-dark-blue-full #header button#toggle-fullscreen:hover,
+.theme-dark-blue-full #header button#toggle-fullscreen:active {
   background: #5f779d;
 }
 .theme-dark-blue-full #header .nav li.profile > a:hover,
