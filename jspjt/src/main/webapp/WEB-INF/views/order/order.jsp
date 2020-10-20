@@ -280,8 +280,8 @@
 					    			html+="<td>"+this.ordProdNm+"</td>";
 					    			html+="<td>"+this.ordSumQty+"</td>";
 					    			html+="<td><span><a href='javascript:orderCancle("+this.ordNo+")'style='color:red;'>발주취소</a></span></td>";
+						    		html+="</tr>";
 				    			}
-				    		html+="</tr>";
 				    		});
 				    		if(html==""){
 			    				html="<tr><td style='text-align: center;' colspan='6'><검색된 항목이 없습니다></td></tr>";
