@@ -5,13 +5,16 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.HtmlUtils;
 
 import com.js.pjt.service_serviceimp.NoticeService;
 import com.js.pjt.util.Pager;
+import com.js.pjt.vo.NoticeVO;
 
 @Controller
 public class NoticeController {
@@ -43,4 +46,13 @@ public class NoticeController {
 		
 		return returnMap;
 	}
+	
+	@RequestMapping(value = "/notice_add", method = RequestMethod.POST)
+	@ResponseBody
+	public String addNotice(@RequestBody NoticeVO notice) {
+		notice.setContent(HtmlUtils.htmlEscape(notice.getContent()));
+		noticeService.addNotice(notice);
+		return "success";
+	}
 }
+
