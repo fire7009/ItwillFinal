@@ -5,24 +5,26 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.js.pjt.dao_daoimp.DeliveryDAO;
 import com.js.pjt.vo.DeliveryVO;
 
-@Repository
+@Service
 public class DeliveryServiceImp implements DeliveryService {
 
 	@Inject
 	private DeliveryDAO dao;
 
 	@Override
-	public void insertDelivery(DeliveryVO delivery) throws Exception {
-		dao.insertDelivery(delivery);
+	public int insertDelivery(DeliveryVO delivery) throws Exception {
+		return dao.insertDelivery(delivery);
 	}
 
 	@Override
-	public DeliveryVO selectDelivery(int dlvr_no) throws Exception {
-		return dao.selectDelivery(dlvr_no);
+	public DeliveryVO selectDelivery(int dlvrNo) throws Exception {
+		return dao.selectDelivery(dlvrNo);
 	}
 
 	@Override
@@ -30,13 +32,16 @@ public class DeliveryServiceImp implements DeliveryService {
 		return dao.selectListDelivery();
 	}
 
+
+
 	@Override
-	public void updateDelivery(String dlvrCmplYn) throws Exception {
-		dao.updateDelivery(dlvrCmplYn);
+	public int deleteDelivery(int dlvrNo) throws Exception {
+		return dao.deleteDelivery(dlvrNo);
 	}
 
 	@Override
-	public void deleteDelivery(int dlvrNo) throws Exception {
-		dao.deleteDelivery(dlvrNo);
+	public int updateDelivery(DeliveryVO delivery) throws Exception {
+		return dao.updateDelivery(delivery);
 	}
+	
 }

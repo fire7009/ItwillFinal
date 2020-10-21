@@ -108,6 +108,14 @@ public class TsetServiceImp implements TestService {
 		dao.mailReadCheck(msgNo);
 		
 	}
+
+
+
+	@Override
+	public HashMap<String, Object> getDocTitle(int docNo) {
+		// TODO Auto-generated method stub
+		return dao.getDocTitle(docNo);
+	}
 	
 	
 
