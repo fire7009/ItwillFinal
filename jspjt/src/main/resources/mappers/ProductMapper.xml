@@ -5,11 +5,11 @@
 <mapper namespace="com.js.pjt.mapper.ProductMapper">
 
 	<insert id="insertProduct" parameterType="com.js.pjt.vo.ProductVO">
-		insert into product values(#{dlvr_no}, #{ord_no}, #{dlvr_empno}, sysdate,'N', sysdate)
+		insert into product values(#{prodNo}, #{prodNm}, #{prodDetl},#{prodPrice},#{stckQty},'N','N',sysdate,'N', sysdate)
 	</insert>
 	
 	<select id="selectProduct" resultType="com.js.pjt.vo.ProductVO">
-		select*from product where dlvr_no=#{dlvr_no}
+		select*from product where prod_no=#{prodNo}
 	</select>
 	
 	<select id="selectListProduct" resultType="com.js.pjt.vo.ProductVO">
@@ -17,11 +17,11 @@
 	</select>
    
    	<update id="updateProduct">
-   		update product set ord_no=#{ord_no}, dlvr_empno=#{dlvr_empno}, dlvr_cmpl_dttm=sysdate where dlvr_no=#{dlvr_no}
+   		update delivery set ord_no=#{ordNo}, dlvr_empno=#{dlvrEmpno}, dlvr_cmpl_dttm=sysdate where dlvr_no=#{dlvrNo}
    	</update>
    	
    	<delete id="deleteProduct">
-   		delete from product where dlvr_no=#{dlvr_no}
+   		delete from product where prod_no=#{prodNo}
    	</delete>
   
 </mapper>

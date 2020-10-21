@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.js.pjt.mapper.DeliveryMapper;
+import com.js.pjt.vo.DeliverySearchVO;
 import com.js.pjt.vo.DeliveryVO;
 
 @Repository
@@ -40,6 +41,16 @@ public class DeliveryDAOImp implements DeliveryDAO {
 	@Override
 	public int deleteDelivery(int dlvrNo) throws Exception {
 		return sqlSession.getMapper(DeliveryMapper.class).deleteDelivery(dlvrNo);
+	}
+
+	@Override
+	public List<DeliveryVO> ListDO() throws Exception {
+		return sqlSession.getMapper(DeliveryMapper.class).ListDO();
+	}
+
+	@Override
+	public List<DeliveryVO> searchListDO(DeliverySearchVO vo) throws Exception {
+		return sqlSession.getMapper(DeliveryMapper.class).searchListDO(vo);
 	}
 
 	

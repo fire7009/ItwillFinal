@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.js.pjt.mapper.DeliveryMapper">
-<!-- test -->
-	<resultMap type="DeliveryVO" id="deliveryMap">
-		<id column="DELIVERY_ID" property="deliveryId"/>
+ 
+	<resultMap type="com.js.pjt.vo.DeliveryVO" id="deliveryMap">
+	
 		<result column="DLVR_NO" property="dlvrNo"/>
 		<result column="ORD_NO" property="ordNo"/>
 		<result column="DLVR_EMPNO" property="dlvrEmpno"/>
-		<result column="DLVR_NO" property="dlvrNo"/>
+		<result column="DLVR_STRT_DTTM" property="dlvrStrtDttm"/>
+		<result column="DLVR_CMPL_YN" property="dlvrCmplYn"/>
+		<result column="DLVR_CMPL_DTTM" property="dlvrCmplDttm"/>
+				
+		<association javaType="com.js.pjt.vo.OrderVO" property="orderVO">
+			<result column="ORD_SUM_QTY" property="ordSumQty"/>
+		</association>
 		
-		<association javaType="OrderVO" property="orderVO">
-			<id column="ORDER_ID" property="orderId"/>
-			<result column="ORD_NO" property="ordNo"/>
+		<association javaType="com.js.pjt.vo.EmployeeVO" property="employeeVO">
+			<result column="EMP_NM" property="empNm"/>
+			<result column="MOBILE_PHN_NO" property="mobilePhnNo"/>
 		</association>
 	</resultMap>
+	
+
 	<insert id="insertDelivery" parameterType="com.js.pjt.vo.DeliveryVO">
 		insert into delivery values(#{dlvrNo}, #{ordNo}, #{dlvrEmpno}, sysdate,'N', sysdate)
 	</insert>
+	
 	
 	<select id="selectDelivery" resultType="com.js.pjt.vo.DeliveryVO">
 		select*from delivery where dlvr_no=#{dlvrNo}
@@ -27,10 +36,36 @@
 	</select>
    
    	<update id="updateDelivery">
-   		update delivery set ord_no=#{ord_no}, dlvr_empno=#{dlvr_empno}, dlvr_cmpl_dttm=sysdate where dlvr_no=#{dlvr_no}
+   		update delivery set ord_no=#{ordNo}, dlvr_empno=#{dlvrEmpno}, dlvr_cmpl_dttm=sysdate where dlvr_no=#{dlvrNo}
    	</update>
    	
    	<delete id="deleteDelivery">
    		delete from delivery where dlvr_no=#{dlvrNo}
    	</delete>
+   	
+   	<select id="ListDO" resultMap="deliveryMap">
+		select d.dlvr_no,d.dlvr_empno,o.ord_sum_qty,d.dlvr_strt_dttm, d.dlvr_cmpl_yn, d.dlvr_cmpl_dttm, e.emp_nm,e.mobile_phn_no from delivery d, order1 o,employee e 
+		where d.ord_no=o.ord_no and d.dlvr_empno=e.emp_no
+	</select>
+	
+	 <select id="searchListDO" resultMap="deliveryMap">
+		select d.dlvr_no,d.dlvr_empno,o.ord_sum_qty,d.dlvr_strt_dttm, d.dlvr_cmpl_yn, d.dlvr_cmpl_dttm, e.emp_nm,e.mobile_phn_no from delivery d JOIN  order1 o  on(d.ord_no=o.ord_no)  JOIN  employee e on(d.dlvr_empno=e.emp_no)
+		
+		<trim prefix="WHERE" prefixOverrides="AND |OR">
+		
+		
+		<if	test="dlvrNo!=null and dlvrNo!=''">
+			d.dlvr_no=#{dlvrNo}
+		</if>
+		
+		<if test="empNm!=null and empNm!=''">
+			and e.emp_nm like #{empNm}
+		</if> 
+		
+		<if test="mobilePhnNo!=null and mobilePhnNo!=''">
+			and e.mobile_phn_no like #{mobilePhnNo}
+		</if>
+	
+		</trim>
+	</select>
 </mapper>

@@ -155,7 +155,7 @@
        										<script type="text/javascript">
 											function updateBtn() {	
 												updateDelivery.method="POST";
-												updateDelivery.action="${pageContext.request.contextPath}/update";
+												updateDelivery.action="${pageContext.request.contextPath}/unsong_update/"+${dlvrNo };
 												updateDelivery.submit();
 											}
 											</script>

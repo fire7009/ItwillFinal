@@ -45,50 +45,51 @@
 									</div>
 								<div class="panel-body">
 								<div class="col-md-12">
-									<form name="insertDelivery">
+									<form name="insertProduct">
+									
+									<div class="form-group">
+											<label class="col-md-3 control-label">상품코드</label>
+											<div class="col-md-9">
+												<input class="form-control" name="prodNo" placeholder="" type="text" value="${product.prodNo }">
+											</div>
+										</div>
+										
 										<div class="form-group">
 											<label class="col-md-3 control-label">상품명</label>
 											<div class="col-md-9">
-												<input class="form-control" name="prod_no" placeholder="" type="text" value="${delivery.dlvr_no }">
+												<input class="form-control" name="prodNm" placeholder="" type="text" value="${product.prodNm }">
 											</div>
 										</div>
 										
-										<div class="form-group">
-											<label class="col-md-3 control-label">상품상세</label>
-											<div class="col-md-9">
-												<input class="form-control" name="ord_no" placeholder="" type="text" value="${delivery.ord_empno }">
-												
-											</div>
-										</div>
 											<div class="form-group">
-											<label class="col-md-3 control-label">상품단가</label>
+											<label class="col-md-3 control-label">상품설명</label>
 											<div class="col-md-9">
-												<input class="form-control" name="dlvr_empno" placeholder="" type="text"value="${delivery.dlvr_empno }">
+												<input class="form-control" name="prodDetl" placeholder="" type="text" value="${product.prodDetl }">
 											</div>
 										</div>
-										</div>
+										
 											<div class="form-group">
-											<label class="col-md-3 control-label">재고수량</label>
+											<label class="col-md-3 control-label">상품가격</label>
 											<div class="col-md-9">
-												<input class="form-control" name="dlvr_empno" placeholder="" type="text"value="${delivery.dlvr_empno }">
+												<input class="form-control" name="prodPrice" placeholder="" type="text" value="${product.prodPrice }">
 											</div>
 										</div>
 										
 										
+						
 										<div class="col-md-12 center">
-											<input type="button" value="등록" onclick="submit();">
-											<!-- <button class="btn btn-default" type="submit" onclick="submit();">등록</button>  -->
-											<button class="btn btn-default" type="reset">초기화</button>		
+											<button class="btn btn-primary m-r-5" type="button"onclick="insert();">등록</button>
+											<button class="btn btn-default" type="reset">초기화</button>				
 										</div>
 									</form>
 								</div>
 								</div>
 								</div>
 							</div>
-       										<script type="text/javascript">
-											function submit() {	
-												insertDelivery.method="GET";
-												insertDelivery.action="${pageContext.request.contextPath}/mulryu/mulryu_insert";
+       									<script type="text/javascript">
+											function insert() {	
+												insertDelivery.method="POST";
+												insertDelivery.action="${pageContext.request.contextPath}/mulryu_insert";
 												insertDelivery.submit();
 											}
 											</script>

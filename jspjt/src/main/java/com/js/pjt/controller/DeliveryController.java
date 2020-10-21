@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.js.pjt.service_serviceimp.DeliveryService;
+import com.js.pjt.vo.DeliverySearchVO;
 import com.js.pjt.vo.DeliveryVO;
 
 
@@ -35,21 +36,20 @@ public class DeliveryController {
 	@Inject
 	DeliveryService service;
 	
-	
 	@RequestMapping(value = "/unsong", method = RequestMethod.GET)
 	public String list(Locale locale, Model model) throws Exception {
 		logger.info("Welcome delivery! The client locale is {}.", locale);
-		List<DeliveryVO> vo=service.selectListDelivery();
+		List<DeliveryVO> vo=service.ListDO();
 		model.addAttribute("deliveryList", vo);
 		return "unsong/unsong";
 	}
 	
-	@RequestMapping(value = "/insert", method = RequestMethod.GET)
+	@RequestMapping(value = "/unsong_insert", method = RequestMethod.GET)
 	public String insert() {
 		return "unsong/unsong_insert";
 	}
 	
-	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	@RequestMapping(value = "/unsong_insert", method = RequestMethod.POST)
 	public String insert(@ModelAttribute DeliveryVO vo, Model model) {
 		try {
 			service.insertDelivery(vo);
@@ -60,26 +60,33 @@ public class DeliveryController {
 		return "redirect:/unsong";
 	}
 
-	@RequestMapping(value = "/delete/{dlvrNo}",method = RequestMethod.GET)
+	@RequestMapping(value = "/unsong_delete/{dlvrNo}",method = RequestMethod.GET)
 	public String delete(@PathVariable int dlvrNo) throws Exception {
 		service.deleteDelivery(dlvrNo);
 		return "redirect:/unsong";
 	}
 	
-	@RequestMapping(value = "/unsong_update/{num}",method = RequestMethod.GET)
+	@RequestMapping(value = "/unsong_update",method = RequestMethod.GET)
 	public String select(@PathVariable int num) throws Exception {
 		return "unsong/unsong_update";
 	}
 	
-	@RequestMapping(value = "/update",method = RequestMethod.POST)
-	public String update(@ModelAttribute DeliveryVO vo, Model model) {
+	@RequestMapping(value = "/unsong_update",method = RequestMethod.POST)
+	public String update(@ModelAttribute DeliveryVO vo,@PathVariable int num) {
 		try {
+			vo.setDlvrNo(num);
 			service.updateDelivery(vo);
 		} catch (Exception e) {
-			model.addAttribute("message", "이미 사용중인 학번을 입력 하였습니다.");
-			return "unsong/unsong_insert";
+			return "unsong/unsong_update";
 		}
 		return "redirect:/unsong";
+	}
+
+	@RequestMapping(value = "/unsong_search", method = RequestMethod.GET)
+	public String search(@ModelAttribute DeliverySearchVO search, Model model) throws Exception {
+		List<DeliveryVO> vo=service.searchListDO(search);
+		model.addAttribute("deliveryList", vo);
+		return "unsong/unsong";
 	}
 	
 }

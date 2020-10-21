@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.js.pjt.dao_daoimp.DeliveryDAO;
+import com.js.pjt.vo.DeliverySearchVO;
 import com.js.pjt.vo.DeliveryVO;
 
 @Service
@@ -42,6 +43,16 @@ public class DeliveryServiceImp implements DeliveryService {
 	@Override
 	public int updateDelivery(DeliveryVO delivery) throws Exception {
 		return dao.updateDelivery(delivery);
+	}
+
+	@Override
+	public List<DeliveryVO> ListDO() throws Exception {
+		return dao.ListDO();
+	}
+
+	@Override
+	public List<DeliveryVO> searchListDO(DeliverySearchVO vo) throws Exception {
+		return dao.searchListDO(vo);
 	}
 	
 }

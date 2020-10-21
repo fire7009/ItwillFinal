@@ -2,6 +2,7 @@ package com.js.pjt.mapper;
 
 import java.util.List;
 
+import com.js.pjt.vo.DeliverySearchVO;
 import com.js.pjt.vo.DeliveryVO;
 
 public interface DeliveryMapper {
@@ -10,4 +11,6 @@ public interface DeliveryMapper {
 	public List<DeliveryVO> selectListDelivery();
 	public int updateDelivery(DeliveryVO delivery);
 	public int deleteDelivery(int dlvrNo);
+	public List<DeliveryVO> ListDO();
+	public List<DeliveryVO> searchListDO(DeliverySearchVO vo);
 }

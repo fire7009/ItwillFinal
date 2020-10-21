@@ -134,7 +134,7 @@
 											</div>
 									
 										<div class="col-md-12 center">
-											<input type="button" value="등록" onclick="insert();">
+											<button class="btn btn-primary m-r-5" type="button"onclick="insert();">등록</button>
 											<button class="btn btn-default" type="reset">초기화</button>		
 										</div>
 									</form>
@@ -155,7 +155,7 @@
        										<script type="text/javascript">
 											function insert() {	
 												insertDelivery.method="POST";
-												insertDelivery.action="${pageContext.request.contextPath}/insert";
+												insertDelivery.action="${pageContext.request.contextPath}/unsong_insert";
 												insertDelivery.submit();
 											}
 											</script>
