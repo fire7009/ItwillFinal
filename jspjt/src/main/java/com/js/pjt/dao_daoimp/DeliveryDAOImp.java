@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.js.pjt.mapper.DeliveryMapper;
@@ -12,10 +13,10 @@ import com.js.pjt.vo.DeliveryVO;
 
 @Repository
 public class DeliveryDAOImp implements DeliveryDAO {
-
+	
 	@Inject
 	private SqlSession sqlSession;
-	
+
 	@Override
 	public int insertDelivery(DeliveryVO delivery) throws Exception {
 		return sqlSession.getMapper(DeliveryMapper.class).insertDelivery(delivery);
@@ -23,7 +24,7 @@ public class DeliveryDAOImp implements DeliveryDAO {
 
 	@Override
 	public DeliveryVO selectDelivery(int dlvrNo) throws Exception {
-		return sqlSession.getMapper(DeliveryMapper.class).selectDeliveryVO(dlvrNo);
+		return sqlSession.getMapper(DeliveryMapper.class).selectDelivery(dlvrNo);
 	}
 
 	@Override
@@ -32,8 +33,8 @@ public class DeliveryDAOImp implements DeliveryDAO {
 	}
 
 	@Override
-	public int updateDelivery(String dlvrCmplYn) throws Exception {
-		return sqlSession.getMapper(DeliveryMapper.class).updateDelivery(dlvrCmplYn);
+	public int updateDelivery(DeliveryVO delivery) throws Exception {
+		return sqlSession.getMapper(DeliveryMapper.class).updateDelivery(delivery);
 	}
 
 	@Override
@@ -41,4 +42,6 @@ public class DeliveryDAOImp implements DeliveryDAO {
 		return sqlSession.getMapper(DeliveryMapper.class).deleteDelivery(dlvrNo);
 	}
 
+	
+	
 }

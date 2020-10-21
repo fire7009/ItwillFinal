@@ -6,9 +6,9 @@ import com.js.pjt.vo.DeliveryVO;
 
 
 public interface DeliveryService {
-	public void insertDelivery(DeliveryVO delivery)throws Exception;
-	public DeliveryVO selectDelivery(int dlvrNo)throws Exception;
-	public List<DeliveryVO>selectListDelivery()throws Exception;
-	public void updateDelivery(String dlvrCmplYn)throws Exception;
-	public void deleteDelivery(int dlvrNo)throws Exception;
+	public int insertDelivery(DeliveryVO delivery) throws Exception;
+	public DeliveryVO selectDelivery(int dlvrNo) throws Exception;
+	public List<DeliveryVO> selectListDelivery() throws Exception;
+	public int updateDelivery(DeliveryVO delivery) throws Exception;
+	public int deleteDelivery(int dlvrNo) throws Exception;
 }

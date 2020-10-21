@@ -29,6 +29,7 @@
     <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/html5shiv.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/respond.min.js"></script>
     <![endif]-->
+
 </head>
 
 <body>
@@ -66,10 +67,11 @@
             </ul>
         </header>
         <!--sidebar left start-->
-        <c:import url="/WEB-INF/views/leftSidebar.jsp">
+      	<c:import url="/WEB-INF/views/leftSidebar.jsp">
        		<c:param name="leftSidebar" value="leftSidebar"></c:param>
 		</c:import>
         <!--sidebar left end-->
+        
         <!--main content start-->
         <section class="main-content-wrapper">
             <div class="pageheader">
@@ -168,37 +170,28 @@
 									<!-- 테이블 출력 -->
 									<c:forEach var="delivery" items="${deliveryList }">
                                                     <tr>
-                                                        <td>${delivery.dlvr_no }</td>
-                                                        <td>${delivery.ord_no }</td>
-                                                        <td>${delivery.dlvr_empno }</td>
-                                                        <td>${delivery.dlvr_strt_dttm }</td>
-                                                        <td>${delivery.dlvr_cmpl_yn }</td>
-                                                        <td>${delivery.dlvr_cmpl_dttm }</td>
+                                                        <td>${delivery.dlvrNo }</td>
+                                                        <td>${delivery.ordNo }</td>
+                                                        <td>${delivery.dlvrEmpno }</td>
+                                                        <td>${delivery.dlvrStrtDttm }</td>
+                                                        <td>${delivery.dlvrCmplYn }</td>
+                                                        <td>${delivery.dlvrCmplDttm }</td>
                                                         <td>
-                                                            <span><a>수정</a></span>
-                                                            /<span><input type="button" value="삭제" onclick="deleteBtn(${delivery.dlvr_no });"></span>
+                   										<span><input type="button" value="수정" onclick="updateBtn(${delivery.dlvrNo });"></span>
+                                                           /<span><input type="button" value="삭제" onclick="deleteBtn(${delivery.dlvrNo });"></span>
                                                         </td>
+                                                        
                                                     </tr>                                                
-                                                </c:forEach>
+                                    </c:forEach>
 						
 									</tbody>
 								</table>
 							</div>
 						</div>
+						
+						
 					</div>
-					<div class="tab-pane fade" id="default-tab-2">
-						<div class="panel panel-default panel-sales">
-							<div class="panel-heading">
-								<div class="actions pull-right">
-									<i class="fa fa-expand"></i> <i class="fa fa-chevron-down"></i> <i class="fa fa-times"></i>
-								</div>
-							</div>
-							
-								</div>
-								</div>
-							</div>
-							
-			<button class="btn btn-primary m-r-5" type="button" style="float:right;"><a href="${pageContext.request.contextPath}/unsong_insert">배송추가</a></button>
+<button class="btn btn-default" type="button"><a href="${pageContext.request.contextPath}/insert">입력</a></button>
 </section>
 <!--main content end-->
 
@@ -230,10 +223,11 @@
             </div>
         </div>
     </aside>
+   
+	
     <!--/sidebar right end-->
     <!--Global JS-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    
+   
     <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-1.11.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/plugins/navgoco/jquery.navgoco.min.js"></script>
@@ -241,13 +235,16 @@
     <script src="${pageContext.request.contextPath}/resources/assets/js/src/app.js"></script>
 
 	<script type="text/javascript">
-		function deleteBtn(dlvr_no){
+		function deleteBtn(dlvrNo){
 			var chk=confirm("정말 삭제하시겠습니까?");
 			if(chk){
-				location.href="${pageContext.request.contextPath}/unsong_delete?dlvr_no="+dlvr_no;
+				location.href="${pageContext.request.contextPath}/delete/"+dlvrNo;
 			}
 		}
-	
+		function updateBtn(dlvrNo){
+			location.href="${pageContext.request.contextPath}/unsong_update/"+dlvrNo;
+		}
+
 	</script>
 </body>
 
