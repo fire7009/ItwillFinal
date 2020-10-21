@@ -4,11 +4,14 @@
   <aside class="sidebar sidebar-left">
             <div class="sidebar-profile">
                 <div class="avatar">
-                    <img class="img-circle profile-image" src="assets/img/profile.jpg" alt="profile">
+                    <img class="img-circle profile-image" src="${pageContext.request.contextPath}/upload/${thumbnailFilename}" alt="profile">
+                    <img class="img-circle profile-image" src="${pageContext.request.contextPath}/upload/${imageFilename}" alt="profile">
                     <i class="on border-dark animated bounceIn"></i>
                 </div>
                 <div class="profile-body dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><h4>Example User<span class="caret"></span></h4></a>
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <h4>Example User<span class="caret"></span></h4>
+                    </a>
                     <small class="title">Front-end Developer</small>
                     <ul class="dropdown-menu animated fadeInRight" role="menu">
                         <li class="profile-progress">
