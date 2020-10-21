@@ -101,6 +101,13 @@ public class TestDAOImp implements TestDAO {
 	}
 
 
+	@Override
+	public HashMap<String, Object> getDocTitle(int docNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(TestMapper.class).getDocTitle(docNo);
+	}
+
+
 	
 	
   

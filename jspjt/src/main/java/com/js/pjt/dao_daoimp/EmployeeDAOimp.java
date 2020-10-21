@@ -1,5 +1,7 @@
 package com.js.pjt.dao_daoimp;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,6 +17,21 @@ public class EmployeeDAOimp implements EmployeeDAO {
 	@Override
 	public int insertEmployee(EmployeeVO employee) {
 		return sqlSession.getMapper(EmployeeMapper.class).insertEmployee(employee);
+	}
+
+	@Override
+	public int updateEmployee(EmployeeVO employee) {
+		return sqlSession.getMapper(EmployeeMapper.class).updateEmployee(employee);
+	}
+
+	@Override
+	public EmployeeVO selectEmployee(int empNo) {
+		return sqlSession.getMapper(EmployeeMapper.class).selectEmployee(empNo);
+	}
+
+	@Override
+	public List<EmployeeVO> selectEmployeeList() {
+		return sqlSession.getMapper(EmployeeMapper.class).selectEmployeeList();
 	}
 
 }

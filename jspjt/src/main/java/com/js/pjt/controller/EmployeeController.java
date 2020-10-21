@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.js.pjt.exception.EmployeeExistsException;
 import com.js.pjt.service_serviceimp.EmployeeService;
 import com.js.pjt.vo.EmployeeVO;
 
@@ -26,7 +27,7 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value="/emp/pages-sign-up", method = RequestMethod.POST)
-	public String signIn(@ModelAttribute("employee") EmployeeVO employee) throws IllegalStateException, IOException {
+	public String signIn(@ModelAttribute("employee") EmployeeVO employee) throws IllegalStateException, IOException, EmployeeExistsException {
 		if(employee.getFile().isEmpty()) {
 			return "emp/pages-sign-up";			
 		}

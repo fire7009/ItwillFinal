@@ -2,7 +2,48 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.js.pjt.mapper.EmployeeMapper">
 	<insert id="insertEmployee">
+		<selectKey resultType="int" keyProperty="empNo" order="BEFORE">
+			select employee_seq.nextval from dual
+		</selectKey>
 		insert into employee values(#{empNo },#{deptNo },#{posDvcd },#{lgnId },#{passwd },#{filePath },#{fileNm },#{empNm }
 		,#{birthDt },#{gender },#{mobilePhnNo },#{emailAddr },#{hireDt },0,null,sysdate)
 	</insert>
+	<update id="updateEmployee">
+		update employee
+		<set>
+			<if test="deptNo!=0">
+				dept_no=#{deptNo}
+			</if>
+			<if test="posDvcd!=0">
+				pos_dvcd=#{}
+			</if>
+			<if test="passwd!=null and passwd!=''">
+				passwd=#{}
+			</if>
+			<if test="filePath!=null and filePath!=''">
+				file_path=#{}
+			</if>
+			<if test="fileNm!=null and fileNm!=''">
+				file_nm=#{}
+			</if>
+			<if test="mobilePhnNo!=null and mobilePhnNo!=''">
+				mobile_phn_no=#{}
+			</if>
+			<if test="emailAddr!=null and emailAddr!=''">
+				email_addr=#{}
+			</if>
+			<if test="resgn_yn!=null and resgn_yn!=''">
+				file_path=null,file_nm=null,resgn_yn=1, resgn_dt=sysdate
+			</if>
+		</set>
+		where emp_no=#{empNo}
+	</update>
+	
+	<select id="selectEmployee" resultType="com.js.pjt.vo.EmployeeVO">
+		select * from employee where emp_no=#{empNo}
+	</select>
+	
+	<select id="selectEmployeeList" resultType="com.js.pjt.vo.EmployeeVO">
+		select * from employee order by empNo
+	</select>
 </mapper>

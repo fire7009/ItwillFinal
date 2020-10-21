@@ -109,7 +109,7 @@ public class MailController {
 	public List<HashMap<String, Object>> getDetpMemberList(@RequestParam int deptNo) throws Exception {
 		//System.out.println("deptNo="+deptNo);
 		logger.info("Welcome detpMemberList The client locale is {}.");
-		
+		System.out.println("deptNO"+deptNo);
 		return service.deptMemberList(deptNo);
 	}
 }
