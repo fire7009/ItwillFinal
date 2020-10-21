@@ -59,6 +59,33 @@
                             <i class="fa  fa-fw fa-tachometer"></i> 일정
                         </a>
                     </li>
+                    
+                    <li class="nav-dropdown">
+                        <a href="#" title="UI Elements">
+                            <i class="fa fa-fw fa-file-text"></i> 전자결제
+                        </a>
+                        <ul class="nav-sub">
+                          
+                            <li>
+                                <a href="#" title="Sliders &amp; Progress">
+                                      		결제작성
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/pjt/emp/emp_board" title="Sliders &amp; Progress">
+                                
+                                      		결제요청
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/pjt/emp/emp_board" title="Sliders &amp; Progress">
+                                      		결제리스트
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
                     <li class="nav-dropdown">
                         <a href="#" title="UI Elements">
                             <i class="fa fa-fw fa-file-text"></i> 운영관리
@@ -75,11 +102,7 @@
                                       		사원게시판
                                 </a>
                             </li>
-                            <li>
-                                <a href="#" title="Sliders &amp; Progress">
-                                      		전자결제
-                                </a>
-                            </li>
+                            
                         </ul>
                     </li>
                     <li class="nav-dropdown">

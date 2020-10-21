@@ -152,7 +152,7 @@
                                     </li>
                                   
                                     <li>
-                                        <a href="#"> <i class="fa fa-envelope-o"></i> 보낸편지함</a>
+                                        <a href="send-inbox"> <i class="fa fa-envelope-o"></i> 보낸편지함</a>
                                     </li>
                                    
                                     <li>
@@ -189,7 +189,7 @@
                                             
                                                 <div class="form-group">
                                                     <select class="form-control input-lg" id="deptSelect">
-                                                        <option value="0">부서</option>
+                                                        <option value="0">부서선택</option>
                                                         <option value="10">인사팀</option>
                                                         <option value="20">운영팀</option>
                                                         <option value="30">운송팀</option>
@@ -201,7 +201,7 @@
                                                 
                                                 <div class="form-group">
                                                     <select class="form-control input-lg" id="memberSelect">
-                                                        
+                                                         <option value="0">직원선택</option>
                                     				</select>
                                                    
                                                 </div>
@@ -527,7 +527,8 @@
     	
     	
     $("#deptSelect").bind("change",function(){
-    	alert($('#deptSelect').val());
+    	//alert($('#deptSelect').val());
+    	$('#memberSelect').children('option:not(:first)').remove();
     	
     	var deptData = {deptNo : $('#deptSelect').val()};
     	$.ajax({
@@ -537,11 +538,13 @@
         	dataType: "json",
         	success: function(result){
         		//<option value="0">부서</option>
+
         		var str = "";
         		$.each(result, function(){
         			str += "<option value="+this.EMP_NO+">"+this.EMP_NM+"</option>";	
         		});
         		$("#memberSelect").append(str);
+        		
         		
         	},
         	error : function(xhr, type) {

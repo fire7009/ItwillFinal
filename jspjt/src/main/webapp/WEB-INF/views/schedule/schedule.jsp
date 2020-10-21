@@ -158,8 +158,8 @@
 								<div class="col-xs-12">
 									<label class="col-xs-4" for="edit-type">구분</label> 
 									<select class="inputModal" name="edit-type" id="edit-type">
-										<option value="사내일정">사내일정</option>
-										<option value="개인일정" selected="selected">개인일정</option>
+										<option value="10">사내일정</option>
+										<option value="20" selected="selected">개인일정</option>
 									</select>
 								</div>
 							</div>
@@ -247,8 +247,8 @@
     
     
     <script src="${pageContext.request.contextPath}/resources/js/main1.js"></script>  
-    <script src="${pageContext.request.contextPath}/resources/js/addEvent.js"></script>
-     <script src="${pageContext.request.contextPath}/resources/js/editEvents.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/addEvents.js"></script>
+     <script src="${pageContext.request.contextPath}/resources/js/editEvent.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/etcSetting.js"></script>
     
     
@@ -290,7 +290,7 @@
         modalTitle.html('일정 수정');
         editTitle.val(event.title);
         editStart.val(event.start.format('YYYY-MM-DD HH:mm'));
-       // alert(event.type);
+        alert(event.type);
         editType.val(event.type);
         editDesc.val(event.description);
        
@@ -349,6 +349,7 @@
             event.start = startDate;
             event.end = displayDate;
             event.type = editType.val();
+           
             event.description = editDesc.val();
             
            

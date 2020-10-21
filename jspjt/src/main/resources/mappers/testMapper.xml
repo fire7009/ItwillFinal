@@ -42,7 +42,7 @@
 	
 	<!--받는사람 리스트  -->
 	<select id="deptMemberList" parameterType="int" resultType="hashmap">
-		select emp_no,emp_nm from employee where dept_no={#deptNO}
+		select emp_no,emp_nm from employee where dept_no =#{deptNo}
 	</select>
 	
 	<!--메일 보기  -->
@@ -50,9 +50,15 @@
 		select emp_nm,title,content from emp_msg join employee on(emp_msg.disp_empno=employee.emp_no) where emp_msg.msg_no=#{msgNo}
 	</select>
 	
+	<!-- 메일 읽었을 경우 업데이트 -->
 	<update id="mailReadCheck" parameterType="int">
 		UPDATE emp_msg set recp_yn='y' where msg_no=#{msgNo}
 	</update>
+	
+	<!-- 전자결제 문서 타이틀 가져오기 -->
+	<select id="getDocTitle" parameterType="int" resultType="hashmap" >
+		select doctitle from DIGT_DOC where docno=#{docNo}
+	</select>
 	
   
 </mapper>
