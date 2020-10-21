@@ -93,7 +93,7 @@
 			<div class="col-md-12">
 				<ul class="nav nav-tabs">
 					<li class="active" id="mainTab">
-						<a data-toggle="tab" href="#default-tab-1">데이터 입력</a>
+						<a data-toggle="tab" href="#default-tab-1">데이터 수정</a>
 					</li>
 				</ul>
 				<div class="tab-content">
@@ -107,23 +107,23 @@
 				<div class="panel-body">
 								<div class="col-md-12">
 									<div class="m-b-30">
-									등록을 누를시 데이터베이스에 해당 값 저장.
+									등록을 누를시 데이터베이스에 해당 값 수정.
 									</div>
 								<div class="panel-body">
 								<div class="col-md-12">
-									<form name="insertDelivery">
+									<form name="updateDelivery">
+										
 										<div class="form-group">
 											<label class="col-md-3 control-label">운송번호</label>
 											<div class="col-md-9">
-												<input class="form-control" name="dlvrNo" placeholder="" type="text" value="${delivery.dlvrNo }">
+												<input class="form-control" name="dlvrNo" placeholder="" type="submit" value="${dlvrNo }">
 											</div>
 										</div>
 										
 										<div class="form-group">
 											<label class="col-md-3 control-label">주문번호</label>
 											<div class="col-md-9">
-												<input class="form-control" name="ordNo" placeholder="" type="text" value="${delivery.ordEmpno }">
-												
+												<input class="form-control" name="ordNo" placeholder="" type="text" value="${delivery.ordNo }">
 											</div>
 										</div>
 											<div class="form-group">
@@ -134,7 +134,7 @@
 											</div>
 									
 										<div class="col-md-12 center">
-											<input type="button" value="등록" onclick="insert();">
+											<button class="btn btn-primary m-r-5" onclick="updateBtn();">수정</button>
 											<button class="btn btn-default" type="reset">초기화</button>		
 										</div>
 									</form>
@@ -153,10 +153,10 @@
     <script src="${pageContext.request.contextPath}/resources/assets/js/src/app.js"></script>
     
        										<script type="text/javascript">
-											function insert() {	
-												insertDelivery.method="POST";
-												insertDelivery.action="${pageContext.request.contextPath}/insert";
-												insertDelivery.submit();
+											function updateBtn() {	
+												updateDelivery.method="POST";
+												updateDelivery.action="${pageContext.request.contextPath}/update";
+												updateDelivery.submit();
 											}
 											</script>
 </body>

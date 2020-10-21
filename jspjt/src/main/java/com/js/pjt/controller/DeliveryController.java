@@ -1,20 +1,17 @@
 package com.js.pjt.controller;
 
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
+
 
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +26,8 @@ import com.js.pjt.vo.DeliveryVO;
 
 
 
+
+
 @Controller
 public class DeliveryController {
 	private static final Logger logger = LoggerFactory.getLogger(DeliveryController.class);
@@ -38,34 +37,49 @@ public class DeliveryController {
 	
 	
 	@RequestMapping(value = "/unsong", method = RequestMethod.GET)
-	public String List(Locale locale, Model model) throws Exception {
+	public String list(Locale locale, Model model) throws Exception {
 		logger.info("Welcome delivery! The client locale is {}.", locale);
-		
-		List<DeliveryVO> vo;
-		vo = service.selectListDelivery();
+		List<DeliveryVO> vo=service.selectListDelivery();
 		model.addAttribute("deliveryList", vo);
-		
 		return "unsong/unsong";
 	}
-	@RequestMapping(value = "/unsong_delete",method = RequestMethod.GET)
-	public String delete(@RequestParam("dlvr_no") int dlvr_no) throws Exception {
-		service.deleteDelivery(dlvr_no);
-		return "redirect:/unsong";
-	}
-
 	
-	@RequestMapping(value = "/unsong_insert", method = RequestMethod.GET)
-	public String insert(@ModelAttribute DeliveryVO delivery, Model model) {
+	@RequestMapping(value = "/insert", method = RequestMethod.GET)
+	public String insert() {
+		return "unsong/unsong_insert";
+	}
+	
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	public String insert(@ModelAttribute DeliveryVO vo, Model model) {
 		try {
-			logger.info("db값 저장.");
-			service.insertDelivery(delivery);
+			service.insertDelivery(vo);
 		} catch (Exception e) {
-			model.addAttribute("message", "테이블에 이미 사용중인 값을 입력 하였습니다.");
+			model.addAttribute("message", "이미 사용중인 학번을 입력 하였습니다.");
 			return "unsong/unsong_insert";
 		}
 		return "redirect:/unsong";
 	}
+
+	@RequestMapping(value = "/delete/{dlvrNo}",method = RequestMethod.GET)
+	public String delete(@PathVariable int dlvrNo) throws Exception {
+		service.deleteDelivery(dlvrNo);
+		return "redirect:/unsong";
+	}
 	
+	@RequestMapping(value = "/unsong_update/{num}",method = RequestMethod.GET)
+	public String select(@PathVariable int num) throws Exception {
+		return "unsong/unsong_update";
+	}
 	
+	@RequestMapping(value = "/update",method = RequestMethod.POST)
+	public String update(@ModelAttribute DeliveryVO vo, Model model) {
+		try {
+			service.updateDelivery(vo);
+		} catch (Exception e) {
+			model.addAttribute("message", "이미 사용중인 학번을 입력 하였습니다.");
+			return "unsong/unsong_insert";
+		}
+		return "redirect:/unsong";
+	}
 	
 }

@@ -1,26 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.js.pjt.mapper.DeliveryMapper">
-	
+	<resultMap type="DeliveryVO" id="deliveryMap">
+		<id column="DELIVERY_ID" property="deliveryId"/>
+		<result column="DLVR_NO" property="dlvrNo"/>
+		<result column="ORD_NO" property="ordNo"/>
+		<result column="DLVR_EMPNO" property="dlvrEmpno"/>
+		<result column="DLVR_NO" property="dlvrNo"/>
+		
+		<association javaType="OrderVO" property="orderVO">
+			<id column="ORDER_ID" property="orderId"/>
+			<result column="ORD_NO" property="ordNo"/>
+		</association>
+	</resultMap>
 	<insert id="insertDelivery" parameterType="com.js.pjt.vo.DeliveryVO">
-		insert into delivery values(#{dlvr_no}, #{ord_no}, #{dlvr_empno}, sysdate,'N', sysdate)
+		insert into delivery values(#{dlvrNo}, #{ordNo}, #{dlvrEmpno}, sysdate,'N', sysdate)
 	</insert>
 	
 	<select id="selectDelivery" resultType="com.js.pjt.vo.DeliveryVO">
-		select*from delivery where dlvr_no=#{dlvr_no}
+		select*from delivery where dlvr_no=#{dlvrNo}
 	</select>
 	
 	<select id="selectListDelivery" resultType="com.js.pjt.vo.DeliveryVO">
-		select*from delivery
+		select * from delivery order by dlvr_no
 	</select>
    
    	<update id="updateDelivery">
-   		update delivery set dlvr_cmpl_yn,dlvr_cmpl_dttm where dlvr_cmpl_yn=#{dlvr_cmpl_yn},dlvr_cmpl_dttm=sysdate
+   		update delivery set ord_no=#{ord_no}, dlvr_empno=#{dlvr_empno}, dlvr_cmpl_dttm=sysdate where dlvr_no=#{dlvr_no}
    	</update>
    	
    	<delete id="deleteDelivery">
-   		delete from delivery where dlvr_no=#{dlvr_no}
+   		delete from delivery where dlvr_no=#{dlvrNo}
    	</delete>
 </mapper>

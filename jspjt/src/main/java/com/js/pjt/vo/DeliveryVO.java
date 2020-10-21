@@ -1,51 +1,65 @@
 package com.js.pjt.vo;
 
+
 public class DeliveryVO {
-	private int dlvr_no;//운송번호
-	private int ord_no;//주문번호
-	private int dlvr_empno;//배송자사원번호
-	private String dlvr_strt_dttm;//배송시작일시
-	private String dlvr_cmpl_yn;//배송완료여부
-	private String dlvr_cmpl_dttm;//배송완료일시
+	private int dlvrNo;//운송번호
+	private int ordNo;//주문번호
+	private int dlvrEmpno;//배송자사원번호
+	private String dlvrStrtDttm;//배송시작일시
+	private String dlvrCmplYn;//배송완료여부
+	private String dlvrCmplDttm;//배송완료일시
+	private OrderVO orderVO;
+	private EmployeeVO employeeVO;
 	
+	public int getDlvrNo() {
+		return dlvrNo;
+	}
+	public void setDlvrNo(int dlvrNo) {
+		this.dlvrNo = dlvrNo;
+	}
+	public int getOrdNo() {
+		return ordNo;
+	}
+	public void setOrdNo(int ordNo) {
+		this.ordNo = ordNo;
+	}
+	public int getDlvrEmpno() {
+		return dlvrEmpno;
+	}
+	public void setDlvrEmpno(int dlvrEmpno) {
+		this.dlvrEmpno = dlvrEmpno;
+	}
+	public String getDlvrStrtDttm() {
+		return dlvrStrtDttm;
+	}
+	public void setDlvrStrtDttm(String dlvrStrtDttm) {
+		this.dlvrStrtDttm = dlvrStrtDttm;
+	}
+	public String getDlvrCmplYn() {
+		return dlvrCmplYn;
+	}
+	public void setDlvrCmplYn(String dlvrCmplYn) {
+		this.dlvrCmplYn = dlvrCmplYn;
+	}
+	public String getDlvrCmplDttm() {
+		return dlvrCmplDttm;
+	}
+	public void setDlvrCmplDttm(String dlvrCmplDttm) {
+		this.dlvrCmplDttm = dlvrCmplDttm;
+	}
 	
-	public int getDlvr_no() {
-		return dlvr_no;
+	public OrderVO getOrderVO() {
+		return orderVO;
 	}
-	public void setDlvr_no(int dlvr_no) {
-		this.dlvr_no = dlvr_no;
+	public void setOrderVO(OrderVO orderVO) {
+		this.orderVO = orderVO;
 	}
-	public int getOrd_no() {
-		return ord_no;
+	public EmployeeVO getEmployeeVO() {
+		return employeeVO;
 	}
-	public void setOrd_no(int ord_no) {
-		this.ord_no = ord_no;
+	public void setEmployeeVO(EmployeeVO employeeVO) {
+		this.employeeVO = employeeVO;
 	}
-	public int getDlvr_empno() {
-		return dlvr_empno;
-	}
-	public void setDlvr_empno(int dlvr_empno) {
-		this.dlvr_empno = dlvr_empno;
-	}
-	public String getDlvr_strt_dttm() {
-		return dlvr_strt_dttm;
-	}
-	public void setDlvr_strt_dttm(String dlvr_strt_dttm) {
-		this.dlvr_strt_dttm = dlvr_strt_dttm;
-	}
-	public String getDlvr_cmpl_yn() {
-		return dlvr_cmpl_yn;
-	}
-	public void setDlvr_cmpl_yn(String dlvr_cmpl_yn) {
-		this.dlvr_cmpl_yn = dlvr_cmpl_yn;
-	}
-	public String getDlvr_cmpl_dttm() {
-		return dlvr_cmpl_dttm;
-	}
-	public void setDlvr_cmpl_dttm(String dlvr_cmpl_dttm) {
-		this.dlvr_cmpl_dttm = dlvr_cmpl_dttm;
-	}
-	
-	
 	
 }
+
