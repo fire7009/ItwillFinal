@@ -56,10 +56,6 @@
 	                    <div class="panel-body">
 	                        
 	                        <form id="singnIn" method="post" enctype="multipart/form-data">
-	                        <div class="form-group">
-								    <label for="exampleInputPassword1">사원번호</label>
-								    <input type="text" class="form-control" name="empNo" id="empNo" placeholder="사원번호" value="${employee.empNo }">
-								</div>
 								<div class="form-group">
 								    <label for="exampleInputPassword1">부서번호</label>
 								    <input type="text" class="form-control" name="deptNo" id="deptNo" placeholder="부서번호" value="${employee.deptNo }">
