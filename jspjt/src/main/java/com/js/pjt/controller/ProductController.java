@@ -23,7 +23,7 @@ import com.js.pjt.vo.ProductVO;
 
 @Controller
 public class ProductController {
-private static final Logger logger = LoggerFactory.getLogger(DeliveryController.class);
+private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 	
 	@Inject
 	ProductService service;
@@ -59,10 +59,12 @@ private static final Logger logger = LoggerFactory.getLogger(DeliveryController.
 		return "redirect:/mulryu";
 	}
 	
+	/*
 	@RequestMapping(value = "/notice_modify", method = {RequestMethod.PUT, RequestMethod.PATCH})
 	@ResponseBody
 	public String noticeModify(@RequestBody NoticeVO notice) {
 		noticeService.modifyNotice(notice);
 		return "success";
 	}
+	*/
 }
