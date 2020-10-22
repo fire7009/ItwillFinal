@@ -66,8 +66,6 @@ public class EmployeeServiceinp implements EmployeeService {
 		if(authEmployee==null) {
 			throw new LoginAuthFailException((String)map.get("lgnId"), "아이디의 사원정보가 존재하지 않습니다.");
 		}
-		System.out.println((String)map.get("passwd"));
-		System.out.println(authEmployee.getPasswd());
 		if(!BCrypt.checkpw((String)map.get("passwd"), authEmployee.getPasswd())) {
 			throw new LoginAuthFailException((String)map.get("lgnId"), "아이디가 없거나 비밀번호가 일치하지 않습니다.");
 		}

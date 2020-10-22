@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.imgscalr.Scalr;
@@ -36,7 +37,7 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value="/emp/signup", method = RequestMethod.POST)
-	public String signIn(@ModelAttribute("employee") EmployeeVO employee) throws IllegalStateException, IOException, EmployeeExistsException {
+	public String signIn(@ModelAttribute("employee") EmployeeVO employee,HttpServletRequest request) throws IllegalStateException, IOException, EmployeeExistsException {
 		if(employee.getFile().isEmpty()) {
 			return "emp/signup";			
 		}
@@ -62,7 +63,7 @@ public class EmployeeController {
 		
 		ImageIO.write(thumbnailImage, thumbnailFilename.substring(index+1), new File(uploadDir, thumbnailFilename));
 		
-		return "emp/signup";
+		return "redirect:/main";
 	}
 	
 	@RequestMapping("/emp/login")

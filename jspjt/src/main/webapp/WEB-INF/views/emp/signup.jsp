@@ -55,7 +55,7 @@
 	                    </div>
 	                    <div class="panel-body">
 	                        
-	                        <form id="singnIn" method="post" enctype="multipart/form-data">
+	                        <form id="singnUp" name="singnUp" method="post" enctype="multipart/form-data">
 								<div class="form-group">
 								    <label for="exampleInputPassword1">부서</label>
 								    <select class="form-control input-lg" id="deptNo" name="deptNo">
@@ -69,7 +69,13 @@
 								</div>
 								<div class="form-group">
 								    <label for="exampleInputPassword1">직급구분코드</label>
-								    <input type="text" class="form-control" name="posDvcd" id="posDvcd" placeholder="직급구분코드">
+								    <select class="form-control input-lg" id="posDvcd" name="posDvcd">
+                                          <option value="0">직급선택</option>
+                                          <option value="10">사원</option>
+                                          <option value="20">대리</option>
+                                          <option value="30">과장</option>
+                                          <option value="40">팀장</option>
+                      				</select>
 								</div>
 								<div class="form-group">
 								    <label for="exampleInputPassword1">아이디</label>
@@ -81,7 +87,7 @@
 								</div>
 								  <div class="form-group">
 								    <label for="exampleInputPassword1">비밀번호 확인</label>
-								    <input type="password" class="form-control" name="" id="passwd2" placeholder="비밀번호를 한번 더 입력해주세요">
+								    <input type="password" class="form-control" name="passwd2" id="passwd2" placeholder="비밀번호를 한번 더 입력해주세요">
 								</div>
 								<div class="form-group">
 								    <label for="exampleInputEmail1">이름</label>
@@ -111,7 +117,7 @@
 								    <label for="exampleInputFile">사원사진</label>
 								    <input type="file" id="file" name="file">
 								</div>
-								<button type="submit" class="btn btn-primary btn-block">등록</button>
+								<button type="button" class="btn btn-primary btn-block" id="signupBtn">등록</button>
 	                        </form>
 	                    </div>
 	                </div>
@@ -122,7 +128,58 @@
     </section>
     <!--Global JS-->
     <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-1.11.1.min.js"></script>
-
+	<script type="text/javascript">
+		$("#signupBtn").click(function(){
+			if(singnUp.deptNo.value==0){
+				alert("부서를 선택해주세요");
+				return;
+			}
+			if(singnUp.posDvcd.value==""){
+				alert("직급을 선택해주세요");
+				return;
+			}
+			if(singnUp.lgnId.value==""){
+				alert("아이디를 입력하세요");
+				singnUp.lgnId.focus();
+				return;
+			}
+			if(singnUp.passwd.value==""){
+				alert("비밀번호를 입력하세요");
+				singnUp.passwd.focus();
+				return;
+			}
+			if(singnUp.passwd2.value==""){
+				alert("비밀번호를 한번 더 입력해주세요");
+				singnUp.passwd2.focus();
+				return;
+			}
+			if(singnUp.lgnId.value==""){
+				alert("아이디를 입력하세요");
+				singnUp.lgnId.focus();
+				return;
+			}
+			if(singnUp.lgnId.value==""){
+				alert("아이디를 입력하세요");
+				singnUp.lgnId.focus();
+				return;
+			}
+			if(singnUp.lgnId.value==""){
+				alert("아이디를 입력하세요");
+				singnUp.lgnId.focus();
+				return;
+			}
+			if(singnUp.lgnId.value==""){
+				alert("아이디를 입력하세요");
+				singnUp.lgnId.focus();
+				return;
+			}
+			if(singnUp.lgnId.value==""){
+				alert("아이디를 입력하세요");
+				singnUp.lgnId.focus();
+				return;
+			}
+		});
+	</script>
     <script src="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/plugins/navgoco/jquery.navgoco.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/plugins/pace/pace.min.js"></script>
