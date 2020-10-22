@@ -88,7 +88,7 @@ public class EmployeeController {
 		
 		int index=imageFilename.lastIndexOf(".");
 		String thumbnailFilename=imageFilename.substring(0, index)+"_s"+imageFilename.substring(index);
-		index=thumbnailFilename.lastIndexOf(".");
+		index=thumbnailFilename.lastIndexOf("."); 
 		
 		ImageIO.write(thumbnailImage, thumbnailFilename.substring(index+1), new File(uploadDir, thumbnailFilename));
 		session.setAttribute("imageFilename", imageFilename);
