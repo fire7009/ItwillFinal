@@ -4,7 +4,7 @@ package com.js.pjt.controller;
 
 import java.util.List;
 import java.util.Locale;
-
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -82,9 +82,9 @@ public class DeliveryController {
 		return "redirect:/unsong";
 	}
 
-	@RequestMapping(value = "/unsong_search", method = RequestMethod.GET)
-	public String search(@ModelAttribute DeliverySearchVO search, Model model) throws Exception {
-		List<DeliveryVO> vo=service.searchListDO(search);
+	@RequestMapping(value = "/unsong_search", method = RequestMethod.POST)
+	public String search(@RequestParam Map<String, Object> map, Model model) throws Exception {
+		List<DeliveryVO> vo=service.searchListDO(map);
 		model.addAttribute("deliveryList", vo);
 		return "unsong/unsong";
 	}

@@ -1,6 +1,6 @@
 package com.js.pjt.vo;
 
-public class DeliverySearchVO extends DeliveryVO{
+public class DeliverySearchVO {
 	private int dlvrNo;
 	private String empNm;
 	private String mobilePhnNo;

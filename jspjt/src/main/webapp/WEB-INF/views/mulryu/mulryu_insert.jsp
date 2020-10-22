@@ -88,9 +88,9 @@
 							</div>
        									<script type="text/javascript">
 											function insert() {	
-												insertDelivery.method="POST";
-												insertDelivery.action="${pageContext.request.contextPath}/mulryu_insert";
-												insertDelivery.submit();
+												insertProduct.method="POST";
+												insertProduct.action="${pageContext.request.contextPath}/mulryu_insert";
+												insertProduct.submit();
 											}
 											</script>
 </body>

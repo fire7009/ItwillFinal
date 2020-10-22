@@ -1,6 +1,7 @@
 package com.js.pjt.service_serviceimp;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -51,8 +52,8 @@ public class DeliveryServiceImp implements DeliveryService {
 	}
 
 	@Override
-	public List<DeliveryVO> searchListDO(DeliverySearchVO vo) throws Exception {
-		return dao.searchListDO(vo);
+	public List<DeliveryVO> searchListDO(Map<String, Object> map) throws Exception {
+		return dao.searchListDO(map);
 	}
 	
 }

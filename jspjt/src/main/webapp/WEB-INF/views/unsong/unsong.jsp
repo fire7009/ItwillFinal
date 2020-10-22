@@ -47,11 +47,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
                 </li>
-                <li class="toggle-profile hidden-xs">
-                    <button type="button" class="btn btn-default" id="toggle-profile">
-                        <i class="icon-user"></i>
-                    </button>
-                </li>
+            
                 <li class="hidden-xs">
                     <input type="text" class="search" placeholder="Search project...">
                     <button type="submit" class="btn btn-sm btn-search"><i class="fa fa-search"></i>
@@ -117,30 +113,30 @@
 										</div>
 										<div id="collapseOne" class="panel-collapse collapse in">
 											<div class="panel-body">
-												<form class="form-horizontal" id="searchForm" action="unsong_search">
+												<form class="form-horizontal" id="searchForm" method="post"  action="unsong_search">
 													<div class="col-md-9">
 														<div class="form-group">
 															<label class="control-label col-md-3">배송번호</label>
 															<div class="col-md-9">
-																<input class="form-control" type="text" name="dlvrNo" value="${delivery.ordEmpno }">
+																<input class="form-control" type="text" name="dlvrNo"  value="${deliverySearchVO.dlvrNo }">
 															</div>
 														</div>
 														<div class="form-group">
 															<label class="control-label col-md-3">배송자이름</label>
 															<div class="col-md-9">
-																<input class="form-control" type="text" name="empNm" value="${delivery.ordEmpno }">
+																<input class="form-control" type="text" name="empNm" id="empNm" value="${deliverySearchVO.empNm }">
 															</div>
 														</div>
 														<div class="form-group">
 															<label class="control-label col-md-3">배송자전화번호</label>
 															<div class="col-md-9">
-																<input class="form-control" type="text" name="mobilePhnNo" value="${delivery.ordEmpno }">
+																<input class="form-control" type="text" name="mobilePhnNo" value="${deliverySearchVO.mobilePhnNo }">
 															</div>
 														</div>
 														
 													</div>
 													<div class="col-md-12 center">
-														<button class="btn btn-primary m-r-5" type="button" id="searchBtn" onclick="searchBtn();">검색</button>
+														<button class="btn btn-primary m-r-5" type="button" id="searchBtn">검색</button>
 														<button class="btn btn-default" type="reset">초기화</button>
 													</div>
 												</form>
@@ -249,12 +245,12 @@
 			searchForm.submit();
 		}*/
 		
-		$("#searchBtn").on('click',function(){
+		$("#searchBtn").click(function(){
 			//,dlvrNo,empNm,mobilePhnNo
 			//var str="";
 			//if($('#divrNo'))
 			$("#searchForm").submit();
-		})
+		});
 
 	</script>
 </body>
