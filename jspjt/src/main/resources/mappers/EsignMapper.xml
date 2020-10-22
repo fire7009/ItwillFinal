@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.js.pjt.mapper.EsignMapper">
+
+	<!-- 전자결제 문서 타이틀 가져오기 -->
+	<select id="getDocTitle" parameterType="int" resultType="hashmap" >
+		select doctitle from DIGT_DOC where docno=#{docNo}
+	</select>
+	
+	<insert id="insertDoc" parameterType="com.js.pjt.vo.EsignVO">
+		INSERT INTO digt_auth VALUES(20,10,1,#{title},#{content},'n',sysdate,'n',null,#{doc_no},#{res_deptno},#{res_empno})
+		
+		<!--INSERT INTO digt_auth VALUES(
+		10,#{사용자사원번호},1,#(제목),#(내용),'n',sysdate,'n',null,#(문서양식번호),#(요청부서번호),#(요청사원번호)
+		) -->
+	</insert> 
+	
+	<select id="getEsignList" resultType="hashmap" >
+		SELECT a.REQ_DTTM,a.AUTH_NO,d.DOCTITLE,e.EMP_NM AS REQ_NM ,r.EMP_NM AS RES_NM ,a.auth_dvcd  FROM digt_auth a 
+		JOIN digt_doc d on(a.docno=d.docno) 
+		JOIN employee e on(a.req_empno=e.emp_no)
+		JOIN employee r on(a.res_empno=r.emp_no)
+		 <!-- 파라메터타입 추가후
+			where e.EMP_NO= 사용자사원번호 -->
+	</select>
+	
+	<select id="viewEsign" parameterType="int" resultType="hashmap">
+		SELECT doc.DOCTITLE,dept.DEPT_NM,emp.emp_nm,auth.TITLE,CONTENT,auth.auth_dvcd FROM DIGT_AUTH auth 
+		join DIGT_DOC doc ON(auth.docno=doc.docno) 
+		join DEPARTMENT dept on(auth.res_deptno=dept.dept_no) 
+		join employee emp on(auth.res_empno=emp.emp_no)
+		where auth_no=#{authNo}
+	</select>
+
+</mapper>

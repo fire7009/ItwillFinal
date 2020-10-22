@@ -48,10 +48,12 @@
             	$.each(data, function(){
                     str += "<tr class='unread'>";
                     str += "<td><input type='checkbox' class='mail-checkbox icheck'></td>";
-                    //str += "<td><i class='fa fa-star'></i></td>";
+                   
                     if(this.RECP_YN==='n'){
+                    	
                     	 str += "<td class='message'><a href='viewMail?msgNo="+this.MSG_NO+"'><span class='title'><b>"+this.EMP_NM+"</span> - "+this.CONTENT+"</b></a></td>";
                     }else{
+                    	
                     	 str += "<td class='message'><a href='viewMail?msgNo="+this.MSG_NO+"'><span class='title'>"+this.EMP_NM+"</span> - "+this.CONTENT+"</a></td>";
                     }
                    

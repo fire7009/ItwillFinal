@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.js.pjt.service_serviceimp.ScheduleService;
 import com.js.pjt.service_serviceimp.TestService;
 import com.js.pjt.vo.ScheduleVO;
 import com.js.pjt.vo.TestVO;
@@ -21,8 +22,11 @@ import com.js.pjt.vo.TestVO;
 @RequestMapping(value = "/schedule")
 public class ScheduleController {
 	private static final Logger logger = LoggerFactory.getLogger(ScheduleController.class);
+	//@Inject
+	//TestService service;
+	
 	@Inject
-	TestService service;
+	ScheduleService service;
 
 	// 일정 페이지
 	@RequestMapping(value = "/schedule", method = RequestMethod.GET)

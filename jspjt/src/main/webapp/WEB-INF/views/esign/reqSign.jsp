@@ -140,7 +140,7 @@
 												<option value="40">영업보고서</option>
 											</select>
 											<button type="button"
-												class="btn btn-primary" id="addepayment" >
+												class="btn btn-primary" id="addEsign" >
 												등록 <i class="fa fa-chevron-right"></i>
 											</button>
 										</div>
@@ -199,7 +199,7 @@
 																			style="border-width: 2px 2px 2px 1px; border-style: solid;">
 																			<div class="col-md-9">
 																				<select id="memberSelect">
-																					  <option value="">직원선택</option>
+																					  <option value="0">직원선택</option>
                                                         							   
 																				</select>
 																			</div>
@@ -395,7 +395,7 @@
 		});
 		
 		$("#deptSelect").bind("change",function(){
-	    	alert($('#deptSelect').val());
+	    	
 	    	$('#memberSelect').children('option:not(:first)').remove();
 	    	
 	    	var deptData = {deptNo : $('#deptSelect').val()};
@@ -443,24 +443,31 @@
 
 	    });
 		
-		$("#addepayment").on("click",function(){
+		$("#addEsign").on("click",function(){
     		
-    		$("#20").attr('class', 'active');
-    		$("#title").attr('readonly',true);
-    		$("#content").attr('readonly',true);
-    		/*$.ajax({
-	        	url: "${pageContext.request.contextPath}/mail/detpMemberList",
-	        	type: "GET",
-	        	data: deptData,
-	        	dataType: "json",
+			var esignData = {
+					//req_empno: 사용자 사원번호
+					res_deptno:$('#deptSelect').val(),
+					res_empno:$('#memberSelect').val(),
+					doc_no: $('#selectDoc').val(),
+					title:$('#title').val(),
+					content:$('#content').val()
+						};
+    		
+    		$.ajax({
+	        	url: "${pageContext.request.contextPath}/esign/insertEsign",
+	        	type: "POST",
+	        	data: esignData,
 	        	success: function(result){
-	        		
-	        		
+	        		alert("success");
+	        		$("#title").attr('readonly',true);
+	        		$("#content").attr('readonly',true);
+	        		$("#20").attr('class','active');
 	        	},
 	        	error : function(xhr, type) {
 	                alert('server error occoured')
 	            }
-	        });*/
+	        });
     		
     	});
 	</script>

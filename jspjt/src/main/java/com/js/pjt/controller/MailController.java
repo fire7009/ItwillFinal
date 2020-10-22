@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.js.pjt.service_serviceimp.MailService;
 import com.js.pjt.service_serviceimp.TestService;
 import com.js.pjt.vo.MailVO;
 
@@ -22,8 +23,10 @@ import com.js.pjt.vo.MailVO;
 @RequestMapping(value = "/mail")
 public class MailController {
 	private static final Logger logger = LoggerFactory.getLogger(MailController.class);
+	//@Inject
+	//TestService service;
 	@Inject
-	TestService service;
+	MailService service;
 
 	// 메일함 페이지
 	@RequestMapping(value = "/mail-inbox", method = RequestMethod.GET)
