@@ -13,10 +13,12 @@ import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.util.HtmlUtils;
 
 import com.js.pjt.exception.EmployeeExistsException;
 import com.js.pjt.exception.EmployeeNotFoundException;
@@ -41,6 +43,13 @@ public class EmployeeController {
 		if(employee.getFile().isEmpty()) {
 			return "emp/signup";			
 		}
+		employee.setLgnId(HtmlUtils.htmlEscape(employee.getLgnId()));
+		employee.setPasswd(HtmlUtils.htmlEscape(employee.getPasswd()));
+		employee.setEmpNm(HtmlUtils.htmlEscape(employee.getEmpNm()));
+		employee.setBirthDt(HtmlUtils.htmlEscape(employee.getBirthDt()));
+		employee.setMobilePhnNo(HtmlUtils.htmlEscape(employee.getMobilePhnNo()));
+		employee.setEmailAddr(HtmlUtils.htmlEscape(employee.getEmailAddr()));
+		employee.setHireDt(HtmlUtils.htmlEscape(employee.getHireDt()));
 		
 		String uploadDir=context.getServletContext().getRealPath("/resources/upload");
 		String origin=employee.getFile().getOriginalFilename();
@@ -109,5 +118,17 @@ public class EmployeeController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/";
+	} 
+	
+	@RequestMapping(value = "/emp/id_check/{lgnId}", method = RequestMethod.GET)
+	public String idCheck(@PathVariable String lgnId) {
+		System.out.println(lgnId);
+		if(employeeService.selectIdChech(lgnId)!=null) {
+			System.out.println("중복"+lgnId);
+			return "f";
+		} else {
+			System.out.println("안중복"+lgnId);
+			return "success";			
+		}
 	}
 }
