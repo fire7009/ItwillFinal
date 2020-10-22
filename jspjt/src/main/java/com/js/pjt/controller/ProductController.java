@@ -17,8 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.js.pjt.service_serviceimp.ProductService;
-import com.js.pjt.vo.DeliveryVO;
-import com.js.pjt.vo.NoticeVO;
+
 import com.js.pjt.vo.ProductVO;
 
 @Controller
@@ -41,7 +40,7 @@ private static final Logger logger = LoggerFactory.getLogger(ProductController.c
 	public String insert() {
 		return "mulryu/mulryu_insert";
 	}
-	
+	//test
 	@RequestMapping(value = "/mulryu_insert", method = RequestMethod.POST)
 	public String insert(@ModelAttribute ProductVO vo, Model model) {
 		try {
@@ -59,12 +58,10 @@ private static final Logger logger = LoggerFactory.getLogger(ProductController.c
 		return "redirect:/mulryu";
 	}
 	
-	/*
-	@RequestMapping(value = "/notice_modify", method = {RequestMethod.PUT, RequestMethod.PATCH})
+	@RequestMapping(value = "/mulryu_update", method = {RequestMethod.PUT, RequestMethod.PATCH})
 	@ResponseBody
-	public String noticeModify(@RequestBody NoticeVO notice) {
-		noticeService.modifyNotice(notice);
+	public String noticeModify(@RequestBody ProductVO product) throws Exception {
+		service.updateProduct(product);
 		return "success";
 	}
-	*/
 }

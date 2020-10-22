@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html class="no-js">
 <!--<![endif]-->
@@ -164,10 +165,7 @@
 											<th>상품상세</th>
 											<th>상품단가</th>
 											<th>재고수량</th>
-											<th>판매여부</th>
-											<th>품절여부</th>
 											<th>등록일시</th>
-											<th>삭제여부</th>
 											<th>삭제일시</th>
 	
 										</tr>
@@ -175,23 +173,22 @@
 										<tbody>
 									<!-- 테이블 출력 -->
 									<c:forEach var="product" items="${productList}">
+									<c:if test="${product.delYn eq 'N'}">
                                                     <tr>
                                                         <td>${product.prodNo }</td>
                                                         <td>${product.prodNm }</td>
                                                         <td>${product.prodDetl }</td>
                                                         <td>${product.prodPrice }</td>
                                                         <td>${product.stckQty }</td>
-                                                        <td>${product.salesYn }</td>
-                                                        <td>${product.soYn }</td>
                                                         <td>${product.regDttm }</td>
-                                                        <td>${product.delYn }</td>
                                                         <td>${product.delDttm }</td>
                                                        
                                                         <td>
-                    											<button type="button" class="btn btn-primary m-r-5" onclick="updateBtn(${product.prodNo});">수정</button>
+                    											<button type="button" class="btn btn-primary m-r-5" onclick="update(${product.prodNo});">수정</button>
                                                             /<button type="button" class="btn btn-default" onclick="deleteBtn(${product.prodNo });">삭제</button>
                                                         </td>
-                                                    </tr>                                                
+                                                    </tr>            
+                                                 </c:if>                                  
                                                 </c:forEach>
 						
 									</tbody>
@@ -200,7 +197,86 @@
 						</div>
 					</div>
 					
-					
+					 <!-- 수정 모달 -->
+			<div class="modal fade in" id="updateDiv" style="display:hidden; padding-right:17px;">
+				<div class="modal-dialog">
+					<form action="" class="form-horizontal">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button aria-hidden="true" class="close closeDiv" data-dismiss="modal" type="button">×</button>
+								<h4 class="modal-title">수정 내용</h4>
+							</div>
+							<div class="modal-body">
+								<table style="width:450px; margin:0 auto;">
+									<tbody id="modifyBody">
+										<tr>                                                            
+											<th width="100" ></th>
+											<th width="30" ></th>
+											<th ></th>
+										</tr>
+										
+										<tr>
+											<td>
+												공지번호
+											</td>
+											<td></td>
+											<td>
+												<input type="text" class="form-control update" style="height: 40px;" name="title" id="prodNo" value="" readonly="readonly"/>
+											</td>
+										</tr>
+										
+										<tr>
+											<td>
+												상품명
+											</td>
+											<td></td>
+											<td>
+												<input type="text" class="form-control update"  name="title" id="updateProdNm" value=""/>
+											</td>
+										</tr>
+										
+										<tr>
+											<td>
+												상품상세
+											</td>
+											<td></td>
+											<td>
+												<input type="text" class="form-control update"  name="title" id="updateProdDetl" value=""/>
+											</td>
+										</tr>
+										
+										<tr>
+											<td>
+												상품단가
+											</td>
+											<td></td>
+											<td>
+												<input type="text" class="form-control update"  name="title" id="updateProdPrice" value=""/>
+											</td>
+										</tr>
+										
+											<tr>
+											<td>
+												재고수량
+											</td>
+											<td></td>
+											<td>
+												<input type="text" class="form-control update"  name="title" id="updateProdQty" value=""/>
+											</td>
+										</tr>
+										
+									</tbody>
+								</table>
+							</div>
+							<div class="modal-footer">
+								<button class="btn btn-sm btn-success" type="button" id="updateBtn" data-dismiss="modal">수정</button>
+								<a class="btn btn-sm btn-white closeDiv" data-dismiss="modal">닫기</a>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- //수정모달 -->
 					
 
 			</div>
@@ -217,7 +293,9 @@
             </section>
         </section>
         <!--main content end-->
+        
     </section>
+    
     <!--sidebar right start-->
     <aside id="sidebar-right">
         <h4 class="sidebar-title">contact List</h4>
@@ -261,9 +339,70 @@
 				location.href="${pageContext.request.contextPath}/mulryu_delete/"+prodNo;
 			}
 		}
-		function updateBtn(prodNo){
-			location.href="${pageContext.request.contextPath}/mulryu_update/"+prodNo;
-		}
+		 //수정창띄우기
+	    function update(prodNo) {
+	    	$("#prodNo").val(prodNo);
+	    	$("#updateDiv").show(200);
+	    	
+	    	$.ajax({
+	    		type: "GET",
+	    		url: "mulryu_update/"+prodNo,
+	    		dataType: "json",
+	    		success: function(json){
+	    			$("#updateProdNm").val(json.prodNo);
+	    			$("#updateProdDetl").val(json.prodDetl);
+	    			$("#updateProdPrice").val(json.prodPrice);
+	    			$("#updateProdQty").val(json.prodQty);
+	    			$("#prodNo").val(json.prodNo);
+	    		},
+	    		error: function(xhr) {
+					alert("에러코드 = "+xhr.status);
+				}
+	    	});
+	    	
+	    }
+	    //수정버튼
+	    $("#updateBtn").click(function(){
+	    	var prodNm=$("#updateTitle").val();
+	    	var prodDetl=$("#updateContent").val();
+	    	var prodPrice=$("#updateProdPrice").val();
+	    	var prodPrice=$("#noticeNo").val();
+	    	var prodPrice=$("#noticeNo").val();
+	    	
+	    	if(title==""){
+	    		alert("작성자를 입력해 주세요.");
+				return;
+	    	}
+	    	
+	    	if(content==""){
+	    		alert("작성자를 입력해 주세요.");
+				return;
+	    	}
+	    	
+	    	$.ajax({
+	    		type: "PUT",
+	    		url: "mulryu_update",
+	    		headers: {"content-type":"application/json","X-HTTP-Method-override":"PUT"},
+	    		data: JSON.stringify({"title":title,"content":content,"noticeNo":noticeNo}),
+	    		dataType: "text",
+	    		success: function(text){
+	    			if(text=="success"){
+	    				$(".update").val("");
+		    	    	$("#updateDiv").hide(200);
+		    	    	display(page);
+	    			}
+	    		},
+	    		error: function(xhr) {
+					alert("에러코드 = "+xhr.status);
+				}
+	    	});
+	    });
+	    
+	    //닫기버튼
+	    $(".closeDiv").click(function(){
+	    	$(".update").val("");
+	    	$("#updateDiv").hide(200);
+	    });
 
 	</script>
 </body>

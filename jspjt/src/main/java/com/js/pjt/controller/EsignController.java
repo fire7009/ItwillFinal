@@ -26,7 +26,7 @@ public class EsignController {
 
 	private static final Logger logger = LoggerFactory.getLogger(EsignController.class);
 
-	// @Inject 
+	// @Inje ct 
 	// TestService service;
 	@Inject
 	EsignService service;
@@ -47,7 +47,7 @@ public class EsignController {
 		model.addAttribute("Esign", service.viewEsign(authNo)); 
 	}
 
-	// ajax ÇØ´çºÎ¼­ »ç¿ø °¡Á®¿À±â
+	// ajax ï¿½Ø´ï¿½Î¼ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/docSelect", method = RequestMethod.GET)
 	@ResponseBody
 	public HashMap<String, Object> getDetpMemberList(@RequestParam int docNo) throws Exception {
@@ -56,7 +56,7 @@ public class EsignController {
 		return service.getDocTitle(docNo);
 	}
 
-	// °áÁ¦¹®¼­ Ãß°¡(¿äÃ»)
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½(ï¿½ï¿½Ã»)
 	@RequestMapping(value = "/insertEsign", method = RequestMethod.POST)
 	@ResponseBody
 	public void addEvent(@ModelAttribute EsignVO vo) throws Exception {
@@ -65,7 +65,7 @@ public class EsignController {
 		service.insertDoc(vo);
 	}
 
-	// °áÁ¦¹®¼­ Ãß°¡(¿äÃ»)
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½(ï¿½ï¿½Ã»)
 	@RequestMapping(value = "/ReqEsignList", method = RequestMethod.GET)
 	@ResponseBody
 	public List<HashMap<String, Object>> getReqEsignList() throws Exception {
