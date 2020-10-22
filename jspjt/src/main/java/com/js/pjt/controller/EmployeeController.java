@@ -41,7 +41,7 @@ public class EmployeeController {
 			return "emp/signup";			
 		}
 		
-		String uploadDir=context.getServletContext().getRealPath("/WEB-INF/upload");
+		String uploadDir=context.getServletContext().getRealPath("/resources/upload");
 		String origin=employee.getFile().getOriginalFilename();
 		String upload=System.currentTimeMillis()+"";
 		
@@ -72,8 +72,6 @@ public class EmployeeController {
 	
 	@RequestMapping(value = "/emp/login", method = RequestMethod.POST)
 	public String login(@RequestParam Map<String,Object> map, HttpSession session) throws LoginAuthFailException, EmployeeNotFoundException, IOException {
-		System.out.println(map.get("passwd"));
-		System.out.println(map.get("lgnId"));
 		employeeService.loginAuth(map);
 		
 		EmployeeVO employee=employeeService.getEmployee(map);

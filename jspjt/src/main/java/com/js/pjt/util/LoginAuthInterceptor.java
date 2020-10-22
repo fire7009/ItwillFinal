@@ -11,7 +11,7 @@ public class LoginAuthInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		HttpSession session=request.getSession();
-		if(session.getAttribute("loginUserinfo")==null) {
+		if(session.getAttribute("loginUserInfo")==null) {
 			String url=request.getRequestURI().substring(request.getContextPath().length());
 			String query=request.getQueryString();
 			if(query==null) {
@@ -24,7 +24,7 @@ public class LoginAuthInterceptor extends HandlerInterceptorAdapter {
 				session.setAttribute("destURI", url+query);
 			}
 			
-			response.sendRedirect(request.getContextPath()+"/user/login");
+			response.sendRedirect(request.getContextPath()+"/emp/login");
 			return false;
 		}
 		return true;

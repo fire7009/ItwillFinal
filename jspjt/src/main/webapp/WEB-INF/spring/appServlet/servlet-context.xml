@@ -88,7 +88,13 @@
 	<beans:bean class="com.js.pjt.util.AdminAuthinterceptor" id="adminAuthinterceptor"/>
 	<beans:bean class="com.js.pjt.util.LoginAuthInterceptor" id="loginAuthInterceptor"/>
 	
-	
+	<interceptors>
+		<interceptor>
+			<mapping path="/"/>
+			<mapping path="/notice"/>
+			<beans:ref bean="loginAuthInterceptor"/>
+		</interceptor>		
+	</interceptors>
 
 
 </beans:beans>
