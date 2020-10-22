@@ -61,7 +61,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <input type="password" class="form-control" id="password" name="passwd" placeholder="Password">
+                                        <input type="password" class="form-control" onkeyup="enterkey();" id="password" name="passwd" placeholder="Password">
                                         <i class="fa fa-lock"></i>
                                         
                                     </div>
@@ -90,6 +90,11 @@
 				return;
 			}	
 			f.submit();
+		}
+		function enterkey(){
+			if(window.event.keyCode==13){
+				userLogin();
+			}
 		}
 	</script>
     </section>

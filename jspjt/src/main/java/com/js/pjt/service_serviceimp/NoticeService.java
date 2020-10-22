@@ -10,6 +10,6 @@ public interface NoticeService {
 	void modifyNotice(NoticeVO notice);
 	void removeNotice(int noticeNo);
 	NoticeVO getNotice(int noticeNo);
-	int getNoticeCount();
+	int getNoticeCount(Map<String, Object> map);
 	List<NoticeVO> getNoticeList(Map<String, Object> map);
 }

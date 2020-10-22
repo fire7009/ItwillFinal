@@ -11,12 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.js.pjt.service_serviceimp.ProductService;
 import com.js.pjt.vo.DeliveryVO;
+import com.js.pjt.vo.NoticeVO;
 import com.js.pjt.vo.ProductVO;
 
 @Controller
@@ -57,20 +59,10 @@ private static final Logger logger = LoggerFactory.getLogger(DeliveryController.
 		return "redirect:/mulryu";
 	}
 	
-	@RequestMapping(value = "/mulryu_update/{}", method = RequestMethod.GET)
-	public String update() {
-		return "mulryu/mulryu_update";
-	}
-	
-	@RequestMapping(value = "/mulryu_update/{}", method = RequestMethod.POST)
-	public String update(@ModelAttribute ProductVO vo, int prodNo) {
-		try {
-			vo.setProdNo(prodNo);
-			service.updateProduct(vo);
-		} catch (Exception e) {
-	
-			return "mulryu/mulryu_update/"+prodNo+"";
-		}
-		return "redirect:/mulryu";
+	@RequestMapping(value = "/notice_modify", method = {RequestMethod.PUT, RequestMethod.PATCH})
+	@ResponseBody
+	public String noticeModify(@RequestBody NoticeVO notice) {
+		noticeService.modifyNotice(notice);
+		return "success";
 	}
 }
