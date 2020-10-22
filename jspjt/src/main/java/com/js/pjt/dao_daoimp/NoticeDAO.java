@@ -10,6 +10,6 @@ public interface NoticeDAO {
 	int updateNotice(NoticeVO notice);
 	int deleteNotice(int noticeNo);
 	NoticeVO selectNotice(int noticeNo);
-	int selectNoticeCount();
+	int selectNoticeCount(Map<String, Object> map);
 	List<NoticeVO> selectNoticeList(Map<String, Object> map);
 }

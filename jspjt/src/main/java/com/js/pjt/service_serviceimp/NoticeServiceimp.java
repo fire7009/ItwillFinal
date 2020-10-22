@@ -42,8 +42,8 @@ public class NoticeServiceimp implements NoticeService {
 	}
 
 	@Override
-	public int getNoticeCount() {
-		return noticeDAO.selectNoticeCount();
+	public int getNoticeCount(Map<String, Object> map) {
+		return noticeDAO.selectNoticeCount(map);
 	}
 	
 	@Override

@@ -276,8 +276,8 @@
 					    			html+="<tr style='text-align: right;'>";
 					    			html+="<td>"+date.substring(0,10)+"</td>";
 					    			html+="<td>"+this.ordNo+"</td>";
-					    			html+="<td>"+this.ordCustNm+"</td>";
-					    			html+="<td>"+this.ordProdNm+"</td>";
+					    			html+="<td>"+this.customerList.custNm+"</td>";
+					    			html+="<td>"+this.productList.prodNm+"</td>";
 					    			html+="<td>"+this.ordSumQty+"</td>";
 					    			html+="<td><span><a href='javascript:orderCancle("+this.ordNo+")'style='color:red;'>발주취소</a></span></td>";
 						    		html+="</tr>";

@@ -159,15 +159,15 @@
                                 <div class="tab-wrapper tab-primary">
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="table">
-                                            <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                            <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%" style="table-layout:fixed">
                                                 <thead>
                                                     <tr>
                                                         <th width="50">공지번호</th>
                                                         <th width="40">작성자</th>
-                                                        <th width="150">제목</th>
-                                                        <th width="500">내용</th>
-                                                        <th width="30">등록일시</th>
-                                                        <c:if test="${userInfo.stat==9 }">
+                                                        <th width="100">제목</th>
+                                                        <th width="300">내용</th>
+                                                        <th width="70">등록일시</th>
+                                                        <c:if test="${loginUserInfo.posDvcd==9 }">
                                                         <th width="30">삭제</th>
                                                         </c:if>
                                                     </tr>
@@ -179,6 +179,7 @@
                                             </table>
                                             <!-- 페이징 처리 박스 -->
                                             <div id="pageDiv" style="width: 1000px; margin: 0 auto; text-align: center;"></div>
+                                            <!-- 검색 박스 -->
                                             <div style="width: 1200px; margin: 0 auto; margin-top: 30px; margin-bottom: 10px">
 												<table>
 													<tr>
@@ -192,16 +193,17 @@
 													</tr>
 													<tr>
 													<td align="right">
-														<button type="button" class="btn btn-success" id="writeBtn">글쓰기</button>
+														<c:if test="${loginUserInfo.posDvcd==9 }">
+															<button type="button" class="btn btn-success" id="writeBtn">글쓰기</button>
+														</c:if>
 													</td>
 													<td></td>
 													<td>
 														<select class="form-control input-lg" style="height: 40px; font-size: 15px;" name="search" id="search">
-															<option value="noticeNo">공지번호</option>
-															<option value="regEmpNo">작성자</option>
-															<option value="title" selected="selected">제목</option>
-															<option value="content">내용</option>
-															<option value="regDttm">등록일시</option>
+															<option value="NOTICE_NO">공지번호</option>
+															<option value="REG_EMPNO">작성자</option>
+															<option value="TITLE" selected="selected">제목</option>
+															<option value="CONTENT">내용</option>
 														</select>
 													</td>
 													<td></td>
@@ -210,11 +212,12 @@
 														</td>
 														<td></td>
 														<td>
-															<button type="button" class="btn btn-success" id="reset">검색</button>
+															<button type="button" class="btn btn-success" id="searchBtn">검색</button>
 														</td>
 													</tr>
 												</table>
 											</div>
+											<!-- //검색 박스 -->
                                         </div>
                                     </div>
                                 </div>
@@ -229,7 +232,7 @@
 					<form action="" class="form-horizontal">
 						<div class="modal-content">
 							<div class="modal-header">
-								<button aria-hidden="true" class="close" data-dismiss="modal" type="button">×</button>
+								<button aria-hidden="true" class="close closeDiv" data-dismiss="modal" type="button">×</button>
 								<h4 class="modal-title">공지작성</h4>
 							</div>
 							<div class="modal-body">
@@ -251,7 +254,7 @@
 										</tr>
 										<tr style="height: 20px">
 											<td></td>
-											<td><input type="text" id="insertregEmpNo" class="insert" value=""><!-- ${userInfo.empNm} --></td>
+											<td><input type="hidden" id="insertregEmpNo" class="insert" value="${loginUserInfo.empNo }"><!-- ${userInfo.empNm} --></td>
 										</tr>
 										<tr>
 											<td style="vertical-align: top;">
@@ -267,7 +270,7 @@
 							</div>
 							<div class="modal-footer">
 								<button class="btn btn-sm btn-success" type="button" id="insertBtn" data-dismiss="modal">작성</button>
-								<a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:;">닫기</a>
+								<a class="btn btn-sm btn-white closeDiv" data-dismiss="modal">닫기</a>
 							</div>
 						</div>
 					</form>
@@ -275,21 +278,34 @@
 			</div>
 			<!-- //글쓰기모달 -->
             <!-- 수정 모달 -->
-			<div class="modal fade in" id="update" style="display:hidden; padding-right:17px;">
+			<div class="modal fade in" id="updateDiv" style="display:hidden; padding-right:17px;">
 				<div class="modal-dialog">
 					<form action="" class="form-horizontal">
 						<div class="modal-content">
 							<div class="modal-header">
-								<button aria-hidden="true" class="close" data-dismiss="modal" type="button">×</button>
-								<h4 class="modal-title">공지수정</h4>
+								<button aria-hidden="true" class="close closeDiv" data-dismiss="modal" type="button">×</button>
+								<h4 class="modal-title">상세내용</h4>
 							</div>
 							<div class="modal-body">
 								<table style="width:400px; margin:0 auto;">
 									<tbody id="modifyBody">
 										<tr>                                                            
-											<th width="50" ></th>
+											<th width="60" ></th>
 											<th width="20" ></th>
 											<th ></th>
+										</tr>
+										<tr>
+											<td>
+												공지번호
+											</td>
+											<td></td>
+											<td>
+												<input type="text" class="form-control update" style="height: 40px;" name="title" id="noticeNo" value="" readonly="readonly"/>
+											</td>
+										</tr>
+										<tr style="height: 20px">
+											<td></td>
+											<td></td>
 										</tr>
 										<tr>
 											<td>
@@ -297,12 +313,12 @@
 											</td>
 											<td></td>
 											<td>
-												<input type="text" class="form-control update" style="height: 40px;" name="title" id="title" value="${title}"/>
+												<input type="text" class="form-control update"  name="title" id="updateTitle" value=""/>
 											</td>
 										</tr>
 										<tr style="height: 20px">
 											<td></td>
-											<td><input type="text" id="updateregEmpNo" class="update" value=""></td>
+											<td></td>
 										</tr>
 										<tr>
 											<td style="vertical-align: top;">
@@ -310,15 +326,17 @@
 											</td>
 											<td></td>
 											<td>
-												<textarea class="form-control update" rows="10" cols="40" name="content" id="content" style="resize: none;">${content}</textarea>
+												<textarea class="form-control update" rows="10" cols="40" name="content" id="updateContent" style="resize: none;"></textarea>
 											</td>
 										</tr>
 									</tbody>
 								</table>
 							</div>
 							<div class="modal-footer">
+								<c:if test="${loginUserInfo.posDvcd==9 }">
 								<button class="btn btn-sm btn-success" type="button" id="updateBtn" data-dismiss="modal">수정</button>
-								<a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:;">닫기</a>
+								</c:if>
+								<a class="btn btn-sm btn-white closeDiv" data-dismiss="modal">닫기</a>
 							</div>
 						</div>
 					</form>
@@ -335,7 +353,7 @@
     var page=1;
     display(page);
     var stat=0;
-    var userStat=0;
+    var userStat=${loginUserInfo.posDvcd};
     function display(pageNum){
     	page=pageNum;
 	    $.ajax({
@@ -349,9 +367,9 @@
 		    			var date=this.regDttm
 		    			html+="<tr>";
 		    			html+="<td>"+this.noticeNo+"</td>";
-		    			html+="<td>"+this.regEmpNo+"</td>";
-		    			html+="<td>"+this.title+"</td>";
-		    			html+="<td><a onlcick='update("+this.noticeNo+")'>"+this.content+"</a></td>";
+		    			html+="<td>"+this.employeeVo.empNm+"</td>";
+		    			html+="<td><div style='text-overflow:ellipsis; overflow:hidden; white-space:nowrap'>"+this.title+"</div></td>";
+		    			html+="<td><div style='text-overflow:ellipsis; overflow:hidden; white-space:nowrap'><a href='javascript:update("+this.noticeNo+")'>"+this.content+"</a></div></td>";
 		    			html+="<td>"+date.substring(0,10)+"</td>";
 		    			if(userStat==9){
 			    		html+="<td><span><a href='javascript:noticeDelete("+this.noticeNo+")'style='color:red;'>삭제</a></span></td>";	    				
@@ -448,13 +466,14 @@
     	$(".insert").val("");
     	$("#write").hide();
     	
-    	$("#update").show(200);
+    	$("#noticeNo").val(noticeNo);
+    	$("#updateDiv").show(200);
     	
     	$.ajax({
     		type: "GET",
-    		url: "notice_view/"+noticeNo,
+    		url: "notice_modify/"+noticeNo,
     		dataType: "json",
-    		success function(json){
+    		success: function(json){
     			$("#updateTitle").val(json.title);
     			$("#updateContent").val(json.content);
     		},
@@ -467,11 +486,109 @@
     $("#updateBtn").click(function(){
     	var title=$("#updateTitle").val();
     	var content=$("#updateContent").val();
-    	var regEmpNo=$("#updateregEmpNo").val();
+    	var noticeNo=$("#noticeNo").val();
     	
     	if(title==""){
-    		
+    		alert("작성자를 입력해 주세요.");
+			return;
     	}
+    	
+    	if(content==""){
+    		alert("작성자를 입력해 주세요.");
+			return;
+    	}
+    	
+    	$.ajax({
+    		type: "PUT",
+    		url: "notice_modify",
+    		headers: {"content-type":"application/json","X-HTTP-Method-override":"PUT"},
+    		data: JSON.stringify({"title":title,"content":content,"noticeNo":noticeNo}),
+    		dataType: "text",
+    		success: function(text){
+    			if(text=="success"){
+    				$(".update").val("");
+	    	    	$("#updateDiv").hide(200);
+	    	    	display(page);
+    			}
+    		},
+    		error: function(xhr) {
+				alert("에러코드 = "+xhr.status);
+			}
+    	});
+    });
+    
+    //닫기버튼
+    $(".closeDiv").click(function(){
+    	$(".insert").val("");
+    	$("#write").hide(200);
+    	$(".update").val("");
+    	$("#updateDiv").hide(200);
+    });
+    
+    function noticeDelete(num){
+    	if(confirm("정말로 삭제 하시겠습니까?")){
+    		$.ajax({
+    			type:"DELETE",
+    			url: "notice_remove/"+num,
+    			headers: {"X-HTTP-Method-override":"DELETE"},
+    			dataType: "text",
+    			success: function(text){
+    				if(text=="success"){
+    					display(1);
+    				}
+    			}, 
+				error: function(xhr) {
+					alert("에러코드 = "+xhr.status);
+				}
+    		});
+    	}
+    }
+    
+    $("#searchBtn").click(function(){
+    	var search=$("#search").val();
+    	var keyword=$("#keyword").val();
+    	
+    	if(keyword==""){
+    		alert("검색어를 입력해주세요")
+    		return;
+    	}
+		
+    	$.ajax({
+    		type: "POST",
+    		url: "notice_search",
+    		data: {"search":search, "keyword":keyword},
+    		dataType: "json",
+    		success: function(json){
+    			var html="";
+	    		$(json.restNoticeList).each(function(){
+	    			if(this.delYn==stat){
+		    			var date=this.regDttm
+		    			html+="<tr>";
+		    			html+="<td>"+this.noticeNo+"</td>";
+		    			html+="<td>"+this.employeeVo.empNm+"</td>";
+		    			html+="<td><div style='text-overflow:ellipsis; overflow:hidden; white-space:nowrap'>"+this.title+"</div></td>";
+		    			html+="<td><div style='text-overflow:ellipsis; overflow:hidden; white-space:nowrap'><a href='javascript:update("+this.noticeNo+")'>"+this.content+"</a></div></td>";
+		    			html+="<td>"+date.substring(0,10)+"</td>";
+		    			if(userStat==9){
+			    		html+="<td><span><a href='javascript:noticeDelete("+this.noticeNo+")'style='color:red;'>삭제</a></span></td>";	    				
+		    			}
+		    			html+="</tr>";
+	    			}
+	    		});
+	    		if(html==""){
+    				html="<tr><td style='text-align: center;' colspan='5'><검색된 게시글이 없습니다></td></tr>";
+		    		$('#tbody').html(html);
+    				return;
+    			}
+	    		$('#tbody').html(html);
+	    		
+	    		pageDisplay(json.pager);
+	    	},
+	    	error:function(xhr) {
+	    		$('#tbody').text("응답오류 = "+xhr.status);
+	    	}
+    	});
+    	
     });
     
     </script>

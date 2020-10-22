@@ -36,9 +36,9 @@ public class NoticeDAOImp implements NoticeDAO {
 	}
 	
 	@Override
-	public int selectNoticeCount() {
+	public int selectNoticeCount(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return sqlSession.getMapper(NoticeMapper.class).selectNoticeCount();
+		return sqlSession.getMapper(NoticeMapper.class).selectNoticeCount(map);
 	}
 
 	@Override

@@ -30,15 +30,15 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 	
-	@RequestMapping(value="/emp/pages-sign-up", method = RequestMethod.GET)
+	@RequestMapping(value="/emp/signup", method = RequestMethod.GET)
 	public String signIn() {
-		return "emp/pages-sign-up";
+		return "emp/signup";
 	}
 	
-	@RequestMapping(value="/emp/pages-sign-up", method = RequestMethod.POST)
+	@RequestMapping(value="/emp/signup", method = RequestMethod.POST)
 	public String signIn(@ModelAttribute("employee") EmployeeVO employee) throws IllegalStateException, IOException, EmployeeExistsException {
 		if(employee.getFile().isEmpty()) {
-			return "emp/pages-sign-up";			
+			return "emp/signup";			
 		}
 		
 		String uploadDir=context.getServletContext().getRealPath("/WEB-INF/upload");
@@ -62,7 +62,7 @@ public class EmployeeController {
 		
 		ImageIO.write(thumbnailImage, thumbnailFilename.substring(index+1), new File(uploadDir, thumbnailFilename));
 		
-		return "emp/pages-sign-up";
+		return "emp/signup";
 	}
 	
 	@RequestMapping("/emp/login")
