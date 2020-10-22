@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.js.pjt.mapper.MailMapper">
+	<!-- 메일리스트  -->
+	<select id="getMail" resultType="hashmap">
+		select msg_no,emp_nm,content,disp_dttm,recp_yn from emp_msg join employee on(emp_msg.disp_empno=employee.emp_no) 
+		<!--where emp_msg.recp_empno=세션에 등록된 사원번호-->
+	</select>
+	
+	<!-- 보낸메일 리스트 -->
+	<select id="getSendMailList" resultType="hashmap">
+		select *from emp_msg where DISP_EMPNO=10
+	</select>
+	
+	<!--매일 보내기  -->
+	<insert id="sendMail" parameterType="com.js.pjt.vo.MailVO">
+		insert into EMP_MSG VALUES(3,#{DISP_EMPNO},#{RECP_EMPNO},#{TITLE},#{CONTENT},'n',null,sysdate,'n',null)
+	</insert>
+	
+	<!--받은메일 카운트  -->
+	<select id="getMailCount" resultType="hashmap">
+		select count(*) as count from EMP_MSG where RECP_YN='n'
+		<!--  and DISP_EMPNO=10 -->
+	</select>
+	
+	<!--보낸메일 카운트  -->
+	<select id="getSendMailCount" resultType="hashmap">
+		select count(*) as count from EMP_MSG where DISP_EMPNO=10
+	</select>
+	
+	<!--받는사람 리스트  -->
+	<select id="deptMemberList" parameterType="int" resultType="hashmap">
+		select emp_no,emp_nm from employee where dept_no =#{deptNo}
+	</select>
+	
+	<!--메일 보기  -->
+	<select id="viewMail" parameterType="int" resultType="hashmap">
+		select emp_nm,title,content from emp_msg join employee on(emp_msg.disp_empno=employee.emp_no) where emp_msg.msg_no=#{msgNo}
+	</select>
+	
+	<!-- 메일 읽었을 경우 업데이트 -->
+	<update id="mailReadCheck" parameterType="int">
+		UPDATE emp_msg set recp_yn='y' where msg_no=#{msgNo}
+	</update>
+
+</mapper>
