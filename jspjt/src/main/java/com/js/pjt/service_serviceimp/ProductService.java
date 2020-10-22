@@ -10,4 +10,5 @@ public interface ProductService {
 	public List<ProductVO> selectListProduct() throws Exception;
 	public int updateProduct(ProductVO vo) throws Exception;
 	public int deleteProduct(int prodNo) throws Exception;
+
 }

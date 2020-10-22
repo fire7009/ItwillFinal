@@ -39,5 +39,6 @@ public class ProductServiceImp implements ProductService{
 	public int deleteProduct(int prodNo) throws Exception {
 		return dao.deleteProduct(prodNo);
 	}
+
 	
 }

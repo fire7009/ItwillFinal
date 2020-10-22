@@ -18,7 +18,7 @@
    
    	<update id="updateProduct">
    		update product set prod_nm=#{prodNm}, prod_detl=#{prodDetl}, prod_price=#{prodPrice}, stck_qty=#{stckQty}, 
-   		reg_dttm=#{reg_dttm}, del_yn=#{delYn},del_dttm=#{delDttm} where prodNo=#{prodNo}
+   		reg_dttm=sysdate where prod_no=#{prodNo}
    	</update>
    	
    	<delete id="deleteProduct">

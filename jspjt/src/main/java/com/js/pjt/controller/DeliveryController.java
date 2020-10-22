@@ -53,7 +53,7 @@ public class DeliveryController {
 		try {
 			service.insertDelivery(vo);
 		} catch (Exception e) {
-			model.addAttribute("message", "이미 사용중인 학번을 입력 하였습니다.");
+			model.addAttribute("message", "이미 사용중인 정보를 입력 하였습니다.");
 			return "unsong/unsong_insert";
 		}
 		return "redirect:/unsong";
