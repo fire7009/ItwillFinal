@@ -101,7 +101,7 @@ public class EmployeeController {
 			return "redirect:"+destURI;
 		}
 		
-		return "redirect:/main";
+		return "redirect:/main"; 
 	}
 	
 	@RequestMapping("/emp/logout")
