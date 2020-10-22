@@ -23,6 +23,16 @@ public class NoticeVO {
 	private String delYn;
 	private String delDttm;
 	
+	private EmployeeVO employeeVo;
+
+	public EmployeeVO getEmployeeVo() {
+		return employeeVo;
+	}
+
+	public void setEmployeeVo(EmployeeVO employeeVo) {
+		this.employeeVo = employeeVo;
+	}
+
 	public NoticeVO() {
 		// TODO Auto-generated constructor stub
 	}

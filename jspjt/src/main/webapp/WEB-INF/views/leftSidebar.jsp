@@ -1,49 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!--sidebar left start-->
   <aside class="sidebar sidebar-left">
             <div class="sidebar-profile">
- 
-                <div class="profile-body dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <h4>Example User<span class="caret"></span></h4>
-                    </a>
-                    <small class="title">Front-end Developer</small>
-                    <ul class="dropdown-menu animated fadeInRight" role="menu">
-                        <li class="profile-progress">
-                            <h5>
-                                <span>80%</span>
-                                <small>Profile complete</small>
-                            </h5>
-                            <div class="progress progress-xs">
-                                <div class="progress-bar progress-bar-primary" style="width: 80%">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="javascript:void(0);">
-                                <span class="icon"><i class="fa fa-user"></i>
-                                </span>My Account</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);">
-                                <span class="icon"><i class="fa fa-envelope"></i>
-                                </span>Messages</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);">
-                                <span class="icon"><i class="fa fa-cog"></i>
-                                </span>Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="javascript:void(0);">
-                                <span class="icon"><i class="fa fa-sign-out"></i>
-                                </span>Logout</a>
-                        </li>
-                    </ul>
-                </div>
+            	<c:choose>
+					<c:when test="${loginUserInfo!=null}" >
+		 				<div class="avatar">
+		                    <img class="img-circle profile-image" src="${pageContext.request.contextPath}/resources/upload/${loginUserInfo.fileNm}" alt="profile">
+		                    <i class="on border-dark animated bounceIn"></i>
+		                </div>
+		                <div class="profile-body dropdown">
+		                    <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+		                    <h4>${loginUserInfo.empNm }</h4>
+		                    </a>
+		                    <small class="title">Front-end Developer</small>
+		                </div>
+					</c:when>
+					<c:otherwise>
+						<div class="avatar">
+		                    <img class="img-circle profile-image" src="${pageContext.request.contextPath}/resources/upload/logout.png" alt="profile">
+		                    <i class="on border-dark animated bounceIn"></i>
+		                </div>
+		                <div class="profile-body dropdown">
+		                    <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+		                    <h4><a href="/pjt/emp/login">로그인해주세요</a></h4>
+		                    </a>
+		                </div>
+					</c:otherwise>
+            	</c:choose>
             </div>
             <nav>
                 <h5 class="sidebar-header">Navigation</h5>
@@ -92,12 +77,12 @@
                         <ul class="nav-sub">
                           
                             <li>
-                                <a href="/pjt/emp/pages-sign-up" title="Sliders &amp; Progress">
+                                <a href="/pjt/emp/signup" title="Sliders &amp; Progress">
                                       		사원등록
                                 </a>
                             </li>
                             <li>
-                                <a href="/pjt/emp/emp_board" title="Sliders &amp; Progress">
+                                <a href="/pjt/notice" title="Sliders &amp; Progress">
                                       		사원게시판
                                 </a>
                             </li>

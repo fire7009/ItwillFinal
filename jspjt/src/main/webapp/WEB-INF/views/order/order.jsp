@@ -67,64 +67,6 @@
                     </button>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown profile hidden-xs">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="meta">
-                            <span class="avatar">
-                                <img src="assets/img/profile.jpg" class="img-circle" alt="">
-                            </span>
-                        <span class="text">Mike Adams</span>
-                        <span class="caret"></span>
-                        </span>
-                    </a>
-                    <ul class="dropdown-menu animated fadeInRight" role="menu">
-                        <li>
-                            <span class="arrow top"></span>
-                            <h5>
-                                <span>80%</span>
-                                <small class="text-muted">Profile complete</small>
-                            </h5>
-                            <div class="progress progress-xs">
-                                <div class="progress-bar progress-bar" style="width: 80%">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="javascript:void(0);">
-                                <span class="icon"><i class="fa fa-user"></i>
-                                </span>My Account</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);">
-                                <span class="icon"><i class="fa fa-envelope"></i>
-                                </span>Messages</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);">
-                                <span class="icon"><i class="fa fa-cog"></i>
-                                </span>Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="javascript:void(0);">
-                                <span class="icon"><i class="fa fa-sign-out"></i>
-                                </span>Logout</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="toggle-fullscreen hidden-xs">
-                    <button type="button" class="btn btn-default expand" id="toggle-fullscreen">
-                        <i class="fa fa-expand"></i>
-                    </button>
-                </li>
-                <li class="toggle-navigation toggle-right">
-                    <button class="sidebar-toggle" id="toggle-right">
-                        <i class="fa fa-indent"></i>
-                    </button>
-                </li>
-            </ul>
         </header>
         <!-- left sidebar start -->
        	<c:import url="/WEB-INF/views/leftSidebar.jsp">
@@ -260,7 +202,7 @@
 			    	}
 			    }
 			    </script>
-			    <script type="text/javascript">
+			    <script type="text/javascript" >
 			    display();
 			    var stat=1;
 			    function display(){
@@ -276,8 +218,8 @@
 					    			html+="<tr style='text-align: right;'>";
 					    			html+="<td>"+date.substring(0,10)+"</td>";
 					    			html+="<td>"+this.ordNo+"</td>";
-					    			html+="<td>"+this.customerList.custNm+"</td>";
-					    			html+="<td>"+this.productList.prodNm+"</td>";
+					    			html+="<td>"+this.custNm+"</td>";
+					    			html+="<td>"+this.prodNm+"</td>";
 					    			html+="<td>"+this.ordSumQty+"</td>";
 					    			html+="<td><span><a href='javascript:orderCancle("+this.ordNo+")'style='color:red;'>발주취소</a></span></td>";
 						    		html+="</tr>";
@@ -348,7 +290,7 @@
 			    	$('#ordCustNm').find('option').removeAttr('selected');
 			    	$('#ordCustNm').find('option:first').attr('selected','selected');
 			    	stat=0;
-			    	display();
+			    	display(1);
 			    })
 			    $("#tableBtn").on('click', function(){
 			    	$('#ordProdNm').find('option').removeAttr('selected');
@@ -356,7 +298,7 @@
 			    	$('#ordCustNm').find('option').removeAttr('selected');
 			    	$('#ordCustNm').find('option:first').attr('selected','selected');
 			    	stat=1;
-			    	display();
+			    	display(1);
 			    })
 			    $("#reset").on('click', function(){
 			    	$('#ordProdNm').find('option').removeAttr('selected');
@@ -364,7 +306,7 @@
 			    	$('#ordCustNm').find('option').removeAttr('selected');
 			    	$('#ordCustNm').find('option:first').attr('selected','selected');
 			    	stat=1;
-			    	display();
+			    	display(1);
 			    })
 			    </script>
             </section>

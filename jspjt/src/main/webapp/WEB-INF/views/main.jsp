@@ -94,7 +94,7 @@
 									class="fa fa-cog"></i> </span>Settings
 						</a></li>
 						<li class="divider"></li>
-						<li><a href="javascript:void(0);"> <span class="icon"><i
+						<li><a href="/pjt/emp/logout"> <span class="icon"><i
 									class="fa fa-sign-out"></i> </span>Logout
 						</a></li>
 					</ul></li>
@@ -234,7 +234,7 @@
 							<div class="panel-heading">
 								<b>공지사항</b>
 								<div class="actions pull-right">
-                                    <a href="/pjt/emp/emp_board">더보기</a>
+                                    <a href="/pjt/notice">더보기</a>
                                 </div>
 							</div>
 							<div class="panel-body" >
