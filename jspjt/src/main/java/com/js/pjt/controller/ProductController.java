@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.js.pjt.service_serviceimp.ProductService;
-
 import com.js.pjt.vo.ProductVO;
 
 @Controller
@@ -56,6 +55,12 @@ private static final Logger logger = LoggerFactory.getLogger(ProductController.c
 	public String delete(@PathVariable int prodNo) throws Exception {
 		service.deleteProduct(prodNo);
 		return "redirect:/mulryu";
+	}
+	
+	@RequestMapping(value = "/mulryu_update/{prodNo}", method = RequestMethod.GET)
+	@ResponseBody
+	public ProductVO modifyNotice(@PathVariable int prodNo) throws Exception {
+		return service.selectProduct(prodNo);
 	}
 	
 	@RequestMapping(value = "/mulryu_update", method = {RequestMethod.PUT, RequestMethod.PATCH})

@@ -261,7 +261,7 @@
 											</td>
 											<td></td>
 											<td>
-												<input type="text" class="form-control update"  name="title" id="updateProdQty" value=""/>
+												<input type="text" class="form-control update"  name="title" id="updatestckQty" value=""/>
 											</td>
 										</tr>
 										
@@ -349,11 +349,11 @@
 	    		url: "mulryu_update/"+prodNo,
 	    		dataType: "json",
 	    		success: function(json){
+	    			$("#prodNo").val(json.prodNo);
 	    			$("#updateProdNm").val(json.prodNo);
 	    			$("#updateProdDetl").val(json.prodDetl);
 	    			$("#updateProdPrice").val(json.prodPrice);
-	    			$("#updateProdQty").val(json.prodQty);
-	    			$("#prodNo").val(json.prodNo);
+	    			$("#updatestckQty").val(json.stckQty);
 	    		},
 	    		error: function(xhr) {
 					alert("에러코드 = "+xhr.status);
@@ -363,19 +363,27 @@
 	    }
 	    //수정버튼
 	    $("#updateBtn").click(function(){
-	    	var prodNm=$("#updateTitle").val();
-	    	var prodDetl=$("#updateContent").val();
+	    	var prodNo=$("#prodNo").val();
+	    	var prodNm=$("#updateProdNm").val();
+	    	var prodDetl=$("#updateProdDetl").val();
 	    	var prodPrice=$("#updateProdPrice").val();
-	    	var prodPrice=$("#noticeNo").val();
-	    	var prodPrice=$("#noticeNo").val();
+	    	var stckQty=$("#updatestckQty").val();
 	    	
-	    	if(title==""){
-	    		alert("작성자를 입력해 주세요.");
+	    	if(prodNm==""){
+	    		alert("상품이름을 입력해주세요.");
 				return;
 	    	}
 	    	
-	    	if(content==""){
-	    		alert("작성자를 입력해 주세요.");
+	    	if(prodDetl==""){
+	    		alert("상품상세내용을 입력해주세요.");
+				return;
+	    	}
+	    	if(prodPrice==""){
+	    		alert("상품가격을 입력해주세요.");
+				return;
+	    	}
+	    	if(stckQty==""){
+	    		alert("상품수량을 입력해주세요.");
 				return;
 	    	}
 	    	
@@ -383,13 +391,13 @@
 	    		type: "PUT",
 	    		url: "mulryu_update",
 	    		headers: {"content-type":"application/json","X-HTTP-Method-override":"PUT"},
-	    		data: JSON.stringify({"title":title,"content":content,"noticeNo":noticeNo}),
+	    		data: JSON.stringify({"prodNo":prodNo,"prodNm":prodNm,"prodDetl":prodDetl,"prodPrice":prodPrice,"stckQty":stckQty}),
 	    		dataType: "text",
 	    		success: function(text){
 	    			if(text=="success"){
 	    				$(".update").val("");
 		    	    	$("#updateDiv").hide(200);
-		    	    	display(page);
+		    	    	location.href="${pageContext.request.contextPath}/mulryu";
 	    			}
 	    		},
 	    		error: function(xhr) {
@@ -403,6 +411,8 @@
 	    	$(".update").val("");
 	    	$("#updateDiv").hide(200);
 	    });
+	    
+	 
 
 	</script>
 </body>
