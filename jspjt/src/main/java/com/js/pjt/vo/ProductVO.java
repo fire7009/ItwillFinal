@@ -1,16 +1,18 @@
 package com.js.pjt.vo;
 
 public class ProductVO {
-	private int prodNo;
-	private String prodNm;
-	private String prodDetl;
-	private int prodPrice;
-	private int stckQty;
-	private String salesYn;
-	private String soYn;
-	private String regDttm;
-	private String delYn;
-	private String delDttm;
+	private int prodNo;//상품번호
+	private String prodNm;//상품명
+	private String prodDetl;//상품상세
+	private int prodPrice;//상품단가
+	private int stckQty;//재고수량
+	private String salesYn;//판매여부
+	private String soYn;//품절여부
+	private String regDttm;//등록일시
+	private String delYn;//삭제여부
+	private String delDttm;//삭제일시
+	
+	
 	public int getProdNo() {
 		return prodNo;
 	}

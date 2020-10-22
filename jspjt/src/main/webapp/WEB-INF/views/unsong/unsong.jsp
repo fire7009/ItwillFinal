@@ -47,11 +47,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
                 </li>
-                <li class="toggle-profile hidden-xs">
-                    <button type="button" class="btn btn-default" id="toggle-profile">
-                        <i class="icon-user"></i>
-                    </button>
-                </li>
+            
                 <li class="hidden-xs">
                     <input type="text" class="search" placeholder="Search project...">
                     <button type="submit" class="btn btn-sm btn-search"><i class="fa fa-search"></i>
@@ -117,40 +113,34 @@
 										</div>
 										<div id="collapseOne" class="panel-collapse collapse in">
 											<div class="panel-body">
-												<form class="form-horizontal" method="post" id="searchForm">
+												<form class="form-horizontal" id="searchForm" method="post"  action="unsong_search">
 													<div class="col-md-9">
 														<div class="form-group">
 															<label class="control-label col-md-3">배송번호</label>
 															<div class="col-md-9">
-																<input class="form-control" type="text" id="s_carrierName">
+																<input class="form-control" type="text" name="dlvrNo"  value="${deliverySearchVO.dlvrNo}">
 															</div>
 														</div>
 														<div class="form-group">
-															<label class="control-label col-md-3">주문번호</label>
+															<label class="control-label col-md-3">배송자이름</label>
 															<div class="col-md-9">
-																<input class="form-control" type="text" id="s_carrierCompanyName">
+																<input class="form-control" type="text" name="empNm" id="empNm" value="${deliverySearchVO.empNm }">
 															</div>
 														</div>
 														<div class="form-group">
-															<label class="control-label col-md-3">배송자사원번호</label>
+															<label class="control-label col-md-3">배송자전화번호</label>
 															<div class="col-md-9">
-																<input class="form-control" type="text" id="s_carrierBranch">
+																<input class="form-control" type="text" name="mobilePhnNo" value="${deliverySearchVO.mobilePhnNo }">
 															</div>
 														</div>
-														<div class="form-group">
-															<label class="col-md-3 control-label">배송완료여부</label>
-															<div class="col-md-9">
-																<label class="radio-inline"><input checked name="carrierState" type="radio" value="2" checked> 전체</label>
-																<label class="radio-inline"><input name="carrierState" type="radio" value="1"> 배송가능</label>
-																<label class="radio-inline"><input name="carrierState" type="radio" value="0"> 배송중지</label>
-															</div>
-														</div>
+														
 													</div>
 													<div class="col-md-12 center">
 														<button class="btn btn-primary m-r-5" type="button" id="searchBtn">검색</button>
 														<button class="btn btn-default" type="reset">초기화</button>
 													</div>
 												</form>
+												
 											</div>
 										</div>
 									</div>
@@ -159,8 +149,9 @@
 									<thead>
 										<tr>
 											<th>배송번호</th>
-											<th>주문번호</th>
-											<th>배송자사원번호</th>
+											<th>주문수량</th>
+											<th>배송자이름</th>
+											<th>배송자전화번호</th>
 											<th>배송시작일시</th>
 											<th>배송완료여부</th>
 											<th>배송완료일시</th>
@@ -168,20 +159,23 @@
 									</thead>
 									<tbody>
 									<!-- 테이블 출력 -->
+								
 									<c:forEach var="delivery" items="${deliveryList }">
-                                                    <tr>
-                                                        <td>${delivery.dlvrNo }</td>
-                                                        <td>${delivery.ordNo }</td>
-                                                        <td>${delivery.dlvrEmpno }</td>
+                                                 	<c:if test="${delivery.dlvrCmplYn eq 'N'}">
+                                                   	 	<tr>
+                                                        <td>${delivery.dlvrNo }</td>  
+                                                        <td>${delivery.orderVO.ordSumQty }</td>
+                                                        <td>${delivery.employeeVO.empNm }</td>
+                                                      	<td>${delivery.employeeVO.mobilePhnNo }</td>
                                                         <td>${delivery.dlvrStrtDttm }</td>
                                                         <td>${delivery.dlvrCmplYn }</td>
                                                         <td>${delivery.dlvrCmplDttm }</td>
                                                         <td>
-                   										<span><input type="button" value="수정" onclick="updateBtn(${delivery.dlvrNo });"></span>
-                                                           /<span><input type="button" value="삭제" onclick="deleteBtn(${delivery.dlvrNo });"></span>
+                                                        <button type="button" class="btn btn-primary m-r-5" onclick="updateBtn(${delivery.dlvrNo });">수정</button>
+                                                        /<button type="button" class="btn btn-default" onclick="deleteBtn(${delivery.dlvrNo });">삭제</button>
                                                         </td>
-                                                        
-                                                    </tr>                                                
+                                                    </tr>       
+                                                 	</c:if>                                         
                                     </c:forEach>
 						
 									</tbody>
@@ -191,7 +185,7 @@
 						
 						
 					</div>
-<button class="btn btn-default" type="button"><a href="${pageContext.request.contextPath}/insert">입력</a></button>
+
 </section>
 <!--main content end-->
 
@@ -238,12 +232,17 @@
 		function deleteBtn(dlvrNo){
 			var chk=confirm("정말 삭제하시겠습니까?");
 			if(chk){
-				location.href="${pageContext.request.contextPath}/delete/"+dlvrNo;
+				location.href="${pageContext.request.contextPath}/unsong_delete/"+dlvrNo;
 			}
 		}
+		
 		function updateBtn(dlvrNo){
 			location.href="${pageContext.request.contextPath}/unsong_update/"+dlvrNo;
 		}
+		
+		$("#searchBtn").click(function(){
+			$("#searchForm").submit();
+		});
 
 	</script>
 </body>

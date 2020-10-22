@@ -40,7 +40,16 @@
 	</update>
 	
 	<select id="selectEmployee" resultType="com.js.pjt.vo.EmployeeVO">
-		select * from employee where emp_no=#{empNo}
+		select * from employee 
+		<trim prefix="where" prefixOverrides="and |or">
+			<if test="empNo!=0">
+				emp_no like #{empNo}
+			</if>
+			<if test="lgnId!=null and lgnId!=''">
+				and lgn_id like #{lgnId}
+			</if>				
+		</trim>
+		
 	</select>
 	
 	<select id="selectEmployeeList" resultType="com.js.pjt.vo.EmployeeVO">

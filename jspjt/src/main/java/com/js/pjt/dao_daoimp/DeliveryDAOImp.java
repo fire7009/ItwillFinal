@@ -1,6 +1,7 @@
 package com.js.pjt.dao_daoimp;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -40,6 +41,16 @@ public class DeliveryDAOImp implements DeliveryDAO {
 	@Override
 	public int deleteDelivery(int dlvrNo) throws Exception {
 		return sqlSession.getMapper(DeliveryMapper.class).deleteDelivery(dlvrNo);
+	}
+
+	@Override
+	public List<DeliveryVO> ListDO() throws Exception {
+		return sqlSession.getMapper(DeliveryMapper.class).ListDO();
+	}
+
+	@Override
+	public List<DeliveryVO> searchListDO(Map<String, Object> map) throws Exception {
+		return sqlSession.getMapper(DeliveryMapper.class).searchListDO(map);
 	}
 
 	

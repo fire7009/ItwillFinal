@@ -85,7 +85,10 @@
 	<context:component-scan
 		base-package="com.js.pjt.vo" />
 
-
+	<beans:bean class="com.js.pjt.util.AdminAuthinterceptor" id="adminAuthinterceptor"/>
+	<beans:bean class="com.js.pjt.util.LoginAuthInterceptor" id="loginAuthInterceptor"/>
+	
+	
 
 
 </beans:beans>

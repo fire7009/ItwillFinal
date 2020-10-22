@@ -1,6 +1,7 @@
 package com.js.pjt.dao_daoimp;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ public class EmployeeDAOimp implements EmployeeDAO {
 	}
 
 	@Override
-	public EmployeeVO selectEmployee(int empNo) {
-		return sqlSession.getMapper(EmployeeMapper.class).selectEmployee(empNo);
+	public EmployeeVO selectEmployee(Map<String, Object> map) {
+		return sqlSession.getMapper(EmployeeMapper.class).selectEmployee(map);
 	}
 
 	@Override

@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.js.pjt.mapper.NoticeMapper">
+
+	<resultMap type="com.js.pjt.vo.NoticeVO" id="noticeMap">
+	
+		<result column="REG_EMPNO" property="regEmpNo"/>
+		<result column="NOTICE_NO" property="noticeNo"/>
+		<result column="TITLE" property="title"/>
+		<result column="CONTENT" property="content"/>
+		<result column="VIEW_CNT" property="viewCnt"/>
+		<result column="NOTICE_YN" property="noticeYn"/>
+		<result column="REG_DTTM" property="regDttm"/>
+		<result column="DEL_YN" property="delYn"/>
+		<result column="DEL_DTTM" property="delDttm"/>
+		
+		<association javaType="com.js.pjt.vo.EmployeeVO" property="employeeVo">
+			<result column="EMP_NM" property="empNm"/>			
+		</association>
+	</resultMap>
+	
 	<insert id="insertNotice">
 		<selectKey resultType="int" keyProperty="noticeNo" order="BEFORE">
 			select notice_seq.nextval from dual
@@ -21,11 +39,32 @@
 	</select>
 	
 	<select id="selectNoticeCount" resultType="int">
-		select count(*) from notice
+		select count(*) from 
+		<choose>
+			<when test="keyword!=null and keyword!=''">
+				notice where ${search} like '%'||#{keyword}||'%' order by notice_no desc
+			</when>
+			<otherwise>
+			notice
+			</otherwise>
+		</choose>
 	</select>
 	
-	<select id="selectNoticeList" resultType="com.js.pjt.vo.NoticeVO">
-		select * from (select rownum rn, board.* from (select * from notice order by notice_no desc) board) 
-		where rn between #{startRow} and #{endRow}
+	<select id="selectNoticeList" resultMap="noticeMap">
+		select * from 
+		(select rownum rn, board.* from
+		 (select 
+		 notice.REG_EMPNO,notice.NOTICE_NO,notice.TITLE,CONTENT,notice.VIEW_CNT
+         ,notice.NOTICE_YN,notice.REG_DTTM,notice.DEL_YN,notice.DEL_DTTM,employee.EMP_NM
+		  from 
+		  notice, employee 
+		  <where>
+			notice.REG_EMPNO=employee.EMP_NO
+			<if test="keyword!=null and keyword!=''">
+				and ${search} like '%'||#{keyword}||'%'
+			</if>
+		  </where>
+			order by notice_no desc) board
+		) where rn between #{startRow} and #{endRow}
 	</select>
 </mapper>

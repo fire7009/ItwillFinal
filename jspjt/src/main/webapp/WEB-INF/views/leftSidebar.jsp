@@ -3,12 +3,11 @@
 <!--sidebar left start-->
   <aside class="sidebar sidebar-left">
             <div class="sidebar-profile">
-                <div class="avatar">
-                    <img class="img-circle profile-image" src="assets/img/profile.jpg" alt="profile">
-                    <i class="on border-dark animated bounceIn"></i>
-                </div>
+ 
                 <div class="profile-body dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><h4>Example User<span class="caret"></span></h4></a>
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <h4>Example User<span class="caret"></span></h4>
+                    </a>
                     <small class="title">Front-end Developer</small>
                     <ul class="dropdown-menu animated fadeInRight" role="menu">
                         <li class="profile-progress">
@@ -117,10 +116,40 @@
                             </li>
                         </ul>
                     </li>
-                    <li >
-                        <a href="schedule" title="Dashboard">
+                    <li class="nav-dropdown">
+                        <a href="#" title="Dashboard">
                             <i class="fa  fa-fw fa-tachometer"></i> 운송관리
                         </a>
+                        <ul class="nav-sub">
+                            <li>
+                                <a href="/pjt/unsong" title="Sliders &amp; Progress">
+                                      		운송현황
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/pjt/unsong_insert" title="Sliders &amp; Progress">
+                                      		운송추가
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                     <li class="nav-dropdown">
+                        <a href="#" title="Dashboard">
+                            <i class="fa  fa-fw fa-tachometer"></i> 물류관리
+                        </a>
+                        <ul class="nav-sub">
+                            <li>
+                                <a href="/pjt/mulryu" title="Sliders &amp; Progress">
+                                      		물류현황
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/pjt/mulryu_insert" title="Sliders &amp; Progress">
+                                      		물류추가
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </nav>

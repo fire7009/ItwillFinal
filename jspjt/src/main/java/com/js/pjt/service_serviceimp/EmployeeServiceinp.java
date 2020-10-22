@@ -1,6 +1,8 @@
 package com.js.pjt.service_serviceimp;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,10 @@ public class EmployeeServiceinp implements EmployeeService {
 	@Transactional
 	@Override
 	public void addEmployee(EmployeeVO employee) throws EmployeeExistsException {
-		if(employeeDAO.selectEmployee(employee.getEmpNo())!=null) {
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("lgnId", employee.getLgnId());
+		map.put("empNo", employee.getEmpNo());
+		if(employeeDAO.selectEmployee(map)!=null) {
 			throw new EmployeeExistsException(employee, "이미 사용중인 아이디를 입력 하였습니다.");
 		}
 		employee.setPasswd(BCrypt.hashpw(employee.getPasswd(), BCrypt.gensalt()));
@@ -31,7 +36,10 @@ public class EmployeeServiceinp implements EmployeeService {
 	@Transactional
 	@Override
 	public void modifyEmployee(EmployeeVO employee) throws EmployeeNotFoundException {
-		if(employeeDAO.selectEmployee(employee.getEmpNo())==null) {
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("lgnId", employee.getLgnId());
+		map.put("empNo", employee.getEmpNo());
+		if(employeeDAO.selectEmployee(map)==null) {
 			throw new EmployeeNotFoundException("해당 사원번호와 일치하는 정보가 존재하지 않습니다.");
 		}
 		
@@ -39,8 +47,8 @@ public class EmployeeServiceinp implements EmployeeService {
 	}
 
 	@Override
-	public EmployeeVO getEmployee(int empNo) throws EmployeeNotFoundException {
-		EmployeeVO employee=employeeDAO.selectEmployee(empNo);
+	public EmployeeVO getEmployee(Map<String, Object> map) throws EmployeeNotFoundException {
+		EmployeeVO employee=employeeDAO.selectEmployee(map);
 		if(employee==null) {
 			throw new EmployeeNotFoundException("해당 사원번호와 일치하는 정보가 존재하지 않습니다.");
 		}
@@ -53,14 +61,14 @@ public class EmployeeServiceinp implements EmployeeService {
 	}
 
 	@Override
-	public void loginAuth(EmployeeVO employee) throws LoginAuthFailException {
-		EmployeeVO authEmployee=employeeDAO.selectEmployee(employee.getEmpNo());
+	public void loginAuth(Map<String, Object> map) throws LoginAuthFailException {
+		EmployeeVO authEmployee=employeeDAO.selectEmployee(map);
 		if(authEmployee==null) {
-			throw new LoginAuthFailException(employee.getLgnId(), "아이디의 사원정보가 존재하지 않습니다.");
+			throw new LoginAuthFailException((String)map.get("lgnId"), "아이디의 사원정보가 존재하지 않습니다.");
 		}
 		
-		if(!BCrypt.checkpw(employee.getPasswd(), authEmployee.getPasswd())) {
-			throw new LoginAuthFailException(employee.getLgnId(), "아이디가 없거나 비밀번호가 일치하지 않습니다.");
+		if(!BCrypt.checkpw((String)map.get("passwd"), authEmployee.getPasswd())) {
+			throw new LoginAuthFailException((String)map.get("lgnId"), "아이디가 없거나 비밀번호가 일치하지 않습니다.");
 		}
 	}
 }
