@@ -36,11 +36,16 @@ public class HomeController {
 	public String home(Locale locale, Model model) throws Exception {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
-		//List<TestVO> vo= service.getList1();
+		//List<TestVO> vo= service.getL ist1();
 		//model.addAttribute("list", vo);
 		return "home";
 	}
 	
+	@RequestMapping(value = "/order", method = RequestMethod.GET)
+	public String getOrderList(Locale locale, Model model) {
+		
+		return "order/order";
+	}
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public void getmain(Locale locale, Model model) {
 		
