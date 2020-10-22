@@ -51,24 +51,24 @@
                         </div>
                         <div class="panel-body">
                             <p> Login to access your account.</p>
-                            <form class="form-horizontal" role="form">
+                            <form class="form-horizontal" name="f" action="${pageContext.request.contextPath}/emp/login" method="post" role="form">
+                            	<input type="hidden" name="empNo" value="0">
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <input type="email" class="form-control" id="email" placeholder="Id">
+                                        <input type="text" class="form-control" id="email" name="lgnId" placeholder="Id">
                                         <i class="fa fa-user"></i>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <input type="password" class="form-control" id="password" placeholder="Password">
+                                        <input type="password" class="form-control" onkeyup="enterkey();" id="password" name="passwd" placeholder="Password">
                                         <i class="fa fa-lock"></i>
                                         
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <a href="/pjt/main" class="btn btn-primary btn-block">로그인</a>
-                                       
+                                       	<button type="button" class="btn btn-primary btn-block" onclick="userLogin();">로그인</button>
                                     </div>
                                 </div>
                             </form>
@@ -77,7 +77,26 @@
                 </div>
             </div>
         </div>
-
+	<script type="text/javascript">
+		function userLogin() {
+			if ( f.lgnId.value == "" ) {
+				alert("아이디를 입력하십시요.");
+				f.lgnId.focus();
+				return;
+			} 
+			if ( f.passwd.value == "" ) {
+				alert("비밀번호를 입력하십시요.");
+				f.passwd.focus();
+				return;
+			}	
+			f.submit();
+		}
+		function enterkey(){
+			if(window.event.keyCode==13){
+				userLogin();
+			}
+		}
+	</script>
     </section>
     <!--Global JS-->
     <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-1.11.1.min.js"></script>

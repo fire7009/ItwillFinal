@@ -72,6 +72,8 @@ public class EmployeeController {
 	
 	@RequestMapping(value = "/emp/login", method = RequestMethod.POST)
 	public String login(@RequestParam Map<String,Object> map, HttpSession session) throws LoginAuthFailException, EmployeeNotFoundException, IOException {
+		System.out.println(map.get("passwd"));
+		System.out.println(map.get("lgnId"));
 		employeeService.loginAuth(map);
 		
 		EmployeeVO employee=employeeService.getEmployee(map);
@@ -101,12 +103,12 @@ public class EmployeeController {
 			return "redirect:"+destURI;
 		}
 		
-		return "main";
+		return "redirect:/main";
 	}
 	
 	@RequestMapping("/emp/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/emp/login";
+		return "redirect:/";
 	}
 }

@@ -23,7 +23,7 @@ public class NoticeVO {
 	private String delYn;
 	private String delDttm;
 	
-	private EmployeeVO employeeVo;
+	private EmployeeVO employeeVo; 
 
 	public EmployeeVO getEmployeeVo() {
 		return employeeVo;

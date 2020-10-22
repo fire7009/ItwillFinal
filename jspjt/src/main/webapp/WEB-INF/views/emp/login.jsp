@@ -77,7 +77,7 @@
                 </div>
             </div>
         </div>
-	<script language="JavaScript">
+	<script type="text/javascript">
 		function userLogin() {
 			if ( f.lgnId.value == "" ) {
 				alert("아이디를 입력하십시요.");

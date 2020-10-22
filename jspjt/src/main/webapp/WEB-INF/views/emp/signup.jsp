@@ -57,16 +57,23 @@
 	                        
 	                        <form id="singnIn" method="post" enctype="multipart/form-data">
 								<div class="form-group">
-								    <label for="exampleInputPassword1">부서번호</label>
-								    <input type="text" class="form-control" name="deptNo" id="deptNo" placeholder="부서번호" value="${employee.deptNo }">
+								    <label for="exampleInputPassword1">부서</label>
+								    <select class="form-control input-lg" id="deptNo" name="deptNo">
+                                          <option value="0">부서선택</option>
+                                          <option value="10">인사팀</option>
+                                          <option value="20">운영팀</option>
+                                          <option value="30">운송팀</option>
+                                          <option value="40">회계팀</option>
+                                          <option value="50">영업팀</option>                                
+                      				</select>
 								</div>
 								<div class="form-group">
 								    <label for="exampleInputPassword1">직급구분코드</label>
-								    <input type="text" class="form-control" name="posDvcd" id="posDvcd" placeholder="직급구분코드" value="${employee.posDvcd }">
+								    <input type="text" class="form-control" name="posDvcd" id="posDvcd" placeholder="직급구분코드">
 								</div>
 								<div class="form-group">
 								    <label for="exampleInputPassword1">아이디</label>
-								    <input type="text" class="form-control" name="lgnId" id="lgnId" placeholder="아이디" value="${employee.lgnId }">
+								    <input type="text" class="form-control" name="lgnId" id="lgnId" placeholder="아이디">
 								</div>
 								 <div class="form-group">
 								    <label for="exampleInputPassword1">비밀번호</label>
@@ -78,23 +85,23 @@
 								</div>
 								<div class="form-group">
 								    <label for="exampleInputEmail1">이름</label>
-								    <input type="text" class="form-control" name="empNm" id="empNm" placeholder="이름을 입력해주세요" value="${employee.empNm }">
+								    <input type="text" class="form-control" name="empNm" id="empNm" placeholder="이름을 입력해주세요">
 								</div>
 								<div class="form-group">
 								    <label for="exampleInputEmail1">생일</label>
-								    <input type="text" class="form-control" name="birthDt" id="birthDt" placeholder="생일을 입력해주세요" value="${employee.birthDt }">
+								    <input type="text" class="form-control" name="birthDt" id="birthDt" placeholder="생일을 입력해주세요">
 								</div>
 								<div class="form-group">
 								    <label for="exampleInputPassword1">핸드폰번호</label>
-								    <input type="text" class="form-control" name="mobilePhnNo" id="mobilePhnNo" placeholder="핸드폰번호를 입력해주세요" value="${employee.mobilePhnNo }">
+								    <input type="text" class="form-control" name="mobilePhnNo" id="mobilePhnNo" placeholder="핸드폰번호를 입력해주세요">
 								</div>
 								<div class="form-group">
 								    <label for="exampleInputPassword1">이메일</label>
-								    <input type="email" class="form-control" name="emailAddr" id="emailAddr" placeholder="이메일을 입력해주세요" value="${employee.emailAddr }">
+								    <input type="email" class="form-control" name="emailAddr" id="emailAddr" placeholder="이메일을 입력해주세요">
 								</div>
 								<div class="form-group">
 								    <label for="exampleInputPassword1">입사일</label>
-								    <input type="text" class="form-control" name="hireDt" id="hireDt" placeholder="입사일" value="${employee.hireDt }">
+								    <input type="text" class="form-control" name="hireDt" id="hireDt" placeholder="입사일">
 								</div>
 								<div class="form-group">
 								    <label for="exampleInputEmail1">성별</label>
