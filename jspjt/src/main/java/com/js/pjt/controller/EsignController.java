@@ -26,7 +26,7 @@ public class EsignController {
 
 	private static final Logger logger = LoggerFactory.getLogger(EsignController.class);
 
-	// @Inject
+	// @Inject 
 	// TestService service;
 	@Inject
 	EsignService service;
