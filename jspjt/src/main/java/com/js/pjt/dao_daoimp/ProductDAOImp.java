@@ -32,8 +32,8 @@ public class ProductDAOImp implements ProductDAO {
 	}
 
 	@Override
-	public int updateProduct(int prodNo) throws Exception {
-		return sqlSession.getMapper(ProductMapper.class).updateProduct(prodNo);
+	public int updateProduct(ProductVO vo) throws Exception {
+		return sqlSession.getMapper(ProductMapper.class).updateProduct(vo);
 	}
 
 	@Override

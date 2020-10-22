@@ -17,11 +17,12 @@
 	</select>
    
    	<update id="updateProduct">
-   		update delivery set ord_no=#{ordNo}, dlvr_empno=#{dlvrEmpno}, dlvr_cmpl_dttm=sysdate where dlvr_no=#{dlvrNo}
+   		update product set prod_nm=#{prodNm}, prod_detl=#{prodDetl}, prod_price=#{prodPrice}, stck_qty=#{stckQty}, 
+   		reg_dttm=#{reg_dttm}, del_yn=#{delYn},del_dttm=#{delDttm} where prodNo=#{prodNo}
    	</update>
    	
    	<delete id="deleteProduct">
-   		delete from product where prod_no=#{prodNo}
+   		update product set del_yn='Y' where prod_no=#{prodNo}
    	</delete>
   
 </mapper>

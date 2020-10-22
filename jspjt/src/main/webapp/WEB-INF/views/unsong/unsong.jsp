@@ -118,7 +118,7 @@
 														<div class="form-group">
 															<label class="control-label col-md-3">배송번호</label>
 															<div class="col-md-9">
-																<input class="form-control" type="text" name="dlvrNo"  value="${deliverySearchVO.dlvrNo }">
+																<input class="form-control" type="text" name="dlvrNo"  value="${deliverySearchVO.dlvrNo}">
 															</div>
 														</div>
 														<div class="form-group">
@@ -161,7 +161,8 @@
 									<!-- 테이블 출력 -->
 								
 									<c:forEach var="delivery" items="${deliveryList }">
-                                                    <tr>
+                                                 	<c:if test="${delivery.dlvrCmplYn eq 'N'}">
+                                                   	 	<tr>
                                                         <td>${delivery.dlvrNo }</td>  
                                                         <td>${delivery.orderVO.ordSumQty }</td>
                                                         <td>${delivery.employeeVO.empNm }</td>
@@ -170,11 +171,11 @@
                                                         <td>${delivery.dlvrCmplYn }</td>
                                                         <td>${delivery.dlvrCmplDttm }</td>
                                                         <td>
-               											<button type="button" class="btn btn-primary m-r-5" onclick="updateBtn(${delivery.dlvrNo });">수정</button>
-                                                           /<button type="button" class="btn btn-default" onclick="deleteBtn(${delivery.dlvrNo });">삭제</button>
+                                                        <button type="button" class="btn btn-primary m-r-5" onclick="updateBtn(${delivery.dlvrNo });">수정</button>
+                                                        /<button type="button" class="btn btn-default" onclick="deleteBtn(${delivery.dlvrNo });">삭제</button>
                                                         </td>
-                                                        
-                                                    </tr>                                                
+                                                    </tr>       
+                                                 	</c:if>                                         
                                     </c:forEach>
 						
 									</tbody>
@@ -184,7 +185,7 @@
 						
 						
 					</div>
-<button class="btn btn-default" type="button"><a href="${pageContext.request.contextPath}/unsong_insert">입력</a></button>
+
 </section>
 <!--main content end-->
 
@@ -228,7 +229,7 @@
     <script src="${pageContext.request.contextPath}/resources/assets/js/src/app.js"></script>
 
 	<script type="text/javascript">
-		/*function deleteBtn(dlvrNo){
+		function deleteBtn(dlvrNo){
 			var chk=confirm("정말 삭제하시겠습니까?");
 			if(chk){
 				location.href="${pageContext.request.contextPath}/unsong_delete/"+dlvrNo;
@@ -239,16 +240,7 @@
 			location.href="${pageContext.request.contextPath}/unsong_update/"+dlvrNo;
 		}
 		
-		function searchBtn(){
-			/searchForm.method="GET";
-			searchForm.action="${pageContext.request.contextPath}/unsong_search";
-			searchForm.submit();
-		}*/
-		
 		$("#searchBtn").click(function(){
-			//,dlvrNo,empNm,mobilePhnNo
-			//var str="";
-			//if($('#divrNo'))
 			$("#searchForm").submit();
 		});
 

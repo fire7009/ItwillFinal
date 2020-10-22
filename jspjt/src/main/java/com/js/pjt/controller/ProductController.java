@@ -56,4 +56,21 @@ private static final Logger logger = LoggerFactory.getLogger(DeliveryController.
 		service.deleteProduct(prodNo);
 		return "redirect:/mulryu";
 	}
+	
+	@RequestMapping(value = "/mulryu_update/{}", method = RequestMethod.GET)
+	public String update() {
+		return "mulryu/mulryu_update";
+	}
+	
+	@RequestMapping(value = "/mulryu_update/{}", method = RequestMethod.POST)
+	public String update(@ModelAttribute ProductVO vo, int prodNo) {
+		try {
+			vo.setProdNo(prodNo);
+			service.updateProduct(vo);
+		} catch (Exception e) {
+	
+			return "mulryu/mulryu_update/"+prodNo+"";
+		}
+		return "redirect:/mulryu";
+	}
 }

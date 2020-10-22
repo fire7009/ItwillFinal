@@ -87,7 +87,7 @@
                 <div class="panel-body ng-binding">
              <section class="main-content-wrapper">
 	<div class="pageheader">
-		<h1>매출</h1>
+		<h1>물류관리</h1>
 		<div class="breadcrumb-wrapper hidden-xs">
 			<span class="label">You are here:</span>
 			<ol class="breadcrumb">
@@ -133,17 +133,9 @@
 														
 														<div class="form-group">
 															<label class="col-md-3 control-label">날짜/기간</label>
-															<div class="col-md-9">
-																<label class="radio-inline"><input checked id="dateOptions-date" name="dateOptions" type="radio" value="date"> 날짜별</label>
-																<label class="radio-inline"><input id="dateOptions-range" name="dateOptions" type="radio" value="range"> 기간별</label>
-															</div>
+															
 														</div>
-														<div class="form-group form-date">
-															<label class="col-md-3 control-label">&nbsp;</label>
-															<div class="col-md-9">
-																<input class="form-control" id="datepicker-date" placeholder="날짜 선택..." type="text" data-date-format="yyyy-mm-dd">
-															</div>
-														</div>
+														
 														<div class="form-group form-daterange disabled">
 															<label class="col-md-3 control-label">&nbsp;</label>
 															<div class="col-md-9">
@@ -196,7 +188,7 @@
                                                         <td>${product.delDttm }</td>
                                                        
                                                         <td>
-                          									<button type="button" class="btn-primary m-r-5" onclick="updateBtn(${product.prodNo });">수정</button>
+                    											<button type="button" class="btn btn-primary m-r-5" onclick="updateBtn(${product.prodNo});">수정</button>
                                                             /<button type="button" class="btn btn-default" onclick="deleteBtn(${product.prodNo });">삭제</button>
                                                         </td>
                                                     </tr>                                                
@@ -213,7 +205,7 @@
 
 			</div>
 		</div>
-		<button class="btn btn-primary m-r-5" type="button"><a href="${pageContext.request.contextPath}/mulryu_insert">물류추가</a></button>
+
 	</section>
 </section><!--main content end-->
 

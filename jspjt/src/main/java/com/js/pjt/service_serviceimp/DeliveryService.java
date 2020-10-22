@@ -3,7 +3,7 @@ package com.js.pjt.service_serviceimp;
 import java.util.List;
 import java.util.Map;
 
-import com.js.pjt.vo.DeliverySearchVO;
+
 import com.js.pjt.vo.DeliveryVO;
 
 

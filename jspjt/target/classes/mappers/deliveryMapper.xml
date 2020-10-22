@@ -40,7 +40,7 @@
    	</update>
    	
    	<delete id="deleteDelivery">
-   		delete from delivery where dlvr_no=#{dlvrNo}
+   		update delivery set dlvr_cmpl_yn='Y' where dlvr_no=#{dlvrNo}
    	</delete>
    	
    	<select id="ListDO" resultMap="deliveryMap">
@@ -57,13 +57,12 @@
 		<if	test="dlvrNo!=null and dlvrNo!=''">
 			 d.dlvr_no=#{dlvrNo}
 		</if>
-		
 		<if test="empNm!=null and empNm!=''">
-			and e.emp_nm like '%'||#{empNm}||'%'
+			and e.emp_nm like concat('%',(concat(#{empNm},'%')))
 		</if> 
 		
 		<if test="mobilePhnNo!=null and mobilePhnNo!=''">
-			and e.mobile_phn_no like '%'||#{mobilePhnNo}||'%'
+			and e.mobile_phn_no like concat('%',(concat(#{movilePhnNo},'%')))
 		</if>
 	
 		</trim>

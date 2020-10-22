@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.js.pjt.mapper.DeliveryMapper;
-import com.js.pjt.vo.DeliverySearchVO;
 import com.js.pjt.vo.DeliveryVO;
 
 @Repository

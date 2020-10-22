@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.js.pjt.dao_daoimp.DeliveryDAO;
-import com.js.pjt.vo.DeliverySearchVO;
+
 import com.js.pjt.vo.DeliveryVO;
 
 @Service

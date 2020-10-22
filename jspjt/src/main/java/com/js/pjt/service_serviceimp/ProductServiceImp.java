@@ -31,8 +31,8 @@ public class ProductServiceImp implements ProductService{
 	}
 
 	@Override
-	public int updateProduct(int prodNo) throws Exception {
-		return dao.updateProduct(prodNo);
+	public int updateProduct(ProductVO vo) throws Exception {
+		return dao.updateProduct(vo);
 	}
 
 	@Override

@@ -11,6 +11,8 @@ public class ProductVO {
 	private String regDttm;//등록일시
 	private String delYn;//삭제여부
 	private String delDttm;//삭제일시
+	
+	
 	public int getProdNo() {
 		return prodNo;
 	}

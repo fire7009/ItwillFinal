@@ -3,7 +3,6 @@ package com.js.pjt.mapper;
 import java.util.List;
 import java.util.Map;
 
-import com.js.pjt.vo.DeliverySearchVO;
 import com.js.pjt.vo.DeliveryVO;
 
 public interface DeliveryMapper {
