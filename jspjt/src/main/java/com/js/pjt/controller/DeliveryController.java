@@ -7,10 +7,11 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.js.pjt.service_serviceimp.DeliveryService;
+import com.js.pjt.service_serviceimp.EmployeeService;
 import com.js.pjt.vo.DeliveryVO;
 
 
@@ -35,11 +37,15 @@ public class DeliveryController {
 	@Inject
 	DeliveryService service;
 	
+	
 	@RequestMapping(value = "/unsong", method = RequestMethod.GET)
-	public String list(Locale locale, Model model) throws Exception {
+	public String list(HttpSession session,Locale locale, Model model) throws Exception {
 		logger.info("Welcome delivery! The client locale is {}.", locale);
 		List<DeliveryVO> vo=service.ListDO();
 		model.addAttribute("deliveryList", vo);
+		if(session.getAttribute("loginUserInfo")==null) {
+			return "redirect:/";
+		}
 		return "unsong/unsong";
 	}
 	

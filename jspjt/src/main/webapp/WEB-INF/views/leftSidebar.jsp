@@ -24,7 +24,7 @@
 		                </div>
 		                <div class="profile-body dropdown">
 		                    <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-		                    <h4><a href="${pageContext.request.contextPath}/emp/login">로그인해주세요</a></h4>
+		                    <h4><a href="/pjt/emp/login">로그인해주세요</a></h4>
 		                    </a>
 		                </div>
 					</c:otherwise>
@@ -34,12 +34,12 @@
                 <h5 class="sidebar-header">Navigation</h5>
                 <ul class="nav nav-pills nav-stacked">
                     <li>
-                        <a href="${pageContext.request.contextPath}/mail/mail-inbox" title="Dashboard">
+                        <a href="/pjt/mail/mail-inbox" title="Dashboard">
                             <i class="fa  fa-fw fa-tachometer"></i> 메일
                         </a>
                     </li>
                     <li >
-                        <a href="${pageContext.request.contextPath}/schedule/schedule" title="Dashboard">
+                        <a href="/pjt/schedule/schedule" title="Dashboard">
                             <i class="fa  fa-fw fa-tachometer"></i> 일정
                         </a>
                     </li>
@@ -56,13 +56,13 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="${pageContext.request.contextPath}/emp/emp_board" title="Sliders &amp; Progress">
+                                <a href="/pjt/emp/emp_board" title="Sliders &amp; Progress">
                                 
                                       		결제요청
                                 </a>
                             </li>
                             <li>
-                                <a href="${pageContext.request.contextPath}/emp/emp_board" title="Sliders &amp; Progress">
+                                <a href="/pjt/emp/emp_board" title="Sliders &amp; Progress">
                                       		결제리스트
                                 </a>
                             </li>
@@ -77,12 +77,12 @@
                         <ul class="nav-sub">
                           
                             <li>
-                                <a href="${pageContext.request.contextPath}/emp/signup" title="Sliders &amp; Progress">
+                                <a href="/pjt/emp/signup" title="Sliders &amp; Progress">
                                       		사원등록
                                 </a>
                             </li>
                             <li>
-                                <a href="${pageContext.request.contextPath}/notice" title="Sliders &amp; Progress">
+                                <a href="/pjt/notice" title="Sliders &amp; Progress">
                                       		사원게시판
                                 </a>
                             </li>
@@ -95,45 +95,52 @@
                         </a>
                         <ul class="nav-sub">
                             <li>
-                                <a href="${pageContext.request.contextPath}/orderList" title="Sliders &amp; Progress">
+                                <a href="/pjt/orderList" title="Sliders &amp; Progress">
                                       		발주현황
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-dropdown">
-                        <a href="#" title="Dashboard">
-                            <i class="fa  fa-fw fa-tachometer"></i> 운송관리
+                    
+  					<li class="nav-dropdown">
+                        <a href="#" title="UI Elements">
+                            <i class="fa fa-fw fa-file-text"></i> 운송관리
                         </a>
                         <ul class="nav-sub">
+                          
                             <li>
-                                <a href="${pageContext.request.contextPath}/unsong" title="Sliders &amp; Progress">
+                                <a href="/pjt/unsong" title="Sliders &amp; Progress">
+                                
                                       		운송현황
                                 </a>
                             </li>
                             <li>
-                                <a href="${pageContext.request.contextPath}/unsong_insert" title="Sliders &amp; Progress">
+                                <a href="/pjt/unsong_insert" title="Sliders &amp; Progress">
                                       		운송추가
                                 </a>
                             </li>
+                            
                         </ul>
                     </li>
                     
-                     <li class="nav-dropdown">
-                        <a href="#" title="Dashboard">
-                            <i class="fa  fa-fw fa-tachometer"></i> 물류관리
+                   	<li class="nav-dropdown">
+                        <a href="#" title="UI Elements">
+                            <i class="fa fa-fw fa-file-text"></i> 물류관리
                         </a>
                         <ul class="nav-sub">
+                          
                             <li>
-                                <a href="${pageContext.request.contextPath}/mulryu" title="Sliders &amp; Progress">
+                                <a href="/pjt/mulryu" title="Sliders &amp; Progress">
+                                
                                       		물류현황
                                 </a>
                             </li>
                             <li>
-                                <a href="${pageContext.request.contextPath}/mulryu_insert" title="Sliders &amp; Progress">
+                                <a href="/pjt/mulryu_insert" title="Sliders &amp; Progress">
                                       		물류추가
                                 </a>
                             </li>
+                            
                         </ul>
                     </li>
                 </ul>

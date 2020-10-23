@@ -153,8 +153,8 @@
 											<th>배송자이름</th>
 											<th>배송자전화번호</th>
 											<th>배송시작일시</th>
-											<th>배송완료여부</th>
-											<th>배송완료일시</th>
+											<th>배송지</th>
+											
 										</tr>
 									</thead>
 									<tbody>
@@ -169,10 +169,10 @@
                                                       	<td>${delivery.employeeVO.mobilePhnNo }</td>
                                                         <td>${delivery.dlvrStrtDttm }</td>
                                                         <td>${delivery.dlvrCmplYn }</td>
-                                                        <td>${delivery.dlvrCmplDttm }</td>
+                                                        <td>${delivery.contactAddr}</td>
+                                                       
                                                         <td>
-                                                        <button type="button" class="btn btn-primary m-r-5" onclick="updateBtn(${delivery.dlvrNo });">수정</button>
-                                                        /<button type="button" class="btn btn-default" onclick="deleteBtn(${delivery.dlvrNo });">삭제</button>
+                                                       <button type="button" class="btn btn-default" onclick="deleteBtn(${delivery.dlvrNo });">삭제</button>
                                                         </td>
                                                     </tr>       
                                                  	</c:if>                                         
@@ -236,9 +236,6 @@
 			}
 		}
 		
-		function updateBtn(dlvrNo){
-			location.href="${pageContext.request.contextPath}/unsong_update/"+dlvrNo;
-		}
 		
 		$("#searchBtn").click(function(){
 			$("#searchForm").submit();

@@ -166,7 +166,7 @@
 											<th>상품단가</th>
 											<th>재고수량</th>
 											<th>등록일시</th>
-											<th>삭제일시</th>
+										
 	
 										</tr>
 									</thead>
@@ -181,7 +181,7 @@
                                                         <td>${product.prodPrice }</td>
                                                         <td>${product.stckQty }</td>
                                                         <td>${product.regDttm }</td>
-                                                        <td>${product.delDttm }</td>
+
                                                        
                                                         <td>
                     											<button type="button" class="btn btn-primary m-r-5" onclick="update(${product.prodNo});">수정</button>
@@ -413,7 +413,6 @@
 	    });
 	    
 	 
-
 	</script>
 </body>
 
