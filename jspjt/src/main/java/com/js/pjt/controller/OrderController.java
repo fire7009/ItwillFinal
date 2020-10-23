@@ -49,12 +49,6 @@ public class OrderController {
 	@ResponseBody
 	public List<OrderVO> display1(@RequestParam(value="ordCustNm",required=false) String ordCustNm,
 			@RequestParam(value="ordProdNm",required=false) String ordProdNm) {
-		if(!ordCustNm.equals("") && !ordProdNm.equals("")) {
-			return orderService.selectAndOrder(ordProdNm, ordCustNm);
-		} else if(!ordCustNm.equals("") || !ordProdNm.equals("")) {
 			return orderService.selectOrder(ordProdNm, ordCustNm);			
-		} else {
-			return orderService.selectOrderList();
-		}
 	}
 }

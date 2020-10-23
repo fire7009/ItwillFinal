@@ -75,4 +75,17 @@ public class EmployeeServiceinp implements EmployeeService {
 	public EmployeeVO selectIdChech(String lgnId) {
 		return employeeDAO.selectIdChech(lgnId);
 	}
+
+	@Override
+	public String selectLoginCheck(Map<String, Object> map) {
+		System.out.println("(String)map.get(\"lgnId\") = "+(String)map.get("lgnId"));
+		EmployeeVO employee=employeeDAO.selectIdChech((String)map.get("lgnId"));
+		if(employee==null) {
+			return "none";
+		} else if(!BCrypt.checkpw((String)map.get("passwd"), employee.getPasswd())) {
+			return "pwmiss";
+		} else {
+			return "success";
+		}
+	}
 }

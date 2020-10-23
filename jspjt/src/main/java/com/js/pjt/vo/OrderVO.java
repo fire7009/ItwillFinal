@@ -1,112 +1,107 @@
 package com.js.pjt.vo;
 
 /*
- * ï¿½Ì¸ï¿½            ï¿½ï¿½?       ï¿½ï¿½ï¿½ï¿½           
+ * ÀÌ¸§            ³Î?       À¯Çü           
 ------------- -------- ------------ 
-ORD_NO        NOT NULL NUMBER(8)   ï¿½Ö¹ï¿½ï¿½ï¿½È£
-ORD_CUSTNM    NOT NULL VARCHAR2(30) ï¿½ï¿½ï¿½ï¿½
-ORD_PRODNM    NOT NULL VARCHAR2(30) ï¿½ï¿½Ç°ï¿½ï¿½
-ORD_SUM_QTY   NOT NULL NUMBER      ï¿½Ö¹ï¿½ï¿½Ñ¼ï¿½ï¿½ï¿½
-ORD_SUM_AMT   NOT NULL NUMBER      ï¿½Ö¹ï¿½ï¿½Ñ±Ý¾ï¿½
-ORD_STAT_DVCE NOT NULL NUMBER(4)   ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½
-ORD_DTTM      NOT NULL DATE        ï¿½Ö¹ï¿½ï¿½Ï½ï¿½
-ORD_CNCL_YN   NOT NULL VARCHAR2(1) ï¿½Ö¹ï¿½ï¿½ï¿½Ò¿ï¿½ï¿½ï¿½  0ï¿½ï¿½ ï¿½ï¿½ï¿½
-ORD_CNCL_DTTM          DATE		   ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½Ï½ï¿½
+ORD_NO        NOT NULL NUMBER(8)   ÁÖ¹®¹øÈ£
+ORD_CUSTNM    NOT NULL VARCHAR2(30) °í°´¸í
+ORD_PRODNM    NOT NULL VARCHAR2(30) »óÇ°¸í
+ORD_SUM_QTY   NOT NULL NUMBER      ÁÖ¹®ÃÑ¼ö·®
+ORD_SUM_AMT   NOT NULL NUMBER      ÁÖ¹®ÃÑ±Ý¾×
+ORD_STAT_DVCE NOT NULL NUMBER(4)   ÁÖ¹®±¸ºÐÄÚµå
+ORD_DTTM      NOT NULL DATE        ÁÖ¹®ÀÏ½Ã
+ORD_CNCL_YN   NOT NULL VARCHAR2(1) ÁÖ¹®Ãë¼Ò¿©ºÎ  0ÀÌ Ãë¼Ò
+ORD_CNCL_DTTM          DATE		   ÁÖ¹®Ãë¼ÒÀÏ½Ã
+PROD_NO							   »óÇ°¹øÈ£
 
 */
 public class OrderVO {
-	int ordNo;
-	String ordCustNm;
-	String ordProdNm;
-	int ordSumQty;
-	int ordSumAmt;
-	int ordStatDvce;
-	String ordDttm;
-	String ordCnclYn;
-	String ordCnclDttm;
+	private int ordNo;
+	private String ordCustNm;
+	private String ordProdNm;
+	private int ordSumQty;
+	private int ordSumAmt;
+	private int ordStatDvce;
+	private String ordDttm;
+	private String ordCnclYn;
+	private String ordCnclDttm;
 	private int prodNo;
-
-	public int getProdNo() {
-		return prodNo;
-	}
-
-	public void setProdNo(int prodNo) {
-		this.prodNo = prodNo;
-	}
-
-	public OrderVO() {
-		// TODO Auto-generated constructor stub
-	}
-
+	private ProductVO productVO;
+	private CustomerVO customerVO;
+	
 	public int getOrdNo() {
 		return ordNo;
 	}
-
 	public void setOrdNo(int ordNo) {
 		this.ordNo = ordNo;
 	}
-
 	public String getOrdCustNm() {
 		return ordCustNm;
 	}
-
 	public void setOrdCustNm(String ordCustNm) {
 		this.ordCustNm = ordCustNm;
 	}
-
 	public String getOrdProdNm() {
 		return ordProdNm;
 	}
-
 	public void setOrdProdNm(String ordProdNm) {
 		this.ordProdNm = ordProdNm;
 	}
-
 	public int getOrdSumQty() {
 		return ordSumQty;
 	}
-
 	public void setOrdSumQty(int ordSumQty) {
 		this.ordSumQty = ordSumQty;
 	}
-
 	public int getOrdSumAmt() {
 		return ordSumAmt;
 	}
-
 	public void setOrdSumAmt(int ordSumAmt) {
 		this.ordSumAmt = ordSumAmt;
 	}
-
 	public int getOrdStatDvce() {
 		return ordStatDvce;
 	}
-
 	public void setOrdStatDvce(int ordStatDvce) {
 		this.ordStatDvce = ordStatDvce;
 	}
-
 	public String getOrdDttm() {
 		return ordDttm;
 	}
-
 	public void setOrdDttm(String ordDttm) {
 		this.ordDttm = ordDttm;
 	}
-
 	public String getOrdCnclYn() {
 		return ordCnclYn;
 	}
-
 	public void setOrdCnclYn(String ordCnclYn) {
 		this.ordCnclYn = ordCnclYn;
 	}
-
 	public String getOrdCnclDttm() {
 		return ordCnclDttm;
 	}
-
 	public void setOrdCnclDttm(String ordCnclDttm) {
 		this.ordCnclDttm = ordCnclDttm;
 	}
+	public int getProdNo() {
+		return prodNo;
+	}
+	public void setProdNo(int prodNo) {
+		this.prodNo = prodNo;
+	}
+	public ProductVO getProductVO() {
+		return productVO;
+	}
+	public void setProductVO(ProductVO productVO) {
+		this.productVO = productVO;
+	}
+	public CustomerVO getCustomerVO() {
+		return customerVO;
+	}
+	public void setCustomerVO(CustomerVO customerVO) {
+		this.customerVO = customerVO;
+	}
+	
+
+	
 }

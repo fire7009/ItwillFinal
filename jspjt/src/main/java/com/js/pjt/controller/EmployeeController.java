@@ -3,6 +3,7 @@ package com.js.pjt.controller;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.util.HtmlUtils;
 
@@ -79,6 +81,13 @@ public class EmployeeController {
 	public String login() {
 		return "emp/login";
 	}
+	@RequestMapping(value = "/emp/lgncheck", method = RequestMethod.POST)
+	@ResponseBody
+	public String login(@RequestParam Map<String,Object> map) {
+		System.out.println("lgnId = "+map.get("lgnId")+",/// passwd = "+map.get("passwd"));
+		System.out.println("result = "+ employeeService.selectLoginCheck(map));
+		return employeeService.selectLoginCheck(map);
+	}
 	
 	@RequestMapping(value = "/emp/login", method = RequestMethod.POST)
 	public String login(@RequestParam Map<String,Object> map, HttpSession session) throws LoginAuthFailException, EmployeeNotFoundException, IOException {
@@ -121,13 +130,12 @@ public class EmployeeController {
 	} 
 	
 	@RequestMapping(value = "/emp/id_check/{lgnId}", method = RequestMethod.GET)
-	public String idCheck(@PathVariable String lgnId) {
+	@ResponseBody
+	public String idCheck(@PathVariable String lgnId) throws UnsupportedEncodingException {
 		System.out.println(lgnId);
 		if(employeeService.selectIdChech(lgnId)!=null) {
-			System.out.println("중복"+lgnId);
-			return "f";
+			return "no";
 		} else {
-			System.out.println("안중복"+lgnId);
 			return "success";			
 		}
 	}

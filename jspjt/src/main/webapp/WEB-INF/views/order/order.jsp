@@ -38,6 +38,11 @@
     <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/html5shiv.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+    .thcenter th{
+    text-align: center;
+    }
+    </style>
 </head>
 
 <body>
@@ -173,9 +178,9 @@
                                             </div>
                                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                                 <thead>
-                                                    <tr>
-                                                        <th>날짜</th>
-                                                        <th>주문번호</th>
+                                                    <tr class="thcenter">
+                                                        <th width="150">날짜</th>
+                                                        <th width="100">주문번호</th>
                                                         <th>업체명</th>
                                                         <th>상품명</th>
                                                         <th>수량</th>
@@ -204,7 +209,7 @@
 			    </script>
 			    <script type="text/javascript" >
 			    display();
-			    var stat=1;
+			    var stat="N";
 			    function display(){
 				    $.ajax({
 				    	type: "GET",
@@ -218,13 +223,14 @@
 					    			html+="<tr style='text-align: right;'>";
 					    			html+="<td>"+date.substring(0,10)+"</td>";
 					    			html+="<td>"+this.ordNo+"</td>";
-					    			html+="<td>"+this.custNm+"</td>";
-					    			html+="<td>"+this.prodNm+"</td>";
+					    			html+="<td>"+this.customerVO.custNm+"</td>";
+					    			html+="<td>"+this.productVO.prodNm+"</td>";
 					    			html+="<td>"+this.ordSumQty+"</td>";
 					    			html+="<td><span><a href='javascript:orderCancle("+this.ordNo+")'style='color:red;'>발주취소</a></span></td>";
 						    		html+="</tr>";
 				    			}
 				    		});
+				    		
 				    		if(html==""){
 			    				html="<tr><td style='text-align: center;' colspan='6'><검색된 항목이 없습니다></td></tr>";
 					    		$('#tbody').html(html);
@@ -258,12 +264,12 @@
 					    			html+="<tr style='text-align: right;'>";
 					    			html+="<td>"+date.substring(0,10)+"</td>";
 					    			html+="<td>"+this.ordNo+"</td>";
-					    			html+="<td>"+this.ordCustNm+"</td>";
-					    			html+="<td>"+this.ordProdNm+"</td>";
+					    			html+="<td>"+this.customerVO.custNm+"</td>";
+					    			html+="<td>"+this.productVO.prodNm+"</td>";
 					    			html+="<td>"+this.ordSumQty+"</td>";
-					    			if(this.ordCnclYn==1){
+					    			if(this.ordCnclYn=="N"){
 					    			html+="<td><span><a href='javascript:orderCancle("+this.ordNo+")'style='color:red;'>발주취소</a></span></td>";
-					    			} else if(this.ordCnclYn==0){
+					    			} else if(this.ordCnclYn=="Y"){
 					    				html+="<td><span>취소완료</span></td>";
 					    			}
 						    		html+="</tr>";
@@ -297,7 +303,7 @@
 			    	$('#ordProdNm').find('option:first').attr('selected','selected');
 			    	$('#ordCustNm').find('option').removeAttr('selected');
 			    	$('#ordCustNm').find('option:first').attr('selected','selected');
-			    	stat=1;
+			    	stat="N";
 			    	display(1);
 			    })
 			    $("#reset").on('click', function(){
@@ -305,7 +311,7 @@
 			    	$('#ordProdNm').find('option:first').attr('selected','selected');
 			    	$('#ordCustNm').find('option').removeAttr('selected');
 			    	$('#ordCustNm').find('option:first').attr('selected','selected');
-			    	stat=1;
+			    	stat="Y";
 			    	display(1);
 			    })
 			    </script>

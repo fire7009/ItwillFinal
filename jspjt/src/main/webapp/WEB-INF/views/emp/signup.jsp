@@ -36,6 +36,7 @@
     <style>
     .magDiv{color: red; margin-top: 10px; margin-left: 5px;}
     .msg{display: none;}
+    .fileMsg{height: 10px;}
     #radioDiv{position: relative;}
     </style>
 </head>
@@ -60,10 +61,10 @@
 	                    </div>
 	                    <div class="panel-body">
 	                        
-	                        <form id="signUp" name="signUp" method="post" enctype="multipart/form-data">
+	                        <form id="signUp" name="signUp" method="post" enctype="multipart/form-data" onsubmit="return false;">
 								<div class="form-group">
 								    <label for="exampleInputPassword1">부서</label>
-								    <select class="form-control input-lg" id="deptNo" name="deptNo">
+								    <select class="form-control resetMsgs input-lg" id="deptNo" name="deptNo">
                                           <option value="0">부서선택</option>
                                           <option value="10">인사팀</option>
                                           <option value="20">운영팀</option>
@@ -75,7 +76,7 @@
 								</div>
 								<div class="form-group">
 								    <label for="exampleInputPassword1">직급구분코드</label>
-								    <select class="form-control input-lg" id="posDvcd" name="posDvcd">
+								    <select class="form-control resetMsgs input-lg" id="posDvcd" name="posDvcd">
                                           <option value="0">직급선택</option>
                                           <option value="10">사원</option>
                                           <option value="20">대리</option>
@@ -86,42 +87,42 @@
 								</div>
 								<div class="form-group">
 								    <label for="exampleInputPassword1">아이디</label>
-								    <input type="text" class="form-control" name="lgnId" id="lgnId" placeholder="아이디">
+								    <input type="text" class="form-control resetMsg" name="lgnId" id="lgnId" placeholder="아이디">
 								    <div class="magDiv"><span id="lgnIdMsg" class="msg d"></span></div>
 								</div>
 								 <div class="form-group">
 								    <label for="exampleInputPassword1">비밀번호</label>
-								    <input type="password" class="form-control" name="passwd" id="passwd" placeholder="비밀번호">
+								    <input type="password" class="form-control resetMsg" name="passwd" id="passwd" placeholder="비밀번호">
 								    <div class="magDiv"><span id="passwdMsg" class="msg d"></span></div>
 								</div>
 								  <div class="form-group">
 								    <label for="exampleInputPassword1">비밀번호 확인</label>
-								    <input type="password" class="form-control" name="passwd2" id="passwd2" placeholder="비밀번호를 한번 더 입력해주세요">
+								    <input type="password" class="form-control resetMsg" name="passwd2" id="passwd2" placeholder="비밀번호를 한번 더 입력해주세요">
 								    <div class="magDiv"><span id="passwd2Msg" class="msg d"></span></div>
 								</div>
 								<div class="form-group">
 								    <label for="exampleInputEmail1">이름</label>
-								    <input type="text" class="form-control" name="empNm" id="empNm" placeholder="이름을 입력해주세요">
+								    <input type="text" class="form-control resetMsg" name="empNm" id="empNm" placeholder="이름을 입력해주세요">
 								    <div class="magDiv"><span id="empNmMsg" class="msg d"></span></div>
 								</div>
 								<div class="form-group">
 								    <label for="exampleInputEmail1">생일</label>
-								    <input type="text" class="form-control" name="birthDt" id="birthDt" placeholder="생일을 입력해주세요">
+								    <input type="text" class="form-control resetMsg" name="birthDt" id="birthDt" placeholder="생일을 입력해주세요">
 								    <div class="magDiv"><span id="birthDtMsg" class="msg d"></span></div>
 								</div>
 								<div class="form-group">
 								    <label for="exampleInputPassword1">핸드폰번호</label>
-								    <input type="text" class="form-control" name="mobilePhnNo" id="mobilePhnNo" placeholder="핸드폰번호를 입력해주세요">
+								    <input type="text" class="form-control resetMsg" name="mobilePhnNo" id="mobilePhnNo" placeholder="핸드폰번호를 입력해주세요">
 								    <div class="magDiv"><span id="mobilePhnNoMsg" class="msg d"></span></div>
 								</div>
 								<div class="form-group">
 								    <label for="exampleInputPassword1">이메일</label>
-								    <input type="email" class="form-control" name="emailAddr" id="emailAddr" placeholder="이메일을 입력해주세요">
+								    <input type="email" class="form-control resetMsg" name="emailAddr" id="emailAddr" placeholder="이메일을 입력해주세요">
 								    <div class="magDiv"><span id="emailAddrMsg" class="msg d"></span></div>
 								</div>
 								<div class="form-group">
 								    <label for="exampleInputPassword1">입사일</label>
-								    <input type="text" class="form-control" name="hireDt" id="hireDt" placeholder="입사일">
+								    <input type="text" class="form-control resetMsg" name="hireDt" id="hireDt" placeholder="입사일">
 								    <div class="magDiv"><span id="hireDtMsg" class="msg d"></span></div>
 								</div>
 								<div class="form-group">
@@ -134,7 +135,7 @@
 								<div class="form-group">
 								    <label for="exampleInputFile">사원사진</label>
 								    <input type="file" id="file" name="file">
-								    <div class="magDiv"><span id="fileMsg" class="msg d"></span></div>
+								    <div class="magDiv fileMsg"><span id="fileMsg" class="msg d"></span></div>
 								</div>
 								<button type="button" class="btn btn-primary btn-block" id="signupBtn">등록</button>
 	                        </form>
@@ -148,36 +149,38 @@
     <!--Global JS-->
     <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript">
-		$("#signupBtn").click(function(){
-			var msg="";
-			var lgnId=signUp.lgnId.value;
+		var msg="";
+		var stat=0;
+		$("#deptNo").blur(function(){
 			if(signUp.deptNo.value==0){
 				msg="부서를 선택해주세요";
 				$("#deptNoMsg").removeClass("msg");
 				$("#deptNoMsg").text(msg);
-				signUp.deptNo.focus();
 				return;
 			}
+		});
+		
+		$("#posDvcd").blur(function(){
 			if(signUp.posDvcd.value==0){
 				msg="직급을 선택해주세요";
 				$("#posDvcdMsg").removeClass("msg");
 				$("#posDvcdMsg").text(msg);
-				signUp.posDvcd.focus();
 				return;
 			}
-			
+		});
+		
+		$("#lgnId").blur(function(){			
+			var lgnId=signUp.lgnId.value;
 			var idReg=/^[a-zA-Z]\w{5,19}$/g;
 			if(signUp.lgnId.value==""){
 				msg="아이디를 입력해주세요";
 				$("#lgnIdMsg").removeClass("msg");
 				$("#lgnIdMsg").text(msg);
-				signUp.lgnId.focus();
 				return;
 			} else if(!idReg.test(signUp.lgnId.value)) {
 				msg="형식에 맞는 아이디를 입력해주세요";
 				$("#lgnIdMsg").removeClass("msg");
 				$("#lgnIdMsg").text(msg);
-				signUp.lgnId.focus();
 				return;
 			} else {
 				$.ajax({
@@ -185,95 +188,199 @@
 					url: "id_check/"+lgnId,
 					dataType: "text",
 					success: function(text){
-						alert("성공")
 						if(text!="success"){
+							msg="동일한 아이디가 존재합니다. 다시 입력해주세요";
 							$("#lgnIdMsg").removeClass("msg");
-							$("#lgnIdMsg").text(text);
-							signUp.lgnId.focus();
+							$("#lgnIdMsg").text(msg);
 							return;
 						}
 					},
 					error: function(xhr) {
-						alert("실패")
+						alert("실패");
 						alert("에러코드 = "+xhr.status);
 					}
 				});
 			}
+		});
+		
+		$("#passwd").blur(function(){
 			var passwdReg=/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%^&*_-]).{6,20}$/g;
 			if(signUp.passwd.value==""){
 				msg="비밀번호를 입력해주세요";
 				$("#passwdMsg").removeClass("msg");
 				$("#passwdMsg").text(msg);
-				signUp.passwd.focus();
 				return;
 			} else if(!passwdReg.test(signUp.passwd.value)) {
 				msg="형식에 맞는 비밀번호를 입력해주세요";
 				$("#passwdMsg").removeClass("msg");
 				$("#passwdMsg").text(msg);
-				signUp.passwd.focus();
 				return;
-				
 			}
+		});
+		
+		$("#passwd2").blur(function(){
 			if(signUp.passwd2.value==""){
 				msg="비밀번호를 한번 더 입력해주세요";
 				$("#passwd2Msg").removeClass("msg");
-				signUp.passwd2.focus();
+				$("#passwd2Msg").text(msg);
+				return;
+			} else if(signUp.passwd2.value!=signUp.passwd.value){
+				msg="입력하신 비밀번호와 일치하지 않습니다.";
+				$("#passwd2Msg").removeClass("msg");
 				$("#passwd2Msg").text(msg);
 				return;
 			}
+		});
+		
+		$("#empNm").blur(function(){
 			if(signUp.empNm.value==""){
 				msg="이름를 입력해주세요";
 				$("#empNmMsg").removeClass("msg");
 				$("#empNmMsg").text(msg);
-				signUp.lgnId.focus();
 				return;
 			}
+		});
+		
+		$("#birthDt").blur(function(){
 			if(signUp.birthDt.value==""){
 				msg="생일를 입력해주세요";
 				$("#birthDtMsg").removeClass("msg");
 				$("#birthDtMsg").text(msg);
-				signUp.lgnId.focus();
 				return;
 			}
+		});
+		
+		$("#mobilePhnNo").blur(function(){
 			if(signUp.mobilePhnNo.value==""){
 				msg="핸드폰번호를 입력해주세요";
 				$("#mobilePhnNoMsg").removeClass("msg");
 				$("#mobilePhnNoMsg").text(msg);
-				signUp.lgnId.focus();
 				return;
 			}
+		});
+		
+		$("#emailAddr").blur(function(){
 			var emailReg=/^([a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+(\.[-a-zA-Z0-9]+)+)*$/g;
 			if(signUp.emailAddr.value==""){
 				msg="이메일을 입력해주세요";
 				$("#emailAddrMsg").removeClass("msg");
 				$("#emailAddrMsg").text(msg);
-				signUp.lgnId.focus();
 				return;
 			} else if(!emailReg.test(signUp.emailAddr.value)) {
-				msg="형식에 맞는 비밀번호를 입력해주세요";
+				msg="형식에 맞는 이메일을 입력해주세요";
 				$("#emailAddrMsg").removeClass("msg");
 				$("#emailAddrMsg").text(msg);
-				signUp.emailReg.focus();
 				return;
-				
 			}
+		});
+			
+		$("#hireDt").blur(function(){
 			if(signUp.hireDt.value==""){
 				msg="입사일을 입력해주세요";
 				$("#hireDtMsg").removeClass("msg");
 				$("#hireDtMsg").text(msg);
-				signUp.lgnId.focus();
 				return;
 			}
-			if(signUp.file.value==null){
+		});
+		
+		$("#file").blur(function(){
+			
+		});
+
+		
+		//포커스될때============================
+		$("#deptNo").focus(function(){
+				msg="";
+				$("#deptNoMsg").addClass("msg");
+				$("#deptNoMsg").text(msg);
+				return;
+		});
+		
+		$("#posDvcd").focus(function(){
+				msg="";
+				$("#posDvcdMsg").addClass("msg");
+				$("#posDvcdMsg").text(msg);
+				return;
+		});
+		
+		$("#lgnId").focus(function(){
+			msg="";
+			$("#lgnIdMsg").addClass("msg");
+			$("#lgnIdMsg").text(msg);
+			return;
+		});
+		
+		$("#passwd").focus(function(){
+			msg="";
+			$("#passwdMsg").addClass("msg");
+			$("#passwdMsg").text(msg);
+			return;
+		});
+		
+		$("#passwd2").focus(function(){
+			msg="";
+			$("#passwd2Msg").addClass("msg");
+			$("#passwd2Msg").text(msg);
+			return;
+		});
+		
+		$("#empNm").focus(function(){
+			msg="";
+			$("#empNmMsg").addClass("msg");
+			$("#empNmMsg").text(msg);
+			return;
+		});
+		
+		$("#birthDt").focus(function(){
+			msg="";
+			$("#birthDtMsg").addClass("msg");
+			$("#birthDtMsg").text(msg);
+			return;
+		});
+		
+		$("#mobilePhnNo").focus(function(){
+			msg="";
+			$("#mobilePhnNoMsg").addClass("msg");
+			$("#mobilePhnNoMsg").text(msg);
+			return;
+		});
+		
+		$("#emailAddr").focus(function(){
+			msg="";
+			$("#emailAddrMsg").addClass("msg");
+			$("#emailAddrMsg").text(msg);
+			return;
+		});
+			
+		$("#hireDt").focus(function(){
+			msg="";
+			$("#hireDtMsg").addClass("msg");
+			$("#hireDtMsg").text(msg);
+			return;
+		});
+		$("#file").focus(function(){
+			msg="";
+			$("#fileMsg").addClass("msg");
+			$("#fileMsg").text(msg);
+			return;
+		});
+		
+		$("#signupBtn").click(function(){
+			if(signUp.file.value==""){
 				msg="사원 사진을 등록해주세요";
 				$("#fileMsg").removeClass("msg");
 				$("#fileMsg").text(msg);
-				signUp.lgnId.focus();
-				return;
+				submitResult=false;
+			}
+			if(signUp.file.value!=""){
+				msg="";
+				$("#fileMsg").addClass("msg");
+				$("#fileMsg").text(msg);
+				submitResult=true;
 			}
 			if(msg==""){
-				signUp.submit();			
-			}
+				signUp.submit();
+			}			
 		});
 	</script>
     <script src="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/js/bootstrap.min.js"></script>

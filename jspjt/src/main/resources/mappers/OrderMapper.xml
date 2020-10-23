@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.js.pjt.mapper.OrderMapper">
+	<resultMap type="com.js.pjt.vo.OrderVO" id="orderMap">
+		<result column="ORD_NO" property="ordNo"/>
+		<result column="ORD_SUM_QTY" property="ordSumQty"/>
+		<result column="ORD_SUM_AMT" property="ordSumAmt"/>
+		<result column="ORD_STAT_DVCE" property="ordStatDvce"/>
+		<result column="ORD_DTTM" property="ordDttm"/>
+		<result column="ORD_CNCL_YN" property="ordCnclYn"/>
+		<result column="ORD_CNCL_DTTM" property="ordCnclDttm"/>
+		<result column="PROD_NO" property="prodNo"/>
+		
+		<association javaType="com.js.pjt.vo.CustomerVO" property="customerVO">
+			<result column="CUST_NM" property="custNm"/>
+		</association>
+		
+		<association javaType="com.js.pjt.vo.ProductVO" property="productVO">
+			<result column="PROD_NM" property="prodNm"/>
+		</association>
+	</resultMap>
 	<update id="deleteOrder">
 		update orders set ord_cncl_yn=0, ord_cncl_dttm=sysdate where ord_no=#{ordNo}
 	</update>
@@ -13,10 +31,25 @@
 	<select id="selectAndOrder" resultType="com.js.pjt.vo.OrderVO">
 		select * from orders where ORD_PRODNM=#{ordProdNm} and ORD_CUSTNM=#{ordCustNm} 
 	</select>
-	<select id="selectOrder" resultType="com.js.pjt.vo.OrderVO">
-		select * from orders where ORD_PRODNM=#{ordProdNm} or ORD_CUSTNM=#{ordCustNm} 
+	
+	<select id="selectOrder" resultMap="orderMap">
+		select o.ORD_NO, o.ORD_SUM_QTY, o.ORD_SUM_AMT, o.ORD_STAT_DVCD, o.ORD_DTTM, o.ORD_CNCL_YN, o.ORD_CNCL_DTTM
+		, o.PROD_NO, c.CUST_NM, p.prod_nm from orders o join customer c on (o.ORD_CUSTNO=c.CUST_NO) join product p on 
+		(o.prod_no=p.prod_no)
+		<where>
+			<if test="ordCustNm!=null and ordCustNm!=''">
+				c.cust_nm=#{ordCustNm}
+			</if>
+			<if test="ordProdNm!=null and ordProdNm!=''">
+				and p.prod_nm=#{ordProdNm}
+			</if>
+		</where>
+		 order by o.ord_dttm desc 
 	</select>
-	<select id="selectOrderList" resultType="com.js.pjt.vo.OrderVO">
-		select * from orders order by ord_dttm desc
+	
+	<select id="selectOrderList" resultMap="orderMap">
+		select o.ORD_NO, o.ORD_SUM_QTY, o.ORD_SUM_AMT, o.ORD_STAT_DVCD, o.ORD_DTTM, o.ORD_CNCL_YN, o.ORD_CNCL_DTTM
+		, o.PROD_NO, c.CUST_NM, p.prod_nm from orders o join customer c on (o.ORD_CUSTNO=c.CUST_NO) join product p on 
+		(o.prod_no=p.prod_no) order by o.ord_dttm desc
 	</select>
 </mapper>

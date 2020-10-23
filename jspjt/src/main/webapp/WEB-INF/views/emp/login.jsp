@@ -29,6 +29,10 @@
     <script src="assets/js/vendor/html5shiv.js"></script>
     <script src="assets/js/vendor/respond.min.js"></script>
     <![endif]-->
+    <style>
+    .magDiv{color: red; margin-top: 10px; margin-left: 5px;}
+    .msg{display: none;}
+    </style>
 </head>
 
 <body>
@@ -55,17 +59,18 @@
                             	<input type="hidden" name="empNo" value="0">
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" id="email" name="lgnId" placeholder="Id">
                                         <i class="fa fa-user"></i>
+                                        <input type="text" class="form-control" id="email" name="lgnId" placeholder="Id">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <input type="password" class="form-control" onkeyup="enterkey();" id="password" name="passwd" placeholder="Password">
                                         <i class="fa fa-lock"></i>
-                                        
+                                        <input type="password" class="form-control" onkeyup="enterkey();" id="password" name="passwd" placeholder="Password">
+                                        <div class="magDiv"><span id="passwdMsg" class="msg d"></span></div>
                                     </div>
                                 </div>
+                                <div class="magDiv"><span id="lgnMsg" class="msg d"></span></div>
                                 <div class="form-group">
                                     <div class="col-md-12">
                                        	<button type="button" class="btn btn-primary btn-block" onclick="userLogin();">로그인</button>
@@ -79,17 +84,46 @@
         </div>
 	<script type="text/javascript">
 		function userLogin() {
+			var msg="";
+			var lgnId=f.lgnId.value;
 			if ( f.lgnId.value == "" ) {
-				alert("아이디를 입력하십시요.");
+				msg="아이디를 입력해주세요";
+				$("#lgnMsg").removeClass("msg");
+				$("#lgnMsg").text(msg);
 				f.lgnId.focus();
+				f.submitResult=false;
 				return;
-			} 
+			}			
+			
 			if ( f.passwd.value == "" ) {
-				alert("비밀번호를 입력하십시요.");
+				msg="비밀번호를 입력하십시요.";
+				$("#passwdMsg").removeClass("msg");
+				$("#passwdMsg").text(msg);
 				f.passwd.focus();
+				f.submitResult=false;
 				return;
-			}	
-			f.submit();
+			}
+			
+			var passwd=f.passwd.value;
+			$.ajax({
+				type: "POST",
+				url: "lgncheck",
+				data: {"lgnId" : lgnId,"passwd" : passwd},
+				dataType: "text",
+				success: function(text){
+					if(text == "none" || text == "pwmiss"){
+						msg="아이디가 존재하지 않거나 비밀번호가 일치하지 않습니다."
+						$("#lgnMsg").removeClass("msg");
+						$("#lgnMsg").text(msg);
+						submitResult=false;
+					} else if(text=="success"){
+						submit();
+					}
+				},
+				error: function(xhr) {
+					alert("에러코드 = "+xhr.status);
+				}
+			});
 		}
 		function enterkey(){
 			if(window.event.keyCode==13){
