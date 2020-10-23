@@ -26,7 +26,7 @@ import com.js.pjt.service_serviceimp.DeliveryService;
 import com.js.pjt.service_serviceimp.EmployeeService;
 import com.js.pjt.vo.DeliveryVO;
 
-//test
+//test2
 
 
 
@@ -59,7 +59,7 @@ public class DeliveryController {
 		try {
 			service.insertDelivery(vo);
 		} catch (Exception e) {
-			model.addAttribute("message", "이미 사용중인 정보를 입력 하였습니다.");
+			model.addAttribute("message", "�씠誘� �궗�슜以묒씤 �젙蹂대�� �엯�젰 �븯���뒿�땲�떎.");
 			return "unsong/unsong_insert";
 		}
 		return "redirect:/unsong";
