@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,8 +33,11 @@ public class EsignController {
 	EsignService service;
 
 	@RequestMapping(value = "/reqSign", method = RequestMethod.GET)
-	public void GetEpayment() {
-		
+	public String GetEpayment(HttpSession  session) {
+		if(session.getAttribute("loginUserInfo")==null) {
+			return "redirect:/";
+		}
+		return "/esign/reqSign";
 	}
 
 	@RequestMapping(value = "/eSignList", method = RequestMethod.GET)

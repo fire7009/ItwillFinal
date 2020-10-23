@@ -45,9 +45,11 @@ public class HomeController {
 	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String getmain(HttpSession session, Model model) {
+		
 		if(session.getAttribute("loginUserInfo")==null) {
 			return "redirect:/";
 		}
+		
 		return "/main";
 	}
 	
