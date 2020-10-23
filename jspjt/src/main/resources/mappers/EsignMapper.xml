@@ -45,7 +45,7 @@
 	
 	<!-- 승인 내역 추가 -->
 	<insert id="addApproveEsign" parameterType="com.js.pjt.vo.EsignAprVO">
-		insert into digt_auth_appr values(10,#{authNo},#{empNo},sysdate)
+		insert into digt_auth_appr values(AUTH_APPR_SEQ.NEXTVAL,#{authNo},#{empNo},sysdate)
 	</insert>
 	
 	

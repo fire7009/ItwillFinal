@@ -373,6 +373,8 @@
 			}else if(${Esign.AUTH_DVCD}===2){
 				$("#30").attr('class','active');
 			}else if(${Esign.AUTH_DVCD}===3){
+				$("#20").attr('class','active');
+				$("#30").attr('class','active');
 				$("#40").attr('class','active');
 			}
 			$("#content").attr('readonly',true);
