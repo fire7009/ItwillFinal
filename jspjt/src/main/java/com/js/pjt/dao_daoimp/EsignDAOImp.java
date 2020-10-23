@@ -31,15 +31,21 @@ public class EsignDAOImp implements EsignDAO {
 	}
 
 	@Override
-	public List<HashMap<String, Object>> getEsignList() {
+	public List<HashMap<String, Object>> getEsignList(int empNo) {
 		// TODO Auto-generated method stub
-		return sqlSession.getMapper(EsignMapper.class).getEsignList();
+		return sqlSession.getMapper(EsignMapper.class).getEsignList(empNo);
 	}
 
 	@Override
 	public HashMap<String, Object> viewEsign(int authNo) {
 		// TODO Auto-generated method stub
 		return sqlSession.getMapper(EsignMapper.class).viewEsign(authNo);
+	}
+
+	@Override
+	public List<HashMap<String, Object>> reqApproveList(int empNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(EsignMapper.class).reqApproveList(empNo);
 	}
 
 }

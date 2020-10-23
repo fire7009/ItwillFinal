@@ -134,11 +134,11 @@
 										<div class="actions">
 											
 											<button type="button"
-												class="btn btn-primary" id="addEsign" >
+												class="btn btn-primary" id="approve" >
 												승인 <i class="fa fa-chevron-right"></i>
 											</button>
 											<button type="button"
-												class="btn btn-primary" id="addEsign" >
+												class="btn btn-primary" id="return" >
 												반려 <i class="fa fa-chevron-right"></i>
 											</button>
 										</div>
@@ -409,14 +409,13 @@
 	    	
 	    
 		
-		$("#addEsign").on("click",function(){
-    		
+		$("#approve").on("click",function(){
+    		alert("dd");
 		
     		
-    		/*$.ajax({
-	        	url: "${pageContext.request.contextPath}/esign/insertEsign",
+    		$.ajax({
+	        	url: "${pageContext.request.contextPath}/esign/approve",
 	        	type: "POST",
-	        	data: esignData,
 	        	success: function(result){
 	        		alert("success");
 	        		$("#title").attr('readonly',true);
@@ -426,7 +425,7 @@
 	        	error : function(xhr, type) {
 	                alert('server error occoured')
 	            }
-	        });*/
+	        });
     		
     	});
 	</script>

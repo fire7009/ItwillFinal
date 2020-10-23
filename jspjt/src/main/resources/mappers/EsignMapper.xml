@@ -17,22 +17,30 @@
 		10,#{사용자사원번호},1,#(제목),#(내용),'n',sysdate,'n',null,#(문서양식번호),#(요청부서번호),#(요청사원번호)
 		) -->
 	</insert> 
-	
-	<select id="getEsignList" resultType="hashmap" >
+	<!-- 해당사원 결제 리스트 -->
+	<select id="getEsignList"  parameterType="int" resultType="hashmap" >
 		SELECT a.REQ_DTTM,a.AUTH_NO,d.DOCTITLE,e.EMP_NM AS REQ_NM ,r.EMP_NM AS RES_NM ,a.auth_dvcd  FROM digt_auth a 
 		JOIN digt_doc d on(a.docno=d.docno) 
 		JOIN employee e on(a.req_empno=e.emp_no)
 		JOIN employee r on(a.res_empno=r.emp_no)
-		 <!-- 파라메터타입 추가후
-			where e.EMP_NO= 사용자사원번호 -->
+		where e.EMP_NO=#{empNo} 
 	</select>
 	
+	<!-- 승인요청 리스트 -->
+	<select id="reqApproveList"  parameterType="int" resultType="hashmap" >
+		SELECT a.REQ_DTTM,a.AUTH_NO,d.DOCTITLE,e.EMP_NM AS REQ_NM ,a.auth_dvcd  FROM digt_auth a 
+		JOIN digt_doc d on(a.docno=d.docno) 
+		JOIN employee e on(a.req_empno=e.emp_no)
+        where a.res_empno = #{empNo} 
+	</select>
+	
+	<!-- 해당문서 뷰 -->
 	<select id="viewEsign" parameterType="int" resultType="hashmap">
 		SELECT doc.DOCTITLE,dept.DEPT_NM,emp.emp_nm,auth.TITLE,CONTENT,auth.auth_dvcd FROM DIGT_AUTH auth 
 		join DIGT_DOC doc ON(auth.docno=doc.docno) 
 		join DEPARTMENT dept on(auth.res_deptno=dept.dept_no) 
 		join employee emp on(auth.res_empno=emp.emp_no)
-		where auth_no=#{authNo}
+		where auth_no=#{authNo} 
 	</select>
 
 </mapper>

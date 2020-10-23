@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.js.pjt.mapper.OrderMapper">
-	<update id="deleteOrder">
+	<!--  <update id="deleteOrder">
 		update orders set ord_cncl_yn=0, ord_cncl_dttm=sysdate where ord_no=#{ordNo}
 	</update>
 	<select id="selectCustOrder" resultType="com.js.pjt.vo.OrderVO">
@@ -18,5 +18,5 @@
 	</select>
 	<select id="selectOrderList" resultType="com.js.pjt.vo.OrderVO">
 		select * from orders order by ord_dttm desc
-	</select>
+	</select>-->
 </mapper>

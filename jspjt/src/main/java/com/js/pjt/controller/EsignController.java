@@ -45,6 +45,11 @@ public class EsignController {
 
 	}
 	
+	@RequestMapping(value = "/reqApproveList", method = RequestMethod.GET)
+	public void reqApproveList() {
+
+	}
+	
 	@RequestMapping(value = "/viewEsign", method = RequestMethod.GET)
 	public void viewEsign(@RequestParam int authNo,Model model) {
 		System.out.println(service.viewEsign(authNo));
@@ -69,13 +74,21 @@ public class EsignController {
 		service.insertDoc(vo);
 	}
 
-	// 占쏙옙占쏙옙占쏙옙占쏙옙 占쌩곤옙(占쏙옙청)
+	// 결제리스트
 	@RequestMapping(value = "/ReqEsignList", method = RequestMethod.GET)
 	@ResponseBody
-	public List<HashMap<String, Object>> getReqEsignList() throws Exception {
+	public List<HashMap<String, Object>> getReqEsignList(@RequestParam int empNo) throws Exception {
 		logger.info("Welcome insertEsign The client locale is {}.");
 		
-		return service.getEsignList();
+		return service.getEsignList(empNo);
+	}
+	//승인요청리스트
+	@RequestMapping(value = "/getreqApproveList", method = RequestMethod.GET)
+	@ResponseBody
+	public List<HashMap<String, Object>> getreqApproveList(@RequestParam int empNo) throws Exception {
+		logger.info("Welcome reqApproveList The client locale is {}.");
+		
+		return service.reqApproveList(empNo);
 	}
 	
 	@RequestMapping(value = "/getEsign", method = RequestMethod.GET)
@@ -84,6 +97,22 @@ public class EsignController {
 
 		logger.info("Welcome getEsign The client locale is {}.");
 		return service.viewEsign(authNo);
+	}
+	
+	@RequestMapping(value = "/approveEsign", method = RequestMethod.POST)
+	@ResponseBody
+	public void approveEsign(@RequestParam int authNo) throws Exception {
+
+		logger.info("Welcome approveEsign The client locale is {}.");
+		
+	}
+	
+	@RequestMapping(value = "/returnEsign", method = RequestMethod.POST)
+	@ResponseBody
+	public void returnEsign(@RequestParam int authNo) throws Exception {
+
+		logger.info("Welcome returnEsign The client locale is {}.");
+		
 	}
 	
 	

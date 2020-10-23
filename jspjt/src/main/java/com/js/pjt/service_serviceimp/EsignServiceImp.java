@@ -30,9 +30,9 @@ public class EsignServiceImp implements EsignService {
 	}
 
 	@Override
-	public List<HashMap<String, Object>> getEsignList() {
+	public List<HashMap<String, Object>> getEsignList(int empNo) {
 		// TODO Auto-generated method stub
-		return dao.getEsignList();
+		return dao.getEsignList(empNo);
 	}
 
 	@Override
@@ -40,5 +40,13 @@ public class EsignServiceImp implements EsignService {
 		// TODO Auto-generated method stub
 		return dao.viewEsign(authNo);
 	}
+
+	@Override
+	public List<HashMap<String, Object>> reqApproveList(int empNo) {
+		// TODO Auto-generated method stub
+		return dao.reqApproveList(empNo);
+	}
+
+	
 
 }

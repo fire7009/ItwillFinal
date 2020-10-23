@@ -233,6 +233,7 @@
     	 $.ajax({
              type : 'get',
              url : 'ReqEsignList',
+             data:{empNo: '${loginUserInfo.empNo }'},
              dataType : 'json',
              success : function(data) {
              	 var str = "";
