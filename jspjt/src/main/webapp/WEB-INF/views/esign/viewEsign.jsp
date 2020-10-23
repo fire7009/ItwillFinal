@@ -131,17 +131,7 @@
 											<li data-target="#step4" id="40"><span class="badge badge-info">4</span>결제승인<span
 												class="chevron"></span></li>
 										</ul>
-										<div class="actions">
-											
-											<button type="button"
-												class="btn btn-primary" id="approve" >
-												승인 <i class="fa fa-chevron-right"></i>
-											</button>
-											<button type="button"
-												class="btn btn-primary" id="return" >
-												반려 <i class="fa fa-chevron-right"></i>
-											</button>
-										</div>
+										
 									</div>
 									<div class="step-content">
 										<div class="step-pane active" id="step1">

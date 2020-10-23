@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.js.pjt.dao_daoimp.EsignDAO;
+import com.js.pjt.vo.EsignAprVO;
 import com.js.pjt.vo.EsignVO;
 
 @Service
@@ -46,6 +47,21 @@ public class EsignServiceImp implements EsignService {
 		// TODO Auto-generated method stub
 		return dao.reqApproveList(empNo);
 	}
+	
+
+	@Override
+	public void updateApprove(EsignAprVO vo) {
+		dao.updateApprove(vo);
+		
+	}
+
+	@Override
+	public void addApproveEsign(EsignAprVO vo) {
+		// TODO Auto-generated method stub
+		dao.addApproveEsign(vo);
+	}
+
+	
 
 	
 

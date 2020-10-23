@@ -43,6 +43,7 @@
 	<section id="main-wrapper" class="theme-default">
 		<header id="header">
 			<!--logo start-->
+			<input type="hidden" id="empNo" value="${loginUserInfo.empNo }">
 			<div class="brand">
 				<a href="index.html" class="logo"> <i class="icon-layers"></i> <span>NEU</span>BOARD
 				</a>
@@ -335,8 +336,8 @@
     
     
     <script src="${pageContext.request.contextPath}/resources/js/main1.js"></script>  
-    <script src="${pageContext.request.contextPath}/resources/js/addEvent.js"></script>
-     <script src="${pageContext.request.contextPath}/resources/js/editEvents.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/addEvents.js"></script>
+     <script src="${pageContext.request.contextPath}/resources/js/editEvent.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/etcSetting.js"></script>
 	<!--Page Level JS-->
 

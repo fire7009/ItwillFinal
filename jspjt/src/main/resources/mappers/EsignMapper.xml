@@ -42,5 +42,16 @@
 		join employee emp on(auth.res_empno=emp.emp_no)
 		where auth_no=#{authNo} 
 	</select>
+	
+	<!-- 승인 내역 추가 -->
+	<insert id="addApproveEsign" parameterType="com.js.pjt.vo.EsignAprVO">
+		insert into digt_auth_appr values(10,#{authNo},#{empNo},sysdate)
+	</insert>
+	
+	
+	<!-- 결제 승인 업데이트 -->
+	<update id="updateApprove" parameterType="com.js.pjt.vo.EsignAprVO">
+		update digt_auth set auth_dvcd=3, appr_yn='3' where auth_no=#{authNo}
+	</update>
 
 </mapper>

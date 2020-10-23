@@ -126,39 +126,37 @@
 											</li>
 											<li data-target="#step2" id="20"><span class="badge badge-info">2</span>결제대기<span
 												class="chevron"></span></li>
-											<li data-target="#step3"><span class="badge badge-info">3</span>결제반려<span
+											<li data-target="#step3" id="30"><span class="badge badge-info">3</span>결제반려<span
 												class="chevron"></span></li>
-											<li data-target="#step4"><span class="badge badge-info">4</span>결제승인<span
+											<li data-target="#step4" id="40"><span class="badge badge-info">4</span>결제승인<span
 												class="chevron"></span></li>
 										</ul>
-										<div class="actions">
-											<select id="selectDoc">
-												<option value="0">문서양식 선택</option>
-												<option value="10">연차신청서</option>
-												<option value="20">제안서</option>
-												<option value="30">시말서</option>
-												<option value="40">영업보고서</option>
-											</select>
+									<div class="actions">
+											
 											<button type="button"
-												class="btn btn-primary" id="addEsign" >
-												등록 <i class="fa fa-chevron-right"></i>
+												class="btn btn-primary" id="return" >
+												반려 <i class="fa fa-chevron-right"></i>
 											</button>
-										</div>
+											<button type="button"
+												class="btn btn-primary" id="approve" >
+												승인<i class="fa fa-chevron-right"></i>
+											</button>
+										</div>	
+										
 									</div>
 									<div class="step-content">
 										<div class="step-pane active" id="step1">
-											<form id="docForm" name="docForm" action="document"
-															method="post" class="form-horizontal">
+											<form class="form-horizontal">
 												
 												
 												
 												<div style="text-align: center;">
-																<span style="font-size: 22pt; font-weight: 700;" id="docTitle">전자
-																	결재</span>
+																<span style="font-size: 22pt; font-weight: 700;" id="docTitle">
+																	${Esign.DOCTITLE}</span>
 															</div>
 												<div id="form" style="margin-left: 25%">
 													<div class="panel-body">
-														
+													
 															<p>
 																<br>
 															</p>
@@ -177,14 +175,7 @@
 																		<td
 																			style="border-width: 2px 2px 2px 1px; border-style: solid;">
 																			<div class="col-md-9">
-																				<select id="deptSelect">
-																					 <option value="0">부서선택</option>
-                                                        							  <option value="10">인사팀</option>
-                                                                                      <option value="20">운영팀</option>
-                                                                                      <option value="30">운송팀</option>
-                                                                                      <option value="40">회계팀</option>
-                                                                                      <option value="50">영업팀</option>    
-																				</select>
+																				<label >${Esign.DEPT_NM}</label>
 																			</div>
 																		</td>
 																	</tr>
@@ -198,10 +189,7 @@
 																		<td
 																			style="border-width: 2px 2px 2px 1px; border-style: solid;">
 																			<div class="col-md-9">
-																				<select id="memberSelect">
-																					  <option value="0">직원선택</option>
-                                                        							   
-																				</select>
+																				<label id = "member">${Esign.EMP_NM}</label>
 																			</div>
 																		</td>
 																	</tr>
@@ -214,9 +202,7 @@
 																		<td
 																			style="border-width: 2px 2px 2px 1px; border-style: solid;">
 																			<div class="col-md-9">
-																				<input type="text" class="form-control"
-																					style="border-style: hidden;"
-																					id="title" placeholder="제목을 입력해주세요." />
+																				<label id=title>${Esign.TITLE}</label>
 																			</div>
 																		</td>
 																	</tr>
@@ -233,7 +219,7 @@
 																		<td
 																			style="border-width: 2px; border-style: solid; width: 682px; height: 435px;"
 																			rowspan="1" colspan="2"><textarea rows="20"
-																			 id="content"	cols="100" style="border-style: hidden;"placeholder="내용을 입력해주세요." ></textarea></td>
+																			 id="content"	cols="100" style="border-style: hidden;"placeholder="내용을 입력해주세요." >${Esign.CONTENT}</textarea></td>
 																	</tr>
 																</tbody>
 															</table>
@@ -392,77 +378,37 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			app.formWizard();
+			
+			if(${Esign.AUTH_DVCD}===1){
+				$("#20").attr('class','active');
+			}else if(${Esign.AUTH_DVCD}===2){
+				$("#30").attr('class','active');
+			}else if(${Esign.AUTH_DVCD}===3){
+				$("#40").attr('class','active');
+			}
+			$("#content").attr('readonly',true);
+			
+			
 		});
 		
-		$("#deptSelect").bind("change",function(){
-	    	
-	    	$('#memberSelect').children('option:not(:first)').remove();
-	    	
-	    	var deptData = {deptNo : $('#deptSelect').val()};
-	    	$.ajax({
-	        	url: "${pageContext.request.contextPath}/mail/detpMemberList",
-	        	type: "GET",
-	        	data: deptData,
-	        	dataType: "json",
-	        	success: function(result){
-	        		//<option value="0">부서</option>
-
-	        		var str = "";
-	        		$.each(result, function(){
-	        			str += "<option value="+this.EMP_NO+">"+this.EMP_NM+"</option>";	
-	        		});
-	        		$("#memberSelect").append(str);
-	        		
-	        		
-	        	},
-	        	error : function(xhr, type) {
-	                alert('server error occoured')
-	            }
-	        });
-		});
-	    	
-	    	$("#selectDoc").bind("change",function(){
-		    	
-		    	
-		    	var docData = {docNo : $('#selectDoc').val()};
-		    	$.ajax({
-		        	url: "${pageContext.request.contextPath}/esign/docSelect",
-		        	type: "GET",
-		        	data: docData,
-		        	dataType: "json",
-		        	success: function(result){
-		        		//alert("sussess");
-		        		var title=result.DOCTITLE;
-		        		$("#docTitle").html(title);
-		        	},
-		        	error : function(xhr, type) {
-		                alert('server error occoured')
-		            }
-		        });
-	    	
-
-	    });
 		
-		$("#addEsign").on("click",function(){
-    		
-			var esignData = {
-					req_empno: '${loginUserInfo.empNo}',
-					res_deptno:$('#deptSelect').val(),
-					res_empno:$('#memberSelect').val(),
-					doc_no: $('#selectDoc').val(),
-					title:$('#title').val(),
-					content:$('#content').val()
-						};
-    		
+	    	
+	    
+		
+		$("#approve").on("click",function(){
+			
     		$.ajax({
-	        	url: "${pageContext.request.contextPath}/esign/insertEsign",
+	        	url: "${pageContext.request.contextPath}/esign/approveEsign",
 	        	type: "POST",
-	        	data: esignData,
+	        	data:{
+	        		authNo:'${authNo}',
+	        		empNo:'${loginUserInfo.empNo }'
+	        		
+	        		},
 	        	success: function(result){
 	        		alert("success");
-	        		$("#title").attr('readonly',true);
-	        		$("#content").attr('readonly',true);
-	        		$("#20").attr('class','active');
+	        		$("#30").attr('class','active');
+	        		$("#40").attr('class','active');
 	        	},
 	        	error : function(xhr, type) {
 	                alert('server error occoured')

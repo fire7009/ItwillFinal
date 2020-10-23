@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.js.pjt.service_serviceimp.EsignService;
 import com.js.pjt.service_serviceimp.TestService;
+import com.js.pjt.vo.EsignAprVO;
 import com.js.pjt.vo.EsignVO;
 import com.js.pjt.vo.ScheduleVO;
 
@@ -48,6 +49,13 @@ public class EsignController {
 	@RequestMapping(value = "/reqApproveList", method = RequestMethod.GET)
 	public void reqApproveList() {
 
+	}
+	
+	@RequestMapping(value = "/viewApproveEsign", method = RequestMethod.GET)
+	public void viewApproveEsign(@RequestParam int authNo,Model model) {
+		System.out.println(service.viewEsign(authNo));
+		model.addAttribute("Esign", service.viewEsign(authNo)); 
+		model.addAttribute("authNo", authNo);
 	}
 	
 	@RequestMapping(value = "/viewEsign", method = RequestMethod.GET)
@@ -90,7 +98,7 @@ public class EsignController {
 		
 		return service.reqApproveList(empNo);
 	}
-	
+	//문서뷰
 	@RequestMapping(value = "/getEsign", method = RequestMethod.GET)
 	@ResponseBody
 	public HashMap<String, Object> getEsign(@RequestParam int authNo) throws Exception {
@@ -99,14 +107,18 @@ public class EsignController {
 		return service.viewEsign(authNo);
 	}
 	
+	//결제 승인
 	@RequestMapping(value = "/approveEsign", method = RequestMethod.POST)
 	@ResponseBody
-	public void approveEsign(@RequestParam int authNo) throws Exception {
-
+	public void approveEsign(EsignAprVO vo) throws Exception {
+		System.out.println(vo.getAuthNo());
+		System.out.println(vo.getEmpNo());
+		service.addApproveEsign(vo);
+		service.updateApprove(vo);
 		logger.info("Welcome approveEsign The client locale is {}.");
 		
 	}
-	
+	//결제 반려
 	@RequestMapping(value = "/returnEsign", method = RequestMethod.POST)
 	@ResponseBody
 	public void returnEsign(@RequestParam int authNo) throws Exception {

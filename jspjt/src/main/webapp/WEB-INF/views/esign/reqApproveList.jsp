@@ -134,7 +134,7 @@
         <!--main content start-->
         <section class="main-content-wrapper">
             <div class="pageheader">
-                <h1>결제 리스트</h1>
+                <h1>승인 요청 리스트</h1>
                 
             </div>
             <section id="main-content" class="animated fadeInUp">
@@ -243,7 +243,7 @@
                     
                      str += "<td>"+this.AUTH_NO+"</td>";
                    
-                     str += "<td><a href=viewEsign?authNo="+this.AUTH_NO+">"+this.DOCTITLE+"</a></td>";
+                     str += "<td><a href=viewApproveEsign?authNo="+this.AUTH_NO+">"+this.DOCTITLE+"</a></td>";
                     
                      str += "<td>"+this.REQ_NM+"</td>";
                    

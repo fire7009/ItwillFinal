@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.js.pjt.mapper.EsignMapper;
 import com.js.pjt.mapper.TestMapper;
+import com.js.pjt.vo.EsignAprVO;
 import com.js.pjt.vo.EsignVO;
 
 @Repository
@@ -46,6 +47,19 @@ public class EsignDAOImp implements EsignDAO {
 	public List<HashMap<String, Object>> reqApproveList(int empNo) {
 		// TODO Auto-generated method stub
 		return sqlSession.getMapper(EsignMapper.class).reqApproveList(empNo);
+	}
+
+	
+	@Override
+	public void updateApprove(EsignAprVO vo) {
+		// TODO Auto-generated method stub
+		sqlSession.getMapper(EsignMapper.class).updateApprove(vo);
+	}
+
+	@Override
+	public void addApproveEsign(EsignAprVO vo) {
+		// TODO Auto-generated method stub
+		sqlSession.getMapper(EsignMapper.class).addApproveEsign(vo);
 	}
 
 }

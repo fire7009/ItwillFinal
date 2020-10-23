@@ -127,7 +127,7 @@
         	  
         	    $.ajax({
         	      type: "get",
-        	      url: "myevent",
+        	      url: "/pjt/schedule/myevent",
         	      data: {
         	      	  empNo : $('#empNo').val()
         	        // 화면이 바뀌면 Date 객체인 start, end 가 들어옴
@@ -135,7 +135,7 @@
         	       // endDate   : moment(end).format('YYYY-MM-DD')
         	      },
         	      success: function (response) {
-        	        alert($('#empNo').val());
+        	        
         	       
         	        var events = [];
         	       /*for(var i=0;i<response.length;i++){
