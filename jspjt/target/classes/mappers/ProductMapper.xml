@@ -5,7 +5,7 @@
 <mapper namespace="com.js.pjt.mapper.ProductMapper">
 
 	<insert id="insertProduct" parameterType="com.js.pjt.vo.ProductVO">
-		insert into product values(#{prodNo}, #{prodNm}, #{prodDetl},#{prodPrice},#{stckQty},'N','N',sysdate,'N', sysdate)
+		insert into product values(product_seq.nextval, #{prodNm}, #{prodDetl},#{prodPrice},#{stckQty},'N','N',sysdate,'N', sysdate)
 	</insert>
 	
 	<select id="selectProduct" resultType="com.js.pjt.vo.ProductVO">

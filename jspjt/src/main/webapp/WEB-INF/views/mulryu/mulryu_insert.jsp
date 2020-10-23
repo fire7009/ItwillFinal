@@ -112,14 +112,14 @@
 								<div class="panel-body">
 								<div class="col-md-12">
 									<form name="insertProduct">
-									
+								<!--  	
 									<div class="form-group">
 											<label class="col-md-3 control-label">상품코드</label>
 											<div class="col-md-9">
 												<input class="form-control" name="prodNo" placeholder="" type="text" value="${product.prodNo }">
 											</div>
 										</div>
-										
+										-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">상품명</label>
 											<div class="col-md-9">
