@@ -27,9 +27,9 @@ public class ScheduleServiceImp implements ScheduleService{
 
 
 	@Override
-	public List<HashMap<String, Object>> getList() throws Exception {
+	public List<HashMap<String, Object>> getList(int empNo) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.getList();
+		return dao.getList(empNo);
 	}
 
 

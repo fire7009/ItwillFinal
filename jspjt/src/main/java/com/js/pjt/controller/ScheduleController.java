@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.js.pjt.service_serviceimp.ScheduleService;
@@ -36,9 +37,10 @@ public class ScheduleController {
 
 	// ajax일정 리스트 메소드
 	@RequestMapping(value = "/myevent", method = RequestMethod.GET)
-	public @ResponseBody List<HashMap<String, Object>> mtevent() throws Exception {
+	public @ResponseBody List<HashMap<String, Object>> mtevent(@RequestParam int empNo) throws Exception {
 		logger.info("Welcome myevent! The client locale is {}.");
-		List<HashMap<String, Object>> map = service.getList();
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"+empNo);
+		List<HashMap<String, Object>> map = service.getList(empNo);
 		//System.out.println(map.get(0));
 		return map;
 	}

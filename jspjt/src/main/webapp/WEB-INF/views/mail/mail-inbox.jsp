@@ -37,10 +37,11 @@
      <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-1.11.1.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-     
+     	
         $.ajax({
             type : 'get',
             url : 'getmail',
+            data:{empNo: '${loginUserInfo.empNo }'},
             dataType : 'json',
             success : function(data) {
             	 var str = "<tr>";
@@ -70,6 +71,7 @@
         $.ajax({
             type : 'get',
             url : 'getMailCount',
+            data:  {empNo: '${loginUserInfo.empNo}'},
             dataType : 'json',
             success : function(data) {
             	$("#count").text("받은편지("+data.COUNT+")");

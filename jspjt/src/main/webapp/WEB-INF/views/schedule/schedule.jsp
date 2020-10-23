@@ -59,7 +59,7 @@
 		<header id="header">
 			<!--logo start-->
 			<div class="brand">
-				<a href="index.html" class="logo"> <span>APP</span>NAME
+				<a href="index.html" class="logo"> <span>APP</span>NAME   ${loginUserInfo.empNo }
 				</a>
 			</div>
 			<!--logo end-->
@@ -109,12 +109,15 @@
 
 			<div id="wrapper">
 				<div id="loading"></div>
-				<div id="calendar"></div>
+				<div id="calendar">
+					<input type="hidden" id="empNo" value='${loginUserInfo.empNo }'>
+				</div>
 			</div>
 
 
 			<!-- 일정 추가 MODAL -->
 			<div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
+				<input type="hidden" id="empNo" value='${loginUserInfo.empNo }'>
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -131,6 +134,7 @@
 									<label class="col-xs-4" for="edit-allDay">하루종일</label> <input
 										class='allDayNewEvent' id="edit-allDay" type="checkbox"
 										checked="checked"></label>
+										
 								</div>
 							</div>
 
@@ -246,8 +250,9 @@
     
     
     
-    <script src="${pageContext.request.contextPath}/resources/js/main1.js"></script>  
+    
     <script src="${pageContext.request.contextPath}/resources/js/addEvents.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/main1.js"></script>  
      <script src="${pageContext.request.contextPath}/resources/js/editEvent.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/etcSetting.js"></script>
     
@@ -258,6 +263,32 @@
     
     
     <script type="text/javascript">
+    
+    /**
+     * 
+     */
+    var eventModal = $('#eventModal');
+
+    var modalTitle = $('.modal-title');
+    var editAllDay = $('#edit-allDay');
+    var editTitle = $('#edit-title');
+    var editStart = $('#edit-start');
+    var editEnd = $('#edit-end');
+    var editType = $('#edit-type');
+    var editColor = $('#edit-color');
+    var editDesc = $('#edit-desc');
+    var empNo = $('#empNo');
+
+    var addBtnContainer = $('.modalBtnContainer-addEvent');
+    var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
+
+
+    /* ****************
+     *  새로운 일정 생성
+     * ************** */
+    var newEvent = function (start, end, eventType) {
+    
+    
     /* ****************
      *  일정 편집
      * ************** */

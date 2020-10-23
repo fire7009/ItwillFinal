@@ -124,16 +124,18 @@
         	   * ************** */
         	  
         	  events: function (start, end, timezone, callback) {
+        	  
         	    $.ajax({
         	      type: "get",
         	      url: "myevent",
         	      data: {
+        	      	  empNo : $('#empNo').val()
         	        // 화면이 바뀌면 Date 객체인 start, end 가 들어옴
         	        //startDate : moment(start).format('YYYY-MM-DD'),
         	       // endDate   : moment(end).format('YYYY-MM-DD')
         	      },
         	      success: function (response) {
-        	        //alert(response[0].ENDDATE);
+        	        alert($('#empNo').val());
         	       
         	        var events = [];
         	       /*for(var i=0;i<response.length;i++){

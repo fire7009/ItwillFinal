@@ -7,6 +7,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,10 +39,13 @@ public class DeliveryController {
 	
 	
 	@RequestMapping(value = "/unsong", method = RequestMethod.GET)
-	public String list(Locale locale, Model model) throws Exception {
+	public String list(HttpSession session,Locale locale, Model model) throws Exception {
 		logger.info("Welcome delivery! The client locale is {}.", locale);
 		List<DeliveryVO> vo=service.ListDO();
 		model.addAttribute("deliveryList", vo);
+		if(session.getAttribute("loginUserInfo")==null) {
+			return "redirect:/";
+		}
 		return "unsong/unsong";
 	}
 	
