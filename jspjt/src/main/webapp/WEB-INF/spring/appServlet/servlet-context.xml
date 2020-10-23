@@ -92,6 +92,7 @@
 		<interceptor>
 			<mapping path="/"/>
 			<mapping path="/notice"/>
+			<mapping path="/unsong_insert"/>
 			<beans:ref bean="loginAuthInterceptor"/>
 		</interceptor>		
 	</interceptors>

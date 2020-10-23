@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+
 <!DOCTYPE html>
 
 <html class="no-js">
@@ -112,26 +113,30 @@
 								<div class="panel-body">
 								<div class="col-md-12">
 									<form name="insertDelivery">
-										<div class="form-group">
-											<label class="col-md-3 control-label">운송번호</label>
+									
+									</div>
+											<div class="form-group">
+											<label class="col-md-3 control-label">사원이름</label>
 											<div class="col-md-9">
-												<input class="form-control" name="dlvrNo" placeholder="" type="text" value="${delivery.dlvrNo }">
+												<input class="form-control" name="dlvrEmpNo" placeholder="" type="text" value="${loginUserInfo.empNo}" readonly="readonly">
 											</div>
-										</div>
+											
+									</div>
+											<div class="form-group">
+											<label class="col-md-3 control-label">사원이름</label>
+											<div class="col-md-9">
+												<input class="form-control" name="dlvrEmpNm" placeholder="" type="text" value="${loginUserInfo.empNm}" readonly="readonly">
+											</div>
+											
+								
 										
 										<div class="form-group">
 											<label class="col-md-3 control-label">주문번호</label>
 											<div class="col-md-9">
-												<input class="form-control" name="ordNo" placeholder="" type="text" value="${delivery.ordEmpno }">
+												<input class="form-control" name="ordNo" placeholder="" type="text" value="${ordEmpno }">
 												
 											</div>
-										</div>
-											<div class="form-group">
-											<label class="col-md-3 control-label">배송자사원번호</label>
-											<div class="col-md-9">
-												<input class="form-control" name="dlvrEmpno" placeholder="" type="text" value="${delivery.dlvrEmpno }">
-												
-											</div>
+										
 									
 										<div class="col-md-12 center">
 											<button class="btn btn-primary m-r-5" type="button"onclick="insert();">등록</button>

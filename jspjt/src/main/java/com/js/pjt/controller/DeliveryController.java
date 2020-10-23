@@ -10,7 +10,7 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.js.pjt.service_serviceimp.DeliveryService;
+import com.js.pjt.service_serviceimp.EmployeeService;
 import com.js.pjt.vo.DeliveryVO;
 
 
@@ -34,6 +35,7 @@ public class DeliveryController {
 	
 	@Inject
 	DeliveryService service;
+	
 	
 	@RequestMapping(value = "/unsong", method = RequestMethod.GET)
 	public String list(Locale locale, Model model) throws Exception {

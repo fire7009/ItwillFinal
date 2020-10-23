@@ -10,7 +10,14 @@ public class DeliveryVO {
 	private String dlvrCmplDttm;//배송완료일시
 	private OrderVO orderVO;
 	private EmployeeVO employeeVO;
+	private CustomerVO customerVO;
 	
+	public CustomerVO getCustomerVO() {
+		return customerVO;
+	}
+	public void setCustomerVO(CustomerVO customerVO) {
+		this.customerVO = customerVO;
+	}
 	public int getDlvrNo() {
 		return dlvrNo;
 	}

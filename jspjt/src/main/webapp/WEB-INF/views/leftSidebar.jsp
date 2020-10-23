@@ -101,13 +101,16 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-dropdown">
-                        <a href="#" title="Dashboard">
-                            <i class="fa  fa-fw fa-tachometer"></i> 운송관리
+                    
+  					<li class="nav-dropdown">
+                        <a href="#" title="UI Elements">
+                            <i class="fa fa-fw fa-file-text"></i> 운송관리
                         </a>
                         <ul class="nav-sub">
+                          
                             <li>
                                 <a href="/pjt/unsong" title="Sliders &amp; Progress">
+                                
                                       		운송현황
                                 </a>
                             </li>
@@ -116,16 +119,19 @@
                                       		운송추가
                                 </a>
                             </li>
+                            
                         </ul>
                     </li>
                     
-                     <li class="nav-dropdown">
-                        <a href="#" title="Dashboard">
-                            <i class="fa  fa-fw fa-tachometer"></i> 물류관리
+                   	<li class="nav-dropdown">
+                        <a href="#" title="UI Elements">
+                            <i class="fa fa-fw fa-file-text"></i> 물류관리
                         </a>
                         <ul class="nav-sub">
+                          
                             <li>
                                 <a href="/pjt/mulryu" title="Sliders &amp; Progress">
+                                
                                       		물류현황
                                 </a>
                             </li>
@@ -134,6 +140,7 @@
                                       		물류추가
                                 </a>
                             </li>
+                            
                         </ul>
                     </li>
                 </ul>

@@ -141,7 +141,12 @@
 											</div>
 										</div>
 										
-										
+										<div class="form-group">
+											<label class="col-md-3 control-label">재고수량</label>
+											<div class="col-md-9">
+												<input class="form-control" name="stckQty" placeholder="" type="text" value="${product.stckQty }">
+											</div>
+										</div>
 						
 										<div class="col-md-12 center">
 											<button class="btn btn-primary m-r-5" type="button"onclick="insert();">등록</button>
