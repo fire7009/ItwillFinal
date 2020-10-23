@@ -7,7 +7,7 @@ import com.js.pjt.vo.ScheduleVO;
 import com.js.pjt.vo.TestVO;
 
 public interface ScheduleService {
-	public   List<HashMap<String, Object>> getList() throws Exception;
+	public   List<HashMap<String, Object>> getList(int empNo) throws Exception;
 	public List<TestVO> getList1()throws Exception ;
 	public void addEvent(ScheduleVO vo)throws Exception;
 }

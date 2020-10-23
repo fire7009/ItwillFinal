@@ -11,7 +11,7 @@ var editEnd = $('#edit-end');
 var editType = $('#edit-type');
 var editColor = $('#edit-color');
 var editDesc = $('#edit-desc');
-
+var empNo = $('#empNo');
 
 var addBtnContainer = $('.modalBtnContainer-addEvent');
 var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
@@ -53,7 +53,7 @@ var newEvent = function (start, end, eventType) {
             end: editEnd.val(),
             description: editDesc.val(),
             type: editType.val(),
-            username: 10,
+            username: empNo.val(),
             //backgroundColor: editColor.val(),
             //textColor: '#ffffff',
             allDay: false
@@ -82,7 +82,7 @@ var newEvent = function (start, end, eventType) {
             //alert(eventData.allDay);
         }
 
-       //$("#calendar").fullCalendar('renderEvent', eventData, true);
+       $("#calendar").fullCalendar('renderEvent', eventData, true);
         eventModal.find('input, textarea').val('');
         //editAllDay.prop('checked', false);
         eventModal.modal('hide');

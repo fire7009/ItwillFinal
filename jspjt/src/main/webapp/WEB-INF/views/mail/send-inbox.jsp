@@ -41,6 +41,7 @@
         $.ajax({
             type : 'get',
             url : 'getSendMail',
+            data:  {empNo: '${loginUserInfo.empNo}'},
             dataType : 'json',
             success : function(data) {
             	 var str = "<tr>";
@@ -63,6 +64,7 @@
         $.ajax({
             type : 'get',
             url : 'sendMailCount',
+            data:  {empNo: '${loginUserInfo.empNo}'},
             dataType : 'json',
             success : function(data) {
             	$("#count").text("보낸편지("+data.COUNT+")");
@@ -75,6 +77,7 @@
         $.ajax({
             type : 'get',
             url : 'getMailCount',
+            data:  {empNo: '${loginUserInfo.empNo}'},
             dataType : 'json',
             success : function(data) {
             	

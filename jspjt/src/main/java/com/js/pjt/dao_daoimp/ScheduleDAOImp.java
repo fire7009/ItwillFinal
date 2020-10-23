@@ -27,9 +27,9 @@ public class ScheduleDAOImp implements ScheduleDAO{
 
 
 	@Override
-	public List<HashMap<String, Object>> getList() throws Exception {
+	public List<HashMap<String, Object>> getList(int empNo) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.getMapper(ScheduleMapper.class).getList();
+		return sqlSession.getMapper(ScheduleMapper.class).getList(empNo);
 	}
 
 

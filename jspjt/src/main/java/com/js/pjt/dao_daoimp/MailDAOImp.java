@@ -19,9 +19,9 @@ public class MailDAOImp implements MailDAO {
 	private SqlSession sqlSession;
 
 	@Override
-	public List<HashMap<String, Object>> getMail() throws Exception {
+	public List<HashMap<String, Object>> getMail(int empNo) throws Exception {
 		
-		return sqlSession.getMapper(MailMapper.class).getMail();
+		return sqlSession.getMapper(MailMapper.class).getMail(empNo);
 	}
 
 
@@ -33,23 +33,23 @@ public class MailDAOImp implements MailDAO {
 
 
 	@Override
-	public List<HashMap<String, Object>> getSendMailList() {
+	public List<HashMap<String, Object>> getSendMailList(int empNo) {
 		// TODO Auto-generated method stub
-		return sqlSession.getMapper(MailMapper.class).getSendMailList();
+		return sqlSession.getMapper(MailMapper.class).getSendMailList(empNo);
 	}
 
 
 	@Override
-	public HashMap<String, Object> getSendMailCount() {
+	public HashMap<String, Object> getSendMailCount(int empNo) {
 		
-		return sqlSession.getMapper(MailMapper.class).getSendMailCount();
+		return sqlSession.getMapper(MailMapper.class).getSendMailCount(empNo);
 	}
 
 
 	@Override
-	public HashMap<String, Object> getMailCount() {
+	public HashMap<String, Object> getMailCount(int empNo) {
 		// TODO Auto-generated method stub
-		return sqlSession.getMapper(MailMapper.class).getMailCount();
+		return sqlSession.getMapper(MailMapper.class).getMailCount(empNo);
 	}
 
 

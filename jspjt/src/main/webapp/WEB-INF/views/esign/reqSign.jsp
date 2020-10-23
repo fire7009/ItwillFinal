@@ -446,7 +446,7 @@
 		$("#addEsign").on("click",function(){
     		
 			var esignData = {
-					//req_empno: 사용자 사원번호
+					req_empno: '${loginUserInfo.empNo}',
 					res_deptno:$('#deptSelect').val(),
 					res_empno:$('#memberSelect').val(),
 					doc_no: $('#selectDoc').val(),

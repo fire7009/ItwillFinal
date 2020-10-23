@@ -18,9 +18,9 @@ public class MailServiceImp  implements MailService{
 	private MailDAO dao;
 
 	@Override
-	public List<HashMap<String, Object>> getMail() throws Exception {
+	public List<HashMap<String, Object>> getMail(int empNo) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.getMail();
+		return dao.getMail(empNo);
 	}
 
 
@@ -34,25 +34,25 @@ public class MailServiceImp  implements MailService{
 
 
 	@Override
-	public List<HashMap<String, Object>> getSendMailList() {
+	public List<HashMap<String, Object>> getSendMailList(int empNo) {
 		// TODO Auto-generated method stub
-		return dao.getSendMailList();
+		return dao.getSendMailList(empNo);
 	}
 
 
 
 	@Override
-	public HashMap<String, Object> getSendMailCount() {
+	public HashMap<String, Object> getSendMailCount(int empNo) {
 		// TODO Auto-generated method stub
-		return dao.getSendMailCount();
+		return dao.getSendMailCount(empNo);
 	}
 
 
 
 	@Override
-	public HashMap<String, Object> getMailCount() {
+	public HashMap<String, Object> getMailCount(int empNo) {
 		// TODO Auto-generated method stub
-		return dao.getMailCount();
+		return dao.getMailCount(empNo);
 	}
 
 

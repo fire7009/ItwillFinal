@@ -497,6 +497,7 @@
             $.ajax({
                 type : 'get',
                 url : 'getMailCount',
+                data:  {empNo: '${loginUserInfo.empNo}'},
                 dataType : 'json',
                 success : function(data) {
                 	//$("#count").text("받은편지("+data.COUNT+")");

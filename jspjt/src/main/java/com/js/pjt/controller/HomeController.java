@@ -7,6 +7,7 @@ import java.util.Locale;
 
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,46 +42,18 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/order", method = RequestMethod.GET)
-	public String getOrderList(Locale locale, Model model) {
-		
-		return "order/order";
-	}
+	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public void getmain(Locale locale, Model model) {
-		
-		
-	}
-	
-	
-	
-	@RequestMapping(value = "/myevent", method = RequestMethod.GET)
-	@ResponseBody
-	public List<HashMap<String, Object>> mtevent() throws Exception{
-		logger.info("Welcome myevent! The client locale is {}.");
-		List<HashMap<String, Object>> map = service.getList();
-		
-		return map;
-	}
-	@RequestMapping(value = "/addEvent", method = RequestMethod.GET)
-	@ResponseBody
-	public void addEvent(@ModelAttribute TestVO vo) throws Exception {
-		//System.out.println(vo.isAllDay());
-		if(vo.isAllDay()==true) {
-			vo.setAllday("true");
-		}else if(vo.isAllDay()==false) {
-			vo.setAllday("false");
+	public String getmain(HttpSession session, Model model) {
+		if(session.getAttribute("loginUserInfo")==null) {
+			return "redirect:/";
 		}
-		//service.addEvent(vo);
-		
+		return "/main";
 	}
 	
-	@RequestMapping(value = "/editEvent", method = RequestMethod.GET)
-	@ResponseBody
-	public void editEvent(@ModelAttribute TestVO vo){
-		System.out.println(vo.getTitle());
-		
-	}
+	
+	
+	
 	
 	
 }

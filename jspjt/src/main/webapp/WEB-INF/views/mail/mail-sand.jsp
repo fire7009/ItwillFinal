@@ -514,6 +514,7 @@
             $.ajax({
                 type : 'get',
                 url : 'getMailCount',
+                data:  {empNo: '${loginUserInfo.empNo}'},
                 dataType : 'json',
                 success : function(data) {
                 	//$("#count").text("받은편지("+data.COUNT+") ");
@@ -560,7 +561,7 @@
     	alert($('#memberSelect').val());
     	event.preventDefault();
     	 var eventData = { 
-    			 DISP_EMPNO : '10',
+    			 DISP_EMPNO :  '${loginUserInfo.empNo }',
     			 RECP_EMPNO : $('#memberSelect').val() ,
     			 TITLE :  $('#subject').val(),
     			 CONTENT :  $('#contnet').val(),

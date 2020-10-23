@@ -57,24 +57,24 @@ public class MailController {
 
 	// ajax 메일리스트 메소드
 	@RequestMapping(value = "/getmail", method = RequestMethod.GET)
-	public @ResponseBody List<HashMap<String, Object>> getMail() throws Exception {
+	public @ResponseBody List<HashMap<String, Object>> getMail(@RequestParam int empNo) throws Exception {
 		logger.info("Welcome getmail! The client locale is {}.");
 		//List<HashMap<String, Object>> map = service.getMail();
 		// System.out.println(map.get(0));
 		// System.out.println(System.currentTimeMillis());
 
-		return service.getMail();
+		return service.getMail(empNo);
 	}
 
 	// ajax 보낸리스트 메소드
 	@RequestMapping(value = "/getSendMail", method = RequestMethod.GET)
-	public @ResponseBody List<HashMap<String, Object>> getSendMail() throws Exception {
+	public @ResponseBody List<HashMap<String, Object>> getSendMail(@RequestParam int empNo) throws Exception {
 		logger.info("Welcome getSendMail The client locale is {}.");
 		//List<HashMap<String, Object>> map = service.getSendMailList();
 		// System.out.println(map.get(0));
 		// System.out.println(System.currentTimeMillis());
 
-		return service.getSendMailList();
+		return service.getSendMailList(empNo);
 	}
 
 	// ajax 메일보내기 메소드
@@ -89,22 +89,22 @@ public class MailController {
 	// ajax 보낸메일 카운트
 	@RequestMapping(value = "/sendMailCount", method = RequestMethod.GET)
 	@ResponseBody
-	public HashMap<String, Object> sendMailCount() throws Exception {
+	public HashMap<String, Object> sendMailCount(@RequestParam int empNo) throws Exception {
 		logger.info("Welcome sendMailCount The client locale is {}.");
 		//HashMap<String, Object> map = service.getSendMailCount();
 		//System.out.println(map.get("COUNT(*)"));
 		
-		return service.getSendMailCount();
+		return service.getSendMailCount(empNo);
 
 	}
 
 	// ajax 받은메일 카운트
 	@RequestMapping(value = "/getMailCount", method = RequestMethod.GET)
 	@ResponseBody
-	public HashMap<String, Object> getMailCount() throws Exception {
+	public HashMap<String, Object> getMailCount(@RequestParam int empNo) throws Exception {
 		logger.info("Welcome sendMailCount The client locale is {}.");
 		//HashMap<String, Object> map = service.getMailCount();
-		return service.getMailCount();
+		return service.getMailCount(empNo);
 	}
 	
 	@RequestMapping(value = "/detpMemberList", method = RequestMethod.GET)

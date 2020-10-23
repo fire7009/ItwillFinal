@@ -33,7 +33,7 @@ public class EsignController {
 
 	@RequestMapping(value = "/reqSign", method = RequestMethod.GET)
 	public void GetEpayment() {
-
+		
 	}
 
 	@RequestMapping(value = "/eSignList", method = RequestMethod.GET)
@@ -47,7 +47,7 @@ public class EsignController {
 		model.addAttribute("Esign", service.viewEsign(authNo)); 
 	}
 
-	// ajax �ش�μ� ��� ��������
+	// ajax 占쌔댐옙關占� 占쏙옙占� 占쏙옙占쏙옙占쏙옙占쏙옙
 	@RequestMapping(value = "/docSelect", method = RequestMethod.GET)
 	@ResponseBody
 	public HashMap<String, Object> getDetpMemberList(@RequestParam int docNo) throws Exception {
@@ -56,7 +56,7 @@ public class EsignController {
 		return service.getDocTitle(docNo);
 	}
 
-	// �������� �߰�(��û)
+	// 占쏙옙占쏙옙占쏙옙占쏙옙 占쌩곤옙(占쏙옙청)
 	@RequestMapping(value = "/insertEsign", method = RequestMethod.POST)
 	@ResponseBody
 	public void addEvent(@ModelAttribute EsignVO vo) throws Exception {
@@ -65,7 +65,7 @@ public class EsignController {
 		service.insertDoc(vo);
 	}
 
-	// �������� �߰�(��û)
+	// 占쏙옙占쏙옙占쏙옙占쏙옙 占쌩곤옙(占쏙옙청)
 	@RequestMapping(value = "/ReqEsignList", method = RequestMethod.GET)
 	@ResponseBody
 	public List<HashMap<String, Object>> getReqEsignList() throws Exception {

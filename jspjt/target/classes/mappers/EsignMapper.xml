@@ -11,7 +11,7 @@
 	</select>
 	
 	<insert id="insertDoc" parameterType="com.js.pjt.vo.EsignVO">
-		INSERT INTO digt_auth VALUES(20,10,1,#{title},#{content},'n',sysdate,'n',null,#{doc_no},#{res_deptno},#{res_empno})
+		INSERT INTO digt_auth VALUES(D_AUTH_SEQ.NEXTVAL,#{req_empno},1,#{title},#{content},'n',sysdate,'n',null,#{doc_no},#{res_deptno},#{res_empno})
 		
 		<!--INSERT INTO digt_auth VALUES(
 		10,#{사용자사원번호},1,#(제목),#(내용),'n',sysdate,'n',null,#(문서양식번호),#(요청부서번호),#(요청사원번호)
