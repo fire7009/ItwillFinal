@@ -10,6 +10,6 @@
 	
 	<!--일정 리스트 -->
 	<select id="getList" parameterType="int" resultType="hashmap">
-		select SCH_NO,REG_EMPNO,SCH_DVCD,TITLE,CONTENT,STRT_DT,END_DT,ALLDAY from EMP_SCH where REG_EMPNO = #{empNo} 
+		select SCH_NO,REG_EMPNO,SCH_DVCD,TITLE,CONTENT,STRT_DT,END_DT,ALLDAY from EMP_SCH where sch_dvcd=10 or REG_EMPNO = #{empNo}  and sch_dvcd=20;
 	</select>
 </mapper>
