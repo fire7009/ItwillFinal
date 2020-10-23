@@ -39,7 +39,7 @@ public class HomeController {
 		
 		//List<TestVO> vo= service.getL ist1();
 		//model.addAttribute("list", vo);
-		return "home";
+		return "main";
 	}
 	
 	

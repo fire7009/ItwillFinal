@@ -13,6 +13,7 @@ public interface EmployeeService {
 	void addEmployee(EmployeeVO employee) throws EmployeeExistsException;
 	void modifyEmployee(EmployeeVO employee) throws EmployeeNotFoundException;
 	EmployeeVO getEmployee(Map<String, Object> map) throws EmployeeNotFoundException;
+	EmployeeVO selectIdChech(String lgnId);
 	List<EmployeeVO> getEmployeeList();
 	void loginAuth(Map<String, Object> map) throws LoginAuthFailException;
 }

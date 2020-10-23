@@ -49,7 +49,10 @@
 				and lgn_id like #{lgnId}
 			</if>				
 		</trim>
-		
+	</select>
+	
+	<select id="selectIdChech" resultType="com.js.pjt.vo.EmployeeVO">
+		select * from employee where LGN_ID=#{lgnId}
 	</select>
 	
 	<select id="selectEmployeeList" resultType="com.js.pjt.vo.EmployeeVO">

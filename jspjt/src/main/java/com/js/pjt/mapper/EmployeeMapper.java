@@ -9,5 +9,6 @@ public interface EmployeeMapper {
 	int insertEmployee(EmployeeVO employee);
 	int updateEmployee(EmployeeVO employee);
 	EmployeeVO selectEmployee(Map<String, Object> map);
+	EmployeeVO selectIdChech(String lgnId);
 	List<EmployeeVO> selectEmployeeList();
 }

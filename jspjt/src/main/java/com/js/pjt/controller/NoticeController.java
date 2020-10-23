@@ -74,7 +74,8 @@ public class NoticeController {
 	@RequestMapping(value = "/notice_add", method = RequestMethod.POST)
 	@ResponseBody
 	public String addNotice(@RequestBody NoticeVO notice) {
-		notice.setContent(HtmlUtils.htmlEscape(notice.getContent()));
+		notice.setContent(HtmlUtils.htmlEscape(notice.getTitle()));
+		notice.setContent(HtmlUtils.htmlEscape(notice.getContent()).replace("\n", "<br>"));
 		noticeService.addNotice(notice);
 		return "success";
 	}
@@ -88,6 +89,8 @@ public class NoticeController {
 	@RequestMapping(value = "/notice_modify", method = {RequestMethod.PUT, RequestMethod.PATCH})
 	@ResponseBody
 	public String noticeModify(@RequestBody NoticeVO notice) {
+		notice.setContent(HtmlUtils.htmlEscape(notice.getTitle()));
+		notice.setContent(HtmlUtils.htmlEscape(notice.getContent()).replace("\n", "<br>"));
 		noticeService.modifyNotice(notice);
 		return "success";
 	}
@@ -98,5 +101,6 @@ public class NoticeController {
 		noticeService.removeNotice(noticeNo);
 		return "success";
 	}
+
 }
 

@@ -35,4 +35,9 @@ public class EmployeeDAOimp implements EmployeeDAO {
 		return sqlSession.getMapper(EmployeeMapper.class).selectEmployeeList();
 	}
 
+	@Override
+	public EmployeeVO selectIdChech(String lgnId) {
+		return sqlSession.getMapper(EmployeeMapper.class).selectIdChech(lgnId);
+	}
+
 }

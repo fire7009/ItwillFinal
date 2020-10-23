@@ -6,16 +6,19 @@ import java.io.IOException;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.util.HtmlUtils;
 
 import com.js.pjt.exception.EmployeeExistsException;
 import com.js.pjt.exception.EmployeeNotFoundException;
@@ -36,12 +39,19 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value="/emp/signup", method = RequestMethod.POST)
-	public String signIn(@ModelAttribute("employee") EmployeeVO employee) throws IllegalStateException, IOException, EmployeeExistsException {
+	public String signIn(@ModelAttribute("employee") EmployeeVO employee,HttpServletRequest request) throws IllegalStateException, IOException, EmployeeExistsException {
 		if(employee.getFile().isEmpty()) {
 			return "emp/signup";			
 		}
+		employee.setLgnId(HtmlUtils.htmlEscape(employee.getLgnId()));
+		employee.setPasswd(HtmlUtils.htmlEscape(employee.getPasswd()));
+		employee.setEmpNm(HtmlUtils.htmlEscape(employee.getEmpNm()));
+		employee.setBirthDt(HtmlUtils.htmlEscape(employee.getBirthDt()));
+		employee.setMobilePhnNo(HtmlUtils.htmlEscape(employee.getMobilePhnNo()));
+		employee.setEmailAddr(HtmlUtils.htmlEscape(employee.getEmailAddr()));
+		employee.setHireDt(HtmlUtils.htmlEscape(employee.getHireDt()));
 		
-		String uploadDir=context.getServletContext().getRealPath("/WEB-INF/upload");
+		String uploadDir=context.getServletContext().getRealPath("/resources/upload");
 		String origin=employee.getFile().getOriginalFilename();
 		String upload=System.currentTimeMillis()+"";
 		
@@ -62,7 +72,7 @@ public class EmployeeController {
 		
 		ImageIO.write(thumbnailImage, thumbnailFilename.substring(index+1), new File(uploadDir, thumbnailFilename));
 		
-		return "emp/signup";
+		return "redirect:/main";
 	}
 	
 	@RequestMapping("/emp/login")
@@ -72,8 +82,6 @@ public class EmployeeController {
 	
 	@RequestMapping(value = "/emp/login", method = RequestMethod.POST)
 	public String login(@RequestParam Map<String,Object> map, HttpSession session) throws LoginAuthFailException, EmployeeNotFoundException, IOException {
-		System.out.println(map.get("passwd"));
-		System.out.println(map.get("lgnId"));
 		employeeService.loginAuth(map);
 		
 		EmployeeVO employee=employeeService.getEmployee(map);
@@ -103,12 +111,24 @@ public class EmployeeController {
 			return "redirect:"+destURI;
 		}
 		
-		return "redirect:/main";
+		return "redirect:/main"; 
 	}
 	
 	@RequestMapping("/emp/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/";
+	} 
+	
+	@RequestMapping(value = "/emp/id_check/{lgnId}", method = RequestMethod.GET)
+	public String idCheck(@PathVariable String lgnId) {
+		System.out.println(lgnId);
+		if(employeeService.selectIdChech(lgnId)!=null) {
+			System.out.println("중복"+lgnId);
+			return "f";
+		} else {
+			System.out.println("안중복"+lgnId);
+			return "success";			
+		}
 	}
 }
