@@ -25,8 +25,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.js.pjt.service_serviceimp.DeliveryService;
 import com.js.pjt.service_serviceimp.EmployeeService;
 import com.js.pjt.vo.DeliveryVO;
+import com.js.pjt.vo.ProductVO;
 
-//test2
+
 
 
 
@@ -41,11 +42,11 @@ public class DeliveryController {
 	@RequestMapping(value = "/unsong", method = RequestMethod.GET)
 	public String list(HttpSession session,Locale locale, Model model) throws Exception {
 		logger.info("Welcome delivery! The client locale is {}.", locale);
-		List<DeliveryVO> vo=service.ListDO();
-		model.addAttribute("deliveryList", vo);
 		if(session.getAttribute("loginUserInfo")==null) {
 			return "redirect:/";
 		}
+		List<DeliveryVO> vo=service.ListDO();
+		model.addAttribute("deliveryList", vo);
 		return "unsong/unsong";
 	}
 	
@@ -59,7 +60,7 @@ public class DeliveryController {
 		try {
 			service.insertDelivery(vo);
 		} catch (Exception e) {
-			model.addAttribute("message", "�씠誘� �궗�슜以묒씤 �젙蹂대�� �엯�젰 �븯���뒿�땲�떎.");
+			model.addAttribute("message", "이미 사용중인 정보를 입력 하였습니다.");
 			return "unsong/unsong_insert";
 		}
 		return "redirect:/unsong";
@@ -71,27 +72,25 @@ public class DeliveryController {
 		return "redirect:/unsong";
 	}
 	
-	@RequestMapping(value = "/unsong_update",method = RequestMethod.GET)
-	public String select(@PathVariable int num) throws Exception {
-		return "unsong/unsong_update";
-	}
-	
-	@RequestMapping(value = "/unsong_update",method = RequestMethod.POST)
-	public String update(@ModelAttribute DeliveryVO vo,@PathVariable int num) {
-		try {
-			vo.setDlvrNo(num);
-			service.updateDelivery(vo);
-		} catch (Exception e) {
-			return "unsong/unsong_update";
-		}
-		return "redirect:/unsong";
-	}
 
 	@RequestMapping(value = "/unsong_search", method = RequestMethod.POST)
 	public String search(@RequestParam Map<String, Object> map, Model model) throws Exception {
 		List<DeliveryVO> vo=service.searchListDO(map);
 		model.addAttribute("deliveryList", vo);
 		return "unsong/unsong";
+	}
+	
+	@RequestMapping(value = "/unsong_qty", method = RequestMethod.GET)
+	@ResponseBody
+	public String updateQty() throws Exception {
+		return "unsong/unsong";
+	}
+	
+	@RequestMapping(value = "/unsong_qty", method = {RequestMethod.PUT, RequestMethod.PATCH})
+	@ResponseBody
+	public String updateQty(@RequestBody DeliveryVO vo) throws Exception {
+		service.updateQty(vo);
+		return "success";
 	}
 	
 }

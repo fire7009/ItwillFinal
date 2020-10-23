@@ -15,4 +15,5 @@ public interface DeliveryDAO {
 	public int deleteDelivery(int dlvrNo) throws Exception;
 	public List<DeliveryVO> ListDO() throws Exception;
 	public List<DeliveryVO> searchListDO(Map<String, Object> map) throws Exception;
+	public int updateQty(DeliveryVO vo) throws Exception;
 }

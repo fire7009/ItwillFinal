@@ -1,6 +1,7 @@
 package com.js.pjt.dao_daoimp;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -39,6 +40,11 @@ public class ProductDAOImp implements ProductDAO {
 	@Override
 	public int deleteProduct(int prodNo) throws Exception {
 		return sqlSession.getMapper(ProductMapper.class).deleteProduct(prodNo);
+	}
+
+	@Override
+	public List<ProductVO> searchListDO(Map<String, Object> map) throws Exception {
+		return sqlSession.getMapper(ProductMapper.class).searchListDO(map);
 	}
 	
 }

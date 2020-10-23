@@ -24,5 +24,20 @@
    	<delete id="deleteProduct">
    		update product set del_yn='Y' where prod_no=#{prodNo}
    	</delete>
+   	
+   	 <select id="searchListDO" resultType="com.js.pjt.vo.ProductVO">
+      select * from product
+		
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		
+		<if	test="prodNo!=null and prodNo!=''">
+			 prod_no=#{prodNo}
+		</if>
+		<if test="prodNm!=null and prodNm!=''">
+			and prod_nm like concat('%',(concat(#{prodNm},'%')))
+		</if> 
+		
+		</trim>
+	</select>
   
 </mapper>

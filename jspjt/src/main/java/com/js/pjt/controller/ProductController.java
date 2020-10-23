@@ -2,8 +2,10 @@ package com.js.pjt.controller;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.js.pjt.service_serviceimp.ProductService;
@@ -28,10 +31,13 @@ private static final Logger logger = LoggerFactory.getLogger(ProductController.c
 	
 	
 	@RequestMapping(value = "/mulryu", method = RequestMethod.GET)
-	public String selectListDelivery(Locale locale, Model model) throws Exception {
+	public String selectListDelivery(HttpSession session, Locale locale, Model model) throws Exception {
 		logger.info("Welcome delivery! The client locale is {}.", locale);
 		List<ProductVO> vo=service.selectListProduct();
 		model.addAttribute("productList", vo);
+		if(session.getAttribute("loginUserInfo")==null) {
+			return "redirect:/";
+		}
 		return "mulryu/mulryu";
 	}
 	
@@ -42,10 +48,11 @@ private static final Logger logger = LoggerFactory.getLogger(ProductController.c
 	//test
 	@RequestMapping(value = "/mulryu_insert", method = RequestMethod.POST)
 	public String insert(@ModelAttribute ProductVO vo, Model model) {
+		
 		try {
 			service.insertProduct(vo);
 		} catch (Exception e) {
-			model.addAttribute("message", "이미 사용중인 학번을 입력 하였습니다.");
+			model.addAttribute("message", "이미 사용중인 정보를 입력 하였습니다.");
 			return "mulryu/mulryu_insert";
 		}
 		return "redirect:/mulryu";
@@ -68,5 +75,12 @@ private static final Logger logger = LoggerFactory.getLogger(ProductController.c
 	public String noticeModify(@RequestBody ProductVO product) throws Exception {
 		service.updateProduct(product);
 		return "success";
+	}
+	
+	@RequestMapping(value = "/mulryu_search", method = RequestMethod.POST)
+	public String search(@RequestParam Map<String, Object> map, Model model) throws Exception {
+		List<ProductVO> vo=service.searchListDO(map);
+		model.addAttribute("productList", vo);
+		return "mulryu/mulryu";
 	}
 }

@@ -118,7 +118,7 @@
 											<div class="form-group">
 											<label class="col-md-3 control-label">사원이름</label>
 											<div class="col-md-9">
-												<input class="form-control" name="dlvrEmpNo" placeholder="" type="text" value="${loginUserInfo.empNo}" readonly="readonly">
+												<input class="form-control" name="dlvrEmpno" placeholder="" type="text" value="${loginUserInfo.empNo}" readonly="readonly">
 											</div>
 											
 									</div>

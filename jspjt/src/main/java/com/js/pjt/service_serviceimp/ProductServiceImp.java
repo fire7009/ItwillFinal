@@ -1,6 +1,7 @@
 package com.js.pjt.service_serviceimp;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -38,6 +39,11 @@ public class ProductServiceImp implements ProductService{
 	@Override
 	public int deleteProduct(int prodNo) throws Exception {
 		return dao.deleteProduct(prodNo);
+	}
+
+	@Override
+	public List<ProductVO> searchListDO(Map<String, Object> map) throws Exception {
+		return dao.searchListDO(map);
 	}
 
 	

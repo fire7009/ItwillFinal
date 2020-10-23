@@ -6,7 +6,6 @@
 	<resultMap type="com.js.pjt.vo.DeliveryVO" id="deliveryMap">
 	
 		<result column="DLVR_NO" property="dlvrNo"/>
-		<result column="ORD_NO" property="ordNo"/>
 		<result column="DLVR_EMPNO" property="dlvrEmpno"/>
 		<result column="DLVR_STRT_DTTM" property="dlvrStrtDttm"/>
 		<result column="DLVR_CMPL_YN" property="dlvrCmplYn"/>
@@ -14,11 +13,22 @@
 				
 		<association javaType="com.js.pjt.vo.OrderVO" property="orderVO">
 			<result column="ORD_SUM_QTY" property="ordSumQty"/>
+			<result column="ORD_NO" property="ordNo"/>
 		</association>
 		
 		<association javaType="com.js.pjt.vo.EmployeeVO" property="employeeVO">
 			<result column="EMP_NM" property="empNm"/>
 			<result column="MOBILE_PHN_NO" property="mobilePhnNo"/>
+		</association>
+		
+		<association javaType="com.js.pjt.vo.CustomerVO" property="customerVO">
+			<result column="CONTACT_ADDR" property="contactAddr"/>
+			<result column="CUST_NO" property="custNo"/>
+		</association>
+		
+		<association javaType="com.js.pjt.vo.ProductVO" property="productVO">
+			<result column="PROD_NO" property="prodNo"/>
+			<result column="STCK_QTY" property="stckQty"/>
 		</association>
 	</resultMap>
 	
@@ -26,7 +36,11 @@
 	<insert id="insertDelivery" parameterType="com.js.pjt.vo.DeliveryVO">
 		insert into delivery values(delivery_seq.nextval, #{ordNo}, #{dlvrEmpno}, sysdate,'N', sysdate)
 	</insert>
-	
+
+	<update id="updateQty">
+	update product set stck_qty=(#{stckQty}-#{ordSumQty}) where prod_no=(select prod_no from orders where ord_no=#{ordNo})
+	</update>
+		
 	
 	<select id="selectDelivery" resultType="com.js.pjt.vo.DeliveryVO">
 		select*from delivery where dlvr_no=#{dlvrNo}
@@ -35,23 +49,26 @@
 	<select id="selectListDelivery" resultType="com.js.pjt.vo.DeliveryVO">
 		select * from delivery order by dlvr_no
 	</select>
-   
+    
    	<update id="updateDelivery">
    		update delivery set ord_no=#{ordNo}, dlvr_empno=#{dlvrEmpno} where dlvr_no=#{dlvrNo}
    	</update>
+   	 
    	
    	<delete id="deleteDelivery">
    		update delivery set dlvr_cmpl_yn='Y', dlvr_cmpl_dttm=sysdate where dlvr_no=#{dlvrNo}
    	</delete>
    	
+ 
+   	
    	<select id="ListDO" resultMap="deliveryMap">
-		select d.dlvr_no,d.dlvr_empno,o.ord_sum_qty,d.dlvr_strt_dttm, d.dlvr_cmpl_yn, d.dlvr_cmpl_dttm, e.emp_nm,e.mobile_phn_no, c.contact_addr from delivery d, orders o,employee e ,customer c
-		where d.ord_no=o.ord_no and d.dlvr_empno=e.emp_no and o.ord_custno=c.cust_no
+      select d.dlvr_no,d.dlvr_empno,o.ord_sum_qty,d.dlvr_strt_dttm, d.dlvr_cmpl_yn, d.dlvr_cmpl_dttm, e.emp_nm,e.mobile_phn_no, c.contact_addr,p.stck_qty, o.ord_no
+			 from delivery d  JOIN  orders o  on(d.ord_no=o.ord_no)  JOIN  employee e on(d.dlvr_empno=e.emp_no) JOIN customer c on(o.ord_custno=c.cust_no) JOIN product p on (o.prod_no=p.prod_no)
 	</select>
 	
 	 <select id="searchListDO" resultMap="deliveryMap">
-		select d.dlvr_no,d.dlvr_empno,o.ord_sum_qty,d.dlvr_strt_dttm, d.dlvr_cmpl_yn, d.dlvr_cmpl_dttm, e.emp_nm,e.mobile_phn_no from delivery d 
-		JOIN  orders o  on(d.ord_no=o.ord_no)  JOIN  employee e on(d.dlvr_empno=e.emp_no) JOIN customer c on(o.ord_custno=c.cust_no)
+      select d.dlvr_no,d.dlvr_empno,o.ord_sum_qty,d.dlvr_strt_dttm, d.dlvr_cmpl_yn, d.dlvr_cmpl_dttm, e.emp_nm,e.mobile_phn_no, c.contact_addr,p.stck_qty, o.ord_no
+			 from delivery d  JOIN  orders o  on(d.ord_no=o.ord_no)  JOIN  employee e on(d.dlvr_empno=e.emp_no) JOIN customer c on(o.ord_custno=c.cust_no) JOIN product p on (o.prod_no=p.prod_no)
 		
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 		

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.js.pjt.dao_daoimp.DeliveryDAO;
 
 import com.js.pjt.vo.DeliveryVO;
+import com.js.pjt.vo.ProductVO;
 
 @Service
 public class DeliveryServiceImp implements DeliveryService {
@@ -55,5 +56,14 @@ public class DeliveryServiceImp implements DeliveryService {
 	public List<DeliveryVO> searchListDO(Map<String, Object> map) throws Exception {
 		return dao.searchListDO(map);
 	}
+
+	@Override
+	public int updateQty(DeliveryVO vo) throws Exception {
+		return dao.updateQty(vo);
+	}
+
+	
+
+	
 	
 }

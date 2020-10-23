@@ -111,6 +111,7 @@
 												</a>
 											</h3>
 										</div>
+										
 										<div id="collapseOne" class="panel-collapse collapse in">
 											<div class="panel-body">
 												<form class="form-horizontal" id="searchForm" method="post"  action="unsong_search">
@@ -124,7 +125,7 @@
 														<div class="form-group">
 															<label class="control-label col-md-3">배송자이름</label>
 															<div class="col-md-9">
-																<input class="form-control" type="text" name="empNm" id="empNm" value="${deliverySearchVO.empNm }">
+																<input class="form-control" type="text" name="empNm" value="${deliverySearchVO.empNm }">
 															</div>
 														</div>
 														<div class="form-group">
@@ -153,6 +154,7 @@
 											<th>배송자이름</th>
 											<th>배송자전화번호</th>
 											<th>배송시작일시</th>
+											<th>배송완료여부</th>
 											<th>배송지</th>
 											
 										</tr>
@@ -169,10 +171,13 @@
                                                       	<td>${delivery.employeeVO.mobilePhnNo }</td>
                                                         <td>${delivery.dlvrStrtDttm }</td>
                                                         <td>${delivery.dlvrCmplYn }</td>
-                                                        <td>${delivery.contactAddr}</td>
+                                                        <td>${delivery.customerVO.contactAddr}</td>
                                                        
                                                         <td>
-                                                       <button type="button" class="btn btn-default" onclick="deleteBtn(${delivery.dlvrNo });">삭제</button>
+                                                       <button type="button" class="btn btn-default" onclick="deleteBtn(${delivery.dlvrNo });update();">배송완료</button>
+                                                        <input type="hidden"   id="stckQty" value="${delivery.productVO.stckQty}"/>
+                                                        <input type="hidden"   id="ordSumQty" value="${delivery.orderVO.ordSumQty}"/>
+                                                        <input type="hidden"   id="ordNo" value="${delivery.orderVO.ordNo}" />
                                                         </td>
                                                     </tr>       
                                                  	</c:if>                                         
@@ -240,6 +245,28 @@
 		$("#searchBtn").click(function(){
 			$("#searchForm").submit();
 		});
+		
+		 
+	    function update() {
+	    	var ordSumQty=$("#ordSumQty").val();
+			var ordNo=$("#ordNo").val();
+			var stckQty=$("#stckQty").val();
+	    	$.ajax({
+	    		type: "PUT",
+	    		url: "unsong_qty",
+	    		headers: {"content-type":"application/json","X-HTTP-Method-override":"PUT"},
+	    		data: JSON.stringify({"ordSumQty":ordSumQty,"ordNo":ordNo,"stckQty":stckQty}),
+	    		dataType: "text",
+	    		success: function(text){
+	    			location.href="${pageContext.request.contextPath}/unsong_qty";
+	    		},
+	    		error: function(xhr) {
+					alert("에러코드 = "+xhr.status);
+				}
+	    	});
+	    }
+	    
+	    
 
 	</script>
 </body>

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.js.pjt.mapper.DeliveryMapper;
 import com.js.pjt.vo.DeliveryVO;
+import com.js.pjt.vo.ProductVO;
 
 @Repository
 public class DeliveryDAOImp implements DeliveryDAO {
@@ -53,6 +54,14 @@ public class DeliveryDAOImp implements DeliveryDAO {
 		return sqlSession.getMapper(DeliveryMapper.class).searchListDO(map);
 	}
 
-	
+	@Override
+	public int updateQty(DeliveryVO vo) throws Exception {
+		return sqlSession.getMapper(DeliveryMapper.class).updateQty(vo);
+	}
+
+
+
+
+
 	
 }

@@ -1,17 +1,17 @@
 package com.js.pjt.vo;
 
 /*
- * ÀÌ¸§            ³Î?       À¯Çü           
+ * ï¿½Ì¸ï¿½            ï¿½ï¿½?       ï¿½ï¿½ï¿½ï¿½           
 ------------- -------- ------------ 
-ORD_NO        NOT NULL NUMBER(8)   ÁÖ¹®¹øÈ£
-ORD_CUSTNM    NOT NULL VARCHAR2(30) °í°´¸í
-ORD_PRODNM    NOT NULL VARCHAR2(30) »óÇ°¸í
-ORD_SUM_QTY   NOT NULL NUMBER      ÁÖ¹®ÃÑ¼ö·®
-ORD_SUM_AMT   NOT NULL NUMBER      ÁÖ¹®ÃÑ±Ý¾×
-ORD_STAT_DVCE NOT NULL NUMBER(4)   ÁÖ¹®±¸ºÐÄÚµå
-ORD_DTTM      NOT NULL DATE        ÁÖ¹®ÀÏ½Ã
-ORD_CNCL_YN   NOT NULL VARCHAR2(1) ÁÖ¹®Ãë¼Ò¿©ºÎ  0ÀÌ Ãë¼Ò
-ORD_CNCL_DTTM          DATE		   ÁÖ¹®Ãë¼ÒÀÏ½Ã
+ORD_NO        NOT NULL NUMBER(8)   ï¿½Ö¹ï¿½ï¿½ï¿½È£
+ORD_CUSTNM    NOT NULL VARCHAR2(30) ï¿½ï¿½ï¿½ï¿½
+ORD_PRODNM    NOT NULL VARCHAR2(30) ï¿½ï¿½Ç°ï¿½ï¿½
+ORD_SUM_QTY   NOT NULL NUMBER      ï¿½Ö¹ï¿½ï¿½Ñ¼ï¿½ï¿½ï¿½
+ORD_SUM_AMT   NOT NULL NUMBER      ï¿½Ö¹ï¿½ï¿½Ñ±Ý¾ï¿½
+ORD_STAT_DVCE NOT NULL NUMBER(4)   ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½
+ORD_DTTM      NOT NULL DATE        ï¿½Ö¹ï¿½ï¿½Ï½ï¿½
+ORD_CNCL_YN   NOT NULL VARCHAR2(1) ï¿½Ö¹ï¿½ï¿½ï¿½Ò¿ï¿½ï¿½ï¿½  0ï¿½ï¿½ ï¿½ï¿½ï¿½
+ORD_CNCL_DTTM          DATE		   ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½Ï½ï¿½
 
 */
 public class OrderVO {
@@ -24,7 +24,16 @@ public class OrderVO {
 	String ordDttm;
 	String ordCnclYn;
 	String ordCnclDttm;
-	
+	private int prodNo;
+
+	public int getProdNo() {
+		return prodNo;
+	}
+
+	public void setProdNo(int prodNo) {
+		this.prodNo = prodNo;
+	}
+
 	public OrderVO() {
 		// TODO Auto-generated constructor stub
 	}

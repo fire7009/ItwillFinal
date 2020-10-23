@@ -11,7 +11,30 @@ public class DeliveryVO {
 	private OrderVO orderVO;
 	private EmployeeVO employeeVO;
 	private CustomerVO customerVO;
+	private ProductVO productVO;
+	private int ordSumQty;
+	private int stckQty;
 	
+	
+	
+	public int getOrdSumQty() {
+		return ordSumQty;
+	}
+	public void setOrdSumQty(int ordSumQty) {
+		this.ordSumQty = ordSumQty;
+	}
+	public int getStckQty() {
+		return stckQty;
+	}
+	public void setStckQty(int stckQty) {
+		this.stckQty = stckQty;
+	}
+	public ProductVO getProductVO() {
+		return productVO;
+	}
+	public void setProductVO(ProductVO productVO) {
+		this.productVO = productVO;
+	}
 	public CustomerVO getCustomerVO() {
 		return customerVO;
 	}

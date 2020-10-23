@@ -5,6 +5,7 @@ import java.util.Map;
 
 
 import com.js.pjt.vo.DeliveryVO;
+import com.js.pjt.vo.ProductVO;
 
 
 public interface DeliveryService {
@@ -15,4 +16,5 @@ public interface DeliveryService {
 	public int deleteDelivery(int dlvrNo) throws Exception;
 	public List<DeliveryVO> ListDO() throws Exception;
 	public List<DeliveryVO> searchListDO(Map<String, Object> map) throws Exception;
+	public int updateQty(DeliveryVO vo) throws Exception;
 }

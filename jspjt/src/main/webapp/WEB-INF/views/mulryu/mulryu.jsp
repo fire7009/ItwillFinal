@@ -127,32 +127,32 @@
 												</a>
 											</h3>
 										</div>
+									
 										<div id="collapseOne" class="panel-collapse collapse in">
 											<div class="panel-body">
-												<form class="form-horizontal" id="searchForm">
+												<form class="form-horizontal" id="searchForm" method="post"  action="mulryu_search">
 													<div class="col-md-9">
-														
 														<div class="form-group">
-															<label class="col-md-3 control-label">날짜/기간</label>
-															
-														</div>
-														
-														<div class="form-group form-daterange disabled">
-															<label class="col-md-3 control-label">&nbsp;</label>
+															<label class="control-label col-md-3">상품번호</label>
 															<div class="col-md-9">
-																<div class="input-group">
-																	<input class="form-control" id="datepicker-startRange" name="start" placeholder="날짜 선택..." type="text" data-date-format="yyyy-mm-dd">
-																	<span class="input-group-addon">~</span>
-																	<input class="form-control" id="datepicker-endRange" name="end" placeholder="날짜 선택..." type="text" data-date-format="yyyy-mm-dd">
-																</div>
+																<input class="form-control" type="text" name="prodNo" id="prodNo"  value="">
 															</div>
 														</div>
+														<div class="form-group">
+															<label class="control-label col-md-3">상품명</label>
+															<div class="col-md-9">
+																<input class="form-control" type="text" name="prodNm" id="empNm" value="">
+															</div>
+														</div>
+														
+														
 													</div>
 													<div class="col-md-12 center">
 														<button class="btn btn-primary m-r-5" type="button" id="searchBtn">검색</button>
 														<button class="btn btn-default" type="reset">초기화</button>
 													</div>
 												</form>
+												
 											</div>
 										</div>
 									</div>
@@ -333,13 +333,18 @@
     <script src="${pageContext.request.contextPath}/resources/assets/js/src/app.js"></script>
 
 <script type="text/javascript">
+
+		$("#searchBtn").click(function(){
+			$("#searchForm").submit();
+		});
 		function deleteBtn(prodNo){
 			var chk=confirm("정말 삭제하시겠습니까?");
 			if(chk){
 				location.href="${pageContext.request.contextPath}/mulryu_delete/"+prodNo;
 			}
 		}
-		 //수정창띄우기
+		
+		
 	    function update(prodNo) {
 	    	$("#prodNo").val(prodNo);
 	    	$("#updateDiv").show(200);
