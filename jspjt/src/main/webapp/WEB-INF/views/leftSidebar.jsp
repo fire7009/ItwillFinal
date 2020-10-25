@@ -24,7 +24,7 @@
 		                </div>
 		                <div class="profile-body dropdown">
 		                    <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-		                    <h4><a href="/pjt/emp/login">로그인해주세요</a></h4>
+		                    <h4><a href="${pageContext.request.contextPath}/emp/login">로그인해주세요</a></h4>
 		                    </a>
 		                </div>
 					</c:otherwise>
@@ -77,12 +77,17 @@
                         <ul class="nav-sub">
                           
                             <li>
-                                <a href="/pjt/emp/signup" title="Sliders &amp; Progress">
+                                <a href="${pageContext.request.contextPath}/emp/signup" title="Sliders &amp; Progress">
                                       		사원등록
                                 </a>
                             </li>
                             <li>
-                                <a href="/pjt/notice" title="Sliders &amp; Progress">
+                                <a href="${pageContext.request.contextPath}/empListMain" title="Sliders &amp; Progress">
+                                      		사원관리
+                                </a>
+                            </li>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/notice" title="Sliders &amp; Progress">
                                       		사원게시판
                                 </a>
                             </li>
@@ -95,7 +100,7 @@
                         </a>
                         <ul class="nav-sub">
                             <li>
-                                <a href="/pjt/orderList" title="Sliders &amp; Progress">
+                                <a href="${pageContext.request.contextPath}/orderList" title="Sliders &amp; Progress">
                                       		발주현황
                                 </a>
                             </li>

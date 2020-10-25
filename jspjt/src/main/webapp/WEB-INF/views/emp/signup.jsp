@@ -128,8 +128,8 @@
 								<div class="form-group">
 								    <label for="exampleInputEmail1">성별</label>
 								    <div id="radioDiv">
-									    <input type="radio" class="radio-inline" name="gender" value="남자" checked="checked"> 남자
-									    <input type="radio" class="radio-inline" name="gender" value="여자"> 여자
+									    <input type="radio" class="radio-inline" name="gender" value="남" checked="checked"> 남자
+									    <input type="radio" class="radio-inline" name="gender" value="여"> 여자
 								    </div>
 								</div>
 								<div class="form-group">

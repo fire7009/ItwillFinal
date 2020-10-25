@@ -136,17 +136,17 @@
 	                                                                    업체명
 	                                                                </td>
 	                                                                <td>
+	                                                                	<input type="text" class="form-control resetMsg" name="ordCustNm" id="ordCustNm" placeholder="업체명">
+	                                                                	<!-- 
 	                                                                    <select class="form-control input-lg" name="ordCustNm" id="ordCustNm">
 	                                                                        <option value="">업체명을 선택하세요</option>
 	                                                                        <c:forEach var="custom" items="${customerList }">
-	                                                                        <c:if test="${custom.custNm==customer}">
-	                                                                        <option value="${custom.custNm }" selected="selected">${custom.custNm }</option>
-	                                                                        </c:if>
-	                                                                        <c:if test="${custom.custNm!=customer}">
+	                                                                        <c:if test="${custom.delYn eq 'N'}">
 	                                                                        <option value="${custom.custNm }">${custom.custNm }</option>
 	                                                                        </c:if>
 	                                                                        </c:forEach>
 	                                                                    </select>
+	                                                                	 -->
 	                                                                </td>	
 	                                                            </tr>
 	                                                            <tr>
@@ -154,17 +154,17 @@
 	                                                                    상품명
 	                                                                </td>
 	                                                                <td>
+	                                                                    <input type="text" class="form-control resetMsg" name="ordProdNm" id="ordProdNm" placeholder="상품명">
+	                                                                	<!--
 	                                                                    <select class="form-control input-lg" name="ordProdNm" id="ordProdNm">
 	                                                                        <option value="">상품명을 선택하세요</option>
 	                                                                        <c:forEach var="prod" items="${productList }">
-	                                                                        <c:if test="${prod.prodNm==product }">
-	                                                                        <option value="${prod.prodNm }" selected="selected">${prod.prodNm }</option>
-	                                                                        </c:if>
-	                                                                        <c:if test="${prod.prodNm!=product }">
+	                                                                        <c:if test="${prod.delYn eq 'N'}">
 	                                                                        <option value="${prod.prodNm }">${prod.prodNm }</option>
 	                                                                        </c:if>
 	                                                                        </c:forEach>
 	                                                                    </select>
+	                                                                    -->
 	                                                                </td>
 	                                                            </tr>
 	                                                        </table>
@@ -184,7 +184,9 @@
                                                         <th>업체명</th>
                                                         <th>상품명</th>
                                                         <th>수량</th>
-                                                        <th>상태</th>
+                                                        <c:if test="${loginUserInfo.deptNo}==20">
+                                                        	<th>상태</th>
+                                                        </c:if>
                                                     </tr>
                                                 </thead>
 
@@ -210,6 +212,7 @@
 			    <script type="text/javascript" >
 			    display();
 			    var stat="N";
+			    var deptNo=${loginUserInfo.deptNo};
 			    function display(){
 				    $.ajax({
 				    	type: "GET",
@@ -226,7 +229,9 @@
 					    			html+="<td>"+this.customerVO.custNm+"</td>";
 					    			html+="<td>"+this.productVO.prodNm+"</td>";
 					    			html+="<td>"+this.ordSumQty+"</td>";
-					    			html+="<td><span><a href='javascript:orderCancle("+this.ordNo+")'style='color:red;'>발주취소</a></span></td>";
+					    			if(deptNo==20){
+					    			html+="<td><span><a href='javascript:orderCancle("+this.ordNo+")'style='color:red;'>발주취소</a></span></td>";					    				
+					    			}
 						    		html+="</tr>";
 				    			}
 				    		});
@@ -267,9 +272,9 @@
 					    			html+="<td>"+this.customerVO.custNm+"</td>";
 					    			html+="<td>"+this.productVO.prodNm+"</td>";
 					    			html+="<td>"+this.ordSumQty+"</td>";
-					    			if(this.ordCnclYn=="N"){
+					    			if(this.ordCnclYn=="N" && deptNo==20){
 					    			html+="<td><span><a href='javascript:orderCancle("+this.ordNo+")'style='color:red;'>발주취소</a></span></td>";
-					    			} else if(this.ordCnclYn=="Y"){
+					    			} else if(this.ordCnclYn=="Y" && deptNo==20){
 					    				html+="<td><span>취소완료</span></td>";
 					    			}
 						    		html+="</tr>";
@@ -291,27 +296,21 @@
 			    }
 			    
 			    $("#cancleBtn").on('click', function(){
-			    	$('#ordProdNm').find('option').removeAttr('selected');
-			    	$('#ordProdNm').find('option:first').attr('selected','selected');
-			    	$('#ordCustNm').find('option').removeAttr('selected');
-			    	$('#ordCustNm').find('option:first').attr('selected','selected');
-			    	stat=0;
+			    	$('#ordProdNm').val("");
+			    	$('#ordCustNm').val("");
+			    	stat="Y";
 			    	display(1);
 			    })
 			    $("#tableBtn").on('click', function(){
-			    	$('#ordProdNm').find('option').removeAttr('selected');
-			    	$('#ordProdNm').find('option:first').attr('selected','selected');
-			    	$('#ordCustNm').find('option').removeAttr('selected');
-			    	$('#ordCustNm').find('option:first').attr('selected','selected');
+			    	$('#ordProdNm').val("");
+			    	$('#ordCustNm').val("");
 			    	stat="N";
 			    	display(1);
 			    })
 			    $("#reset").on('click', function(){
-			    	$('#ordProdNm').find('option').removeAttr('selected');
-			    	$('#ordProdNm').find('option:first').attr('selected','selected');
-			    	$('#ordCustNm').find('option').removeAttr('selected');
-			    	$('#ordCustNm').find('option:first').attr('selected','selected');
-			    	stat="Y";
+			    	$('#ordProdNm').val("");
+			    	$('#ordCustNm').val("");
+			    	stat="N";
 			    	display(1);
 			    })
 			    </script>

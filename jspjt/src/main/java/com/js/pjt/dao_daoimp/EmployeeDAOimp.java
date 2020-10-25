@@ -31,13 +31,18 @@ public class EmployeeDAOimp implements EmployeeDAO {
 	}
 
 	@Override
-	public List<EmployeeVO> selectEmployeeList() {
-		return sqlSession.getMapper(EmployeeMapper.class).selectEmployeeList();
+	public List<EmployeeVO> selectEmployeeList(Map<String, Object> map) {
+		return sqlSession.getMapper(EmployeeMapper.class).selectEmployeeList(map);
 	}
 
 	@Override
 	public EmployeeVO selectIdChech(String lgnId) {
 		return sqlSession.getMapper(EmployeeMapper.class).selectIdChech(lgnId);
+	}
+
+	@Override
+	public int selectEmpCount(Map<String, Object> map) {
+		return sqlSession.getMapper(EmployeeMapper.class).selectEmpCount(map);
 	}
 
 }

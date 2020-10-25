@@ -10,5 +10,6 @@ public interface EmployeeDAO {
 	int updateEmployee(EmployeeVO employee);
 	EmployeeVO selectEmployee(Map<String, Object> map);
 	EmployeeVO selectIdChech(String lgnId);
-	List<EmployeeVO> selectEmployeeList();
+	int selectEmpCount(Map<String, Object> map);
+	List<EmployeeVO> selectEmployeeList(Map<String, Object> map);
 }

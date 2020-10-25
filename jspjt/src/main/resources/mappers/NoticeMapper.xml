@@ -23,7 +23,7 @@
 		<selectKey resultType="int" keyProperty="noticeNo" order="BEFORE">
 			select notice_seq.nextval from dual
 		</selectKey>
-		insert into notice values(#{noticeNo}, #{regEmpNo}, #{title}, #{content}, #{viewCnt}, '1', sysdate, '0', null)
+		insert into notice values(#{noticeNo}, #{regEmpNo}, #{title}, #{content}, #{viewCnt}, 'Y', sysdate, 'N', null)
 	</insert>
 	
 	<update id="updateNotice">
@@ -31,7 +31,7 @@
 	</update>
 	
 	<update id="deleteNotice">
-		update notice set del_yn=1 where notice_no=#{noticeNo}
+		update notice set del_yn='Y' where notice_no=#{noticeNo}
 	</update>
 	
 	<select id="selectNotice" resultType="com.js.pjt.vo.NoticeVO">

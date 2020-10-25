@@ -235,49 +235,21 @@
 							<div class="panel-heading">
 								<b>공지사항</b>
 								<div class="actions pull-right">
-                                    <a href="/pjt/notice">더보기</a>
+                                    <a href="${pageContext.request.contextPath}/notice">더보기</a>
                                 </div>
 							</div>
 							<div class="panel-body" >
-								<table class="table">
-                                    
-                                    <tbody>
+								<table class="table" style="table-layout:fixed">
+                                    <thead>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
+                                            <th width="35">번호</th>
+                                            <th width="100">제목</th>
+                                            <th width="210">내용</th>
+                                            <th width="50">일시</th>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
+                                    </thead>
+                                    <tbody id="tbody">
+
                                     </tbody>
                                 </table>
 							</div>
@@ -384,8 +356,39 @@
 					}
 						});
 				app.chartJs();
-
-				});
+	
+			});
+	</script>
+	<script type="text/javascript">
+		$.ajax({
+			type: "GET",
+			url: "main_notice",
+			dataType: "json",
+			success: function(json){
+				var html="";
+				var stat="N";
+	    		$(json).each(function(){
+	    			if(this.delYn==stat){
+		    			var date=this.regDttm
+		    			html+="<tr>";
+		    			html+="<td>"+this.noticeNo+"</td>";
+		    			html+="<td><div style='text-overflow:ellipsis; overflow:hidden; white-space:nowrap'>"+this.title+"</div></td>";
+		    			html+="<td><div style='text-overflow:ellipsis; overflow:hidden; white-space:nowrap'>"+this.content+"</div></td>";
+		    			html+="<td>"+date.substring(5,10)+"</td>";
+		    			html+="</tr>";
+	    			}
+	    		});
+	    		if(html==""){
+    				html="<tr><td style='text-align: center;' colspan='4'><게시글이 없습니다></td></tr>";
+		    		$('#tbody').html(html);
+    				return;
+    			}
+	    		$('#tbody').html(html);
+			}
+		});
+	</script>
+	<script>
+		
 	</script>
 
 </body>

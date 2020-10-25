@@ -34,14 +34,14 @@
 	
 	<select id="selectOrder" resultMap="orderMap">
 		select o.ORD_NO, o.ORD_SUM_QTY, o.ORD_SUM_AMT, o.ORD_STAT_DVCD, o.ORD_DTTM, o.ORD_CNCL_YN, o.ORD_CNCL_DTTM
-		, o.PROD_NO, c.CUST_NM, p.prod_nm from orders o join customer c on (o.ORD_CUSTNO=c.CUST_NO) join product p on 
+		, o.PROD_NO, c.CUST_NM, p.prod_nm, p.del_yn from orders o join customer c on (o.ORD_CUSTNO=c.CUST_NO) join product p on 
 		(o.prod_no=p.prod_no)
 		<where>
 			<if test="ordCustNm!=null and ordCustNm!=''">
-				c.cust_nm=#{ordCustNm}
+				c.cust_nm like '%'||#{ordCustNm}||'%'
 			</if>
 			<if test="ordProdNm!=null and ordProdNm!=''">
-				and p.prod_nm=#{ordProdNm}
+				and p.prod_nm like '%'||#{ordProdNm}||'%'
 			</if>
 		</where>
 		 order by o.ord_dttm desc 

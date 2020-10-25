@@ -1,6 +1,7 @@
 package com.js.pjt.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,16 @@ public class NoticeController {
 	@RequestMapping("/notice")
 	public String noticeList() {
 		return "notice/notice";
+	}
+	
+	@RequestMapping("/main_notice")
+	@ResponseBody
+	public List<NoticeVO> mainNotice() {
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("startRow", 1);
+		map.put("endRow", 5);
+		
+		return noticeService.getNoticeList(map);
 	}
 	
 	@RequestMapping(value="/notice_list", method = RequestMethod.GET)
@@ -54,8 +65,6 @@ public class NoticeController {
 		Map<String, Object> searchMap= new HashMap<String, Object>();
 		searchMap.put("search", search);
 		searchMap.put("keyword", keyword);
-		System.out.println(searchMap.get("search")); //여기들어간 값부터가 null임...
-		System.out.println(searchMap.get("keyword")); //여기들어간 값부터가 null임...
 		int totalBoard=noticeService.getNoticeCount(searchMap);
 		int pageSize=5;
 		int blockSize=5;
@@ -74,8 +83,9 @@ public class NoticeController {
 	@RequestMapping(value = "/notice_add", method = RequestMethod.POST)
 	@ResponseBody
 	public String addNotice(@RequestBody NoticeVO notice) {
-		notice.setContent(HtmlUtils.htmlEscape(notice.getTitle()));
-		notice.setContent(HtmlUtils.htmlEscape(notice.getContent()).replace("\n", "<br>"));
+		notice.setTitle(HtmlUtils.htmlEscape(notice.getTitle()));
+		notice.setContent(HtmlUtils.htmlEscape(notice.getContent()));
+		
 		noticeService.addNotice(notice);
 		return "success";
 	}
@@ -89,8 +99,8 @@ public class NoticeController {
 	@RequestMapping(value = "/notice_modify", method = {RequestMethod.PUT, RequestMethod.PATCH})
 	@ResponseBody
 	public String noticeModify(@RequestBody NoticeVO notice) {
-		notice.setContent(HtmlUtils.htmlEscape(notice.getTitle()));
-		notice.setContent(HtmlUtils.htmlEscape(notice.getContent()).replace("\n", "<br>"));
+		notice.setTitle(HtmlUtils.htmlEscape(notice.getTitle()));
+		notice.setContent(HtmlUtils.htmlEscape(notice.getContent()));
 		noticeService.modifyNotice(notice);
 		return "success";
 	}
