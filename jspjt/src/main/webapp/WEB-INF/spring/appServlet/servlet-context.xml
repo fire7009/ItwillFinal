@@ -87,14 +87,33 @@
 
 	<beans:bean class="com.js.pjt.util.AdminAuthinterceptor" id="adminAuthinterceptor"/>
 	<beans:bean class="com.js.pjt.util.LoginAuthInterceptor" id="loginAuthInterceptor"/>
+	<beans:bean class="com.js.pjt.util.AdminInterceptor" id="adminInterceptor"/>
 	
 	<interceptors>
+		<!-- 인사팀이고 대리(20)이상만 사용가능 -->
+		<interceptor>
+			<mapping path="/emp/signup"/>
+			<beans:ref bean="adminAuthinterceptor"/>
+		</interceptor>
+		<!-- 과장(30)이상만 사용가능 -->
+		<interceptor>
+			<mapping path="/notice_add"/>
+			<mapping path="/notice_modify"/>
+			<beans:ref bean="adminInterceptor"/>
+		</interceptor>
+		<!-- 로그인한 사용자만 요청가능 -->
 		<interceptor>
 			<mapping path="/"/>
 			<mapping path="/notice"/>
+			<mapping path="/orderList"/>
+			<mapping path="/order_*"/>
+			<mapping path="/order_*/*"/>
+			<mapping path="/search_order"/>
+			<mapping path="/empListMain"/>
 			<mapping path="/unsong_insert"/>
 			<beans:ref bean="loginAuthInterceptor"/>
-		</interceptor>		
+		</interceptor>	
+			
 	</interceptors>
 
 
