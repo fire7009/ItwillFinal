@@ -1,6 +1,7 @@
 <section id="main-wrapper" class="theme-default">
 		<header id="header">
 			<!--logo start-->
+			<c:when test="${loginUserInfo!=null}" >
 			<input type="hidden" id="empNo" value="${loginUserInfo.empNo }">
 			<div class="brand">
 				<a href="/pjt/main" class="logo"> <i class="icon-layers"></i> <span>ABC</span>ERP
@@ -20,12 +21,13 @@
 				</li>
 			
 			</ul>
+			</c:when>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown profile hidden-xs"><a
 					href="javascript:void(0);" class="dropdown-toggle"
 					data-toggle="dropdown"> <span class="meta"> <span
 							class="avatar"> <img src="" class="img-circle" alt="">
-						</span> <span class="text">Mike Adams</span> <span class="caret"></span>
+						</span> <span class="text">${loginUserInfo.empNm }</span> <span class="caret"></span>
 					</span>
 				</a>
 					<ul class="dropdown-menu animated fadeInRight" role="menu">
