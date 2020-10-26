@@ -31,39 +31,9 @@
 </head>
 
 <body>
-    <section id="main-wrapper" class="theme-default">
-        <header id="header">
-            <!--logo start-->
-            <div class="brand">
-                <a href="index.html" class="logo">
-                    <span>APP</span>NAME</a>
-            </div>
-            <!--logo end-->
-            <ul class="nav navbar-nav navbar-left">
-                <li class="toggle-navigation toggle-left">
-                    <button class="sidebar-toggle" id="toggle-left">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                </li>
-                <li class="toggle-profile hidden-xs">
-                    <button type="button" class="btn btn-default" id="toggle-profile">
-                        <i class="icon-user"></i>
-                    </button>
-                </li>
-                <li class="hidden-xs">
-                    <input type="text" class="search" placeholder="Search project...">
-                    <button type="submit" class="btn btn-sm btn-search"><i class="fa fa-search"></i>
-                    </button>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="toggle-navigation toggle-right">
-                    <button class="sidebar-toggle" id="toggle-right">
-                        <i class="fa fa-indent"></i>
-                    </button>
-                </li>
-            </ul>
-        </header>
+  		<c:import url="/WEB-INF/views/header.jsp">
+       		<c:param name="header" value="header"></c:param>
+		</c:import>
         <!--sidebar left start-->
        	<c:import url="/WEB-INF/views/leftSidebar.jsp">
        		<c:param name="leftSidebar" value="leftSidebar"></c:param>
@@ -297,33 +267,7 @@
     </section>
     
     <!--sidebar right start-->
-    <aside id="sidebar-right">
-        <h4 class="sidebar-title">contact List</h4>
-        <div id="contact-list-wrapper">
-            <div class="heading">
-                <ul>
-                    <li class="new-contact"><a href="javascript:void(0)"><i class="fa fa-plus"></i></a>
-                    </li>
-                    <li>
-                        <input type="text" class="search" placeholder="Search">
-                        <button type="submit" class="btn btn-sm btn-search"><i class="fa fa-search"></i>
-                        </button>
-                    </li>
-                </ul>
-            </div>
-            <div id="contact-list">
-
-            </div>
-            <div id="contact-user">
-                <div class="chat-user active"><span><i class="icon-bubble"></i></span>
-                </div>
-                <div class="email-user"><span><i class="icon-envelope-open"></i></span>
-                </div>
-                <div class="call-user"><span><i class="icon-call-out"></i></span>
-                </div>
-            </div>
-        </div>
-    </aside>
+    
     <!--/sidebar right end-->
     <!--Global JS-->
     <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/jquery-1.11.1.min.js"></script>
