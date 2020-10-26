@@ -1,12 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>   
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
 <html class="no-js">
 <!--<![endif]-->
 
@@ -16,63 +12,34 @@
     <title>NeuBoard</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/favicon.ico" type="image/x-icon">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/css/bootstrap.min.css">
     <!-- Fonts  -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/simple-line-icons.css">
-    <!-- Switchery -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/plugins/switchery/switchery.min.css">
     <!-- CSS Animate -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/animate.css">
-    <!-- DataTables-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/plugins/dataTables/css/dataTables.css">
     <!-- Custom styles for this theme -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
     <!-- Feature detection -->
     <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/modernizr-2.6.2.min.js"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/html5shiv.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/respond.min.js"></script>
+    <script src="assets/js/vendor/html5shiv.js"></script>
+    <script src="assets/js/vendor/respond.min.js"></script>
     <![endif]-->
 </head>
 
 <body>
-    <section id="main-wrapper" class="theme-default">
-        <header id="header">
-            <!--logo start-->
-            <div class="brand">
-                <a href="index.html" class="logo">
-                    <i class="icon-layers"></i>
-                    <span>NEU</span>BOARD</a>
-            </div>
-            <!--logo end-->
-            <ul class="nav navbar-nav navbar-left">
-                <li class="toggle-navigation toggle-left">
-                    <button class="sidebar-toggle" id="toggle-left">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                </li>
-                <li class="toggle-profile hidden-xs">
-                    <button type="button" class="btn btn-default" id="toggle-profile">
-                        <i class="icon-user"></i>
-                    </button>
-                </li>
-               <li class="hidden-xs hidden-sm" >
-                    <input type="text" class="search" placeholder="Search project...">
-                    <button type="submit" class="btn btn-sm btn-search"><i class="fa fa-search"></i>
-                    </button>
-                </li>
-            </ul>
-        </header>
-        <!-- left sidebar start -->
+
+  		<c:import url="/WEB-INF/views/header.jsp">
+       		<c:param name="header" value="header"></c:param>
+		</c:import>
+        <!-- header -->
        	<c:import url="/WEB-INF/views/leftSidebar.jsp">
        		<c:param name="leftSidebar" value="leftSidebar"></c:param>
 		</c:import>
-		 <!-- left sidebar end -->
+        <!--sidebar left -->
         <!--main content start-->
         <section class="main-content-wrapper">
             <div class="pageheader">

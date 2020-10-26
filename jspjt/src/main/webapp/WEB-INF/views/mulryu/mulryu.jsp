@@ -31,14 +31,16 @@
 </head>
 
 <body>
+
   		<c:import url="/WEB-INF/views/header.jsp">
        		<c:param name="header" value="header"></c:param>
 		</c:import>
-        <!--sidebar left start-->
+        <!-- header -->
        	<c:import url="/WEB-INF/views/leftSidebar.jsp">
        		<c:param name="leftSidebar" value="leftSidebar"></c:param>
 		</c:import>
-        <!--sidebar left end-->
+        <!--sidebar left -->
+        
         <!--main content start-->
         <section class="main-content-wrapper">
             <div class="pageheader">

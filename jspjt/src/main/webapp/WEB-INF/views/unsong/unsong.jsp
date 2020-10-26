@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
-
 <html class="no-js">
 <!--<![endif]-->
 
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>NeuBoard</title>
@@ -26,47 +25,21 @@
     <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/modernizr-2.6.2.min.js"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/html5shiv.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/respond.min.js"></script>
+    <script src="assets/js/vendor/html5shiv.js"></script>
+    <script src="assets/js/vendor/respond.min.js"></script>
     <![endif]-->
-
 </head>
 
 <body>
-    <section id="main-wrapper" class="theme-default">
-        <header id="header">
-            <!--logo start-->
-            <div class="brand">
-                <a href="index.html" class="logo">
-                    <span>APP</span>NAME</a>
-            </div>
-            <!--logo end-->
-            <ul class="nav navbar-nav navbar-left">
-                <li class="toggle-navigation toggle-left">
-                    <button class="sidebar-toggle" id="toggle-left">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                </li>
-            
-                <li class="hidden-xs">
-                    <input type="text" class="search" placeholder="Search project...">
-                    <button type="submit" class="btn btn-sm btn-search"><i class="fa fa-search"></i>
-                    </button>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="toggle-navigation toggle-right">
-                    <button class="sidebar-toggle" id="toggle-right">
-                        <i class="fa fa-indent"></i>
-                    </button>
-                </li>
-            </ul>
-        </header>
-        <!--sidebar left start-->
-      	<c:import url="/WEB-INF/views/leftSidebar.jsp">
+
+  		<c:import url="/WEB-INF/views/header.jsp">
+       		<c:param name="header" value="header"></c:param>
+		</c:import>
+        <!-- header -->
+       	<c:import url="/WEB-INF/views/leftSidebar.jsp">
        		<c:param name="leftSidebar" value="leftSidebar"></c:param>
 		</c:import>
-        <!--sidebar left end-->
+        <!--sidebar left -->
         
         <!--main content start-->
         <section class="main-content-wrapper">

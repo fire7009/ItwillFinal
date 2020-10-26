@@ -41,38 +41,14 @@
 </head>
 
 <body>
-    <section id="main-wrapper" class="theme-default">
-        <header id="header">
-            <!--logo start-->
-            <div class="brand">
-                <a href="index.html" class="logo">
-                    <i class="icon-layers"></i>
-                    <span>NEU</span>BOARD</a>
-            </div>
-            <!--logo end-->
-            <ul class="nav navbar-nav navbar-left">
-                <li class="toggle-navigation toggle-left">
-                    <button class="sidebar-toggle" id="toggle-left">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                </li>
-                <li class="toggle-profile hidden-xs">
-                    <button type="button" class="btn btn-default" id="toggle-profile">
-                        <i class="icon-user"></i>
-                    </button>
-                </li>
-               <li class="hidden-xs hidden-sm" >
-                    <input type="text" class="search" placeholder="Search project...">
-                    <button type="submit" class="btn btn-sm btn-search"><i class="fa fa-search"></i>
-                    </button>
-                </li>
-            </ul>
-        </header>
-        <!-- left sidebar start -->
+     		<c:import url="/WEB-INF/views/header.jsp">
+       		<c:param name="header" value="header"></c:param>
+		</c:import>
+        <!-- header -->
        	<c:import url="/WEB-INF/views/leftSidebar.jsp">
        		<c:param name="leftSidebar" value="leftSidebar"></c:param>
 		</c:import>
-		 <!-- left sidebar end -->
+        <!--sidebar left -->
         <!--main content start-->
         <section class="main-content-wrapper">
             <div class="pageheader">
