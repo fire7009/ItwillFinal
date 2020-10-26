@@ -113,6 +113,11 @@
                                       		사원등록
                                 </a>
                             </li>
+                             <li>
+                                <a href="${pageContext.request.contextPath}/empListMain" title="Sliders &amp; Progress">
+                                      		사원관리
+                                </a>
+                            </li>
                             <li>
                                 <a href="/pjt/notice" title="Sliders &amp; Progress">
                                       		사원게시판
