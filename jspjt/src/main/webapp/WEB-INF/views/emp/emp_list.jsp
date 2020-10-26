@@ -76,14 +76,14 @@
         <!--main content start-->
         <section class="main-content-wrapper">
             <div class="pageheader">
-                <h1>사원게시판</h1>
+                <h1>사원관리</h1>
                 <div class="breadcrumb-wrapper hidden-xs">
                     
                     <ol class="breadcrumb">
-                        <li><a href="index.html">메인</a>
+                        <li><a href="/">메인</a>
                         </li>
                         <li>운영관리</li>
-                        <li class="active">공지사항</li>
+                        <li class="active">사원관리</li>
                     </ol>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                     <div class="col-md-12">
                         <ul class="nav nav-tabs">
                             <li class="active">
-                                <a data-toggle="tab" href="#table" aria-expanded="true" id="tableBtn">공지사항</a>
+                                <a data-toggle="tab" href="#table" aria-expanded="true" id="tableBtn">사원관리</a>
                             </li>
                         </ul>
 
@@ -101,14 +101,35 @@
                                 <div class="tab-wrapper tab-primary">
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="table">
-                                            <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%" style="table-layout:fixed">
+	                                        <select class="form-control input-lg" style="height: 40px; font-size: 15px; margin-bottom: 10px; width: 150px; display: inline-block;" name="pageSize" id="pageSize">
+												<option value="10">10명씩보기</option>
+												<option value="20">20명씩보기</option>
+												<option value="30">30명씩보기</option>
+												<option value="50">50명씩보기</option>
+											</select>
+											<c:if test="${loginUserInfo.deptNo==10 and loginUserInfo.posDvcd>=20}">
+												<select class="form-control input-lg" style="height: 40px; font-size: 15px; margin-bottom: 10px; width: 150px; display: inline-block; float: right;" id="searchDeptNo" name="searchDeptNo">
+							                           <option value="0">전체</option>
+							                           <option value="10">인사팀</option>
+							                           <option value="20">운영팀</option>
+							                           <option value="30">운송팀</option>
+							                           <option value="40">회계팀</option>
+							                           <option value="50">영업팀</option>                                
+							       				</select>
+												<p class="form-control" style="height: 40px; font-size: 15px;  width: 100px; display: inline-block; float: right; border: 0px">부서선택</p>
+											</c:if>
+                                            <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%" style="table-layout:fixed; margin-top: 20px;">
                                                 <thead>
                                                     <tr>
-                                                        <th width="50">공지번호</th>
-                                                        <th width="40">작성자</th>
-                                                        <th width="100">제목</th>
-                                                        <th width="300">내용</th>
-                                                        <th width="70">등록일시</th>
+                                                        <th width="40">사원번호</th>
+                                                        <th width="30">부서</th>
+                                                        <th width="30">직급</th>
+                                                        <th width="70">이름</th>
+                                                        <th width="70">생일</th>
+                                                        <th width="70">핸드폰번호</th>
+                                                        <th width="70">이메일</th>
+                                                        <th width="30">성별</th>
+                                                        <th width="70">입사일</th>
                                                         <c:if test="${loginUserInfo.posDvcd>=20 }">
                                                         <th width="30">삭제</th>
                                                         </c:if>
@@ -131,31 +152,32 @@
 														<th width="20"></th>
 														<th width="340"></th>
 														<th width="20"></th>
-														<th width="400"></th>	                                                                
+														<th width="50"></th>
+														<th width="20"></th>
+														<th width="320"></th>	                                                                
 													</tr>
 													<tr>
-													<td align="right">
-														<c:if test="${loginUserInfo.posDvcd>=20 }">
-															<button type="button" class="btn btn-success" id="writeBtn">글쓰기</button>
-														</c:if>
-													</td>
+													<td align="right"></td>
 													<td></td>
 													<td>
 														<select class="form-control input-lg" style="height: 40px; font-size: 15px;" name="search" id="search">
-															<option value="NOTICE_NO">공지번호</option>
-															<option value="REG_EMPNO">작성자</option>
-															<option value="TITLE" selected="selected">제목</option>
-															<option value="CONTENT">내용</option>
+															<option value="emp_no">사원번호</option>
+															<option value="emp_nm" selected="selected">이름</option>
+															<option value="birth_dt">생일</option>
 														</select>
 													</td>
 													<td></td>
 													<td>
-													<input type="text" class="form-control" style="height: 40px;" name="keyword" id="keyword"/>
-														</td>
-														<td></td>
-														<td>
-															<button type="button" class="btn btn-success" id="searchBtn">검색</button>
-														</td>
+													<input type="text" class="form-control" style="height: 40px;" onkeyup="enterkey();" name="keyword" id="keyword"/>
+													</td>
+													<td></td>
+													<td>
+														<button type="button" class="btn btn-success" id="searchBtn">검색</button>
+													</td>
+													<td></td>
+													<td>
+														<button type="button" class="btn btn-success" id="resetBtn">초기화</button>
+													</td>
 													</tr>
 												</table>
 											</div>
@@ -168,14 +190,10 @@
                     </div>
                 </div>
             </section>
-            <!-- 글쓰기 모달 -->
-			<c:import url="/WEB-INF/views/notice/notice_write.jsp">
-				<c:param name="notice_write" value="notice_write"></c:param>
-			</c:import>
-			<!-- //글쓰기모달 -->
+
             <!-- 수정 모달 -->
-			<c:import url="/WEB-INF/views/notice/notice_modify.jsp">
-				<c:param name="notice_modify" value="notice_modify"></c:param>
+			<c:import url="/WEB-INF/views/emp/emp_modify.jsp">
+				<c:param name="modify" value="modify"></c:param>
 			</c:import>
 			<!-- //수정모달 -->
         </section>
@@ -189,34 +207,84 @@
     display(page);
     var stat='N';
     var userStat=${loginUserInfo.posDvcd};
+    var search;
+	var keyword;
+	var deptNm;
+	var posDvcdNm;
+	var pageSize;
+	var deptNo;
     function display(pageNum){
     	page=pageNum;
+    	search=$("#search").val();
+    	keyword=$("#keyword").val();
+    	pageSize=$("#pageSize").val();
+    	deptNo=$("#searchDeptNo").val();
+
 	    $.ajax({
 	    	type: "GET",
-	    	url: "notice_list?pageNum="+pageNum,
+	    	url: "emp/emp_list",
+			data:{"pageNum":pageNum,"search":search,"keyword":keyword,"pageSize":pageSize,"deptNo":deptNo},
 	    	dataType: "json",
 	    	success: function(json) {
 	    		var html="";
-	    		$(json.restNoticeList).each(function(){
-	    			if(this.delYn==stat){
-		    			var date=this.regDttm
+	    		$(json.employeeList).each(function(){
+	    			if(this.resgnYn==stat){
+	    				switch (this.deptNo) {
+	    				case 10:
+	    					deptNm='인사팀';
+	    					break;
+	    				case 20:
+	    					deptNm='운영팀';
+	    					break;
+	    				case 30:
+	    					deptNm='운송팀';
+	    					break;
+	    				case 40:
+	    					deptNm='회계팀';
+	    					break;
+	    				case 50:
+	    					deptNm='영업팀';
+	    					break;
+	    				}
+	    				switch (this.posDvcd) {
+	    				case 10:
+	    					posDvcdNm="사원";
+	    					break;
+	    				case 20:
+	    					posDvcdNm="대리";
+	    					break;
+	    				case 30:
+	    					posDvcdNm="과장";
+	    					break;
+	    				case 40:
+	    					posDvcdNm="팀장";
+	    					break;
+	    				}
 		    			html+="<tr>";
-		    			html+="<td>"+this.noticeNo+"</td>";
-		    			html+="<td>"+this.employeeVo.empNm+"</td>";
-		    			html+="<td><div style='text-overflow:ellipsis; overflow:hidden; white-space:nowrap'>"+this.title+"</div></td>";
-		    			html+="<td><div style='text-overflow:ellipsis; overflow:hidden; white-space:nowrap'><a href='javascript:update("+this.noticeNo+")'>"+this.content+"</a></div></td>";
-		    			html+="<td>"+date.substring(0,10)+"</td>";
+		    			html+="<td>"+this.empNo+"</td>";
+		    			html+="<td>"+deptNm+"</td>";
+		    			html+="<td>"+posDvcdNm+"</td>";
 		    			if(userStat>=20){
-			    		html+="<td><span><a href='javascript:noticeDelete("+this.noticeNo+")'style='color:red;'>삭제</a></span></td>";	    				
+		    			html+="<td><a href='javascript:update("+this.empNo+")'>"+this.empNm+"</a></td>";		    				
+		    			} else {
+		    			html+="<td>"+this.empNm+"</td>";		    						    				
+		    			}
+		    			html+="<td>"+this.birthDt+"</td>";
+		    			html+="<td>"+this.mobilePhnNo+"</td>";
+		    			html+="<td>"+this.emailAddr+"</td>";
+		    			html+="<td>"+this.gender+"</td>";
+		    			html+="<td>"+this.hireDt.substring(0,10)+"</td>";
+		    			if(userStat>=20){
+			    		html+="<td><span><a href='javascript:empDelete("+this.empNo+")'style='color:red;'>삭제</a></span></td>";	    				
 		    			}
 		    			html+="</tr>";
 	    			}
 	    		});
 	    		if(html==""){
 	    			if(userStat>=20){
-	    				html="<tr><td style='text-align: center;' colspan='6'><게시글이 없습니다></td></tr>";	    				
+	    				html="<tr><td style='text-align: center;' colspan='10'><게시글이 없습니다></td></tr>";	    				
 		    		} else {
-	    				html="<tr><td style='text-align: center;' colspan='5'><게시글이 없습니다></td></tr>";
+	    				html="<tr><td style='text-align: center;' colspan='9'><게시글이 없습니다></td></tr>";
 		    		}
 		    		$('#tbody').html(html);
     				return;
@@ -257,91 +325,99 @@
     	
     	
     }
-	
-    //글쓰기 버튼
-    $("#writeBtn").click(function(){
-    	$(".update").val("");
-    	$("#modify").hide();
-    	
-    	$("#write").show(200);
-    }); 
-    //글작성 버튼
-    $("#insertBtn").click(function(){
-    	var title=$("#insertTitle").val();
-    	var content=$("#insertContent").val();
-    	var regEmpNo=$("#insertregEmpNo").val();
-    	
-    	if(title==""){
-    		alert("제목을 입력해주세요");
-    		return;
-    	}
-    	if(content==""){
-    		alert("내용을 입력해주세요");
-    		return;
-    	}
-    	
-    	$.ajax({
-    		type: "POST",
-    		url: "notice_add",
-    		headers: {"content-type":"application/json"},
-    		data: JSON.stringify({"title" : title, "content" : content, "regEmpNo" : regEmpNo}),
-    		dataType:"text",
-    		success: function(text){
-    			if(text=="success"){
-    				$(".insert").val("");
-    				$("#write").hide(300);
-    				
-    				display(1);
-    			}
-    		},
-    		error: function(xhr) {
-				alert("에러코드 = "+xhr.status);
-			}
-    	});
-    });
-    
     //수정창띄우기
-    function update(noticeNo) {
-    	$(".insert").val("");
-    	$("#write").hide();
-    	
-    	$("#noticeNo").val(noticeNo);
-    	$("#updateDiv").show(200);
+    function update(empNo) {
     	
     	$.ajax({
     		type: "GET",
-    		url: "notice_modify/"+noticeNo,
+    		url: "emp/emp_modify/"+empNo,
     		dataType: "json",
     		success: function(json){
-    			$("#updateTitle").val(json.title);
-    			$("#updateContent").val(json.content);
+				$("#empNo").val(json.empNo);
+				switch (json.deptNo) {
+				case 10:
+					$("#deptNo > option:eq(0)").prop("selected",true);
+					break;
+				case 20:
+					$("#deptNo > option:eq(1)").prop("selected",true);
+					break;
+				case 30:
+					$("#deptNo > option:eq(2)").prop("selected",true);
+					break;
+				case 40:
+					$("#deptNo > option:eq(3)").prop("selected",true);
+					break;
+				case 50:
+					$("#deptNo > option:eq(4)").prop("selected",true);
+					break;
+				}
+				switch (json.posDvcd) {
+				case 10:
+					$("#posDvcd > option:eq(0)").prop("selected",true);
+					break;
+				case 20:
+					$("#posDvcd > option:eq(1)").prop("selected",true);
+					break;
+				case 30:
+					$("#posDvcd > option:eq(2)").prop("selected",true);
+					break;
+				case 40:
+					$("#posDvcd > option:eq(3)").prop("selected",true);
+					break;
+				}
+				$("#lgnId").val(json.lgnId);
+				$("#empNm").val(json.empNm);
+				$("#birthDt").val(json.birthDt);
+				$("#mobilePhnNo").val(json.mobilePhnNo);
+				$("#emailAddr").val(json.emailAddr);
+				$("#hireDt").val(json.hireDt);
+				$("#gender").val(json.gender);
+				
+				$("#updateDiv").show(200);
     		},
     		error: function(xhr) {
 				alert("에러코드 = "+xhr.status);
 			}
     	});
     }
+    
+    $("#passwd2").focus(function(){
+		msg="";
+		$("#passwd2Msg").addClass("msg");
+		$("#passwd2Msg").text(msg);
+		return;
+	});
+    
     //수정버튼
     $("#updateBtn").click(function(){
-    	var title=$("#updateTitle").val();
-    	var content=$("#updateContent").val();
-    	var noticeNo=$("#noticeNo").val();
-    	
-    	if(title==""){
-    		alert("작성자를 입력해 주세요.");
-			return;
+    	var passwd=$("#passwd").val();
+    	var passwd2=$("#passwd2").val();
+    	if(passwd!=""){
+			if(passwd2.value==""){
+				msg="비밀번호를 한번 더 입력해주세요";
+				$("#passwd2Msg").removeClass("msg");
+				$("#passwd2Msg").text(msg);
+				return;
+			} else if(passwd2.value!=signUp.passwd.value){
+				msg="입력하신 비밀번호와 일치하지 않습니다.";
+				$("#passwd2Msg").removeClass("msg");
+				$("#passwd2Msg").text(msg);
+				return;
+			}
     	}
-    	
-    	if(content==""){
-    		alert("작성자를 입력해 주세요.");
-			return;
-    	}
+    	var empNo=$("#empNo").val();
+    	var deptNo=$("#deptNo").val();
+    	var posDvcd=$("#posDvcd").val();
+    	var mobilePhnNo=$("#mobilePhnNo").val();
+    	var emailAddr=$("#emailAddr").val();
+    	var file=$("#file")[0].files[0];
     	
     	$.ajax({
     		type: "PUT",
-    		url: "notice_modify",
+    		url: "emp/emp_modify",
     		headers: {"content-type":"application/json","X-HTTP-Method-override":"PUT"},
-    		data: JSON.stringify({"title":title,"content":content,"noticeNo":noticeNo}),
+    		data: JSON.stringify({"empNo":empNo,"deptNo":deptNo,"posDvcd":posDvcd,"passwd":passwd,"mobilePhnNo":mobilePhnNo
+    			,"emailAddr":emailAddr,"file":file}),
     		dataType: "text",
     		success: function(text){
     			if(text=="success"){
@@ -358,17 +434,16 @@
     
     //닫기버튼
     $(".closeDiv").click(function(){
-    	$(".insert").val("");
-    	$("#write").hide(200);
     	$(".update").val("");
     	$("#updateDiv").hide(200);
     });
     
-    function noticeDelete(num){
+    //삭제버튼
+    function empDelete(num){
     	if(confirm("정말로 삭제 하시겠습니까?")){
     		$.ajax({
     			type:"DELETE",
-    			url: "notice_remove/"+num,
+    			url: "emp/emp_remove/"+num,
     			headers: {"X-HTTP-Method-override":"DELETE"},
     			dataType: "text",
     			success: function(text){
@@ -382,54 +457,83 @@
     		});
     	}
     }
-    
+    //검색버튼
     $("#searchBtn").click(function(){
-    	var search=$("#search").val();
-    	var keyword=$("#keyword").val();
-    	
-    	if(keyword==""){
-    		alert("검색어를 입력해주세요")
-    		return;
-    	}
-		
-    	$.ajax({
-    		type: "POST",
-    		url: "notice_search",
-    		data: {"search":search, "keyword":keyword},
-    		dataType: "json",
-    		success: function(json){
-    			var html="";
-	    		$(json.restNoticeList).each(function(){
-	    			if(this.delYn==stat){
-		    			var date=this.regDttm
-		    			html+="<tr>";
-		    			html+="<td>"+this.noticeNo+"</td>";
-		    			html+="<td>"+this.employeeVo.empNm+"</td>";
-		    			html+="<td><div style='text-overflow:ellipsis; overflow:hidden; white-space:nowrap'>"+this.title+"</div></td>";
-		    			html+="<td><div style='text-overflow:ellipsis; overflow:hidden; white-space:nowrap'><a href='javascript:update("+this.noticeNo+")'>"+this.content+"</a></div></td>";
-		    			html+="<td>"+date.substring(0,10)+"</td>";
-		    			if(userStat>=20){
-			    		html+="<td><span><a href='javascript:noticeDelete("+this.noticeNo+")'style='color:red;'>삭제</a></span></td>";	    				
-		    			}
-		    			html+="</tr>";
-	    			}
-	    		});
-	    		if(html==""){
-    				html="<tr><td style='text-align: center;' colspan='5'><검색된 게시글이 없습니다></td></tr>";
-		    		$('#tbody').html(html);
-    				return;
-    			}
-	    		$('#tbody').html(html);
-	    		
-	    		pageDisplay(json.pager);
-	    	},
-	    	error:function(xhr) {
-	    		$('#tbody').text("응답오류 = "+xhr.status);
-	    	}
-    	});
+    	search=$("#search").val();
+    	keyword=$("#keyword").val();
+
+    	display(1);
+
+		switch (search) {
+		case 'emp_no':
+			$("#search > option:eq(0)").prop("selected", true);
+			break;
+		case 'emp_nm':
+			$("#search > option:eq(1)").prop("selected", true);
+			break;
+		case 'birthDt':
+			$("#search > option:eq(2)").prop("selected", true);
+			break;
+		}
     	
     });
-    
+    function enterkey(){
+		if(window.event.keyCode==13){
+			display(1);
+		}
+	}
+	//페이지에 출력갯수 변경
+    $("#pageSize").change(function(){
+    	display(1);
+    	
+		switch (pageSize) {
+		case 10:
+			$("#pageSize > option:eq(0)").prop("selected", true);
+			break;
+		case 20:
+			$("#pageSize > option:eq(1)").prop("selected", true);
+			break;
+		case 30:
+			$("#pageSize > option:eq(2)").prop("selected", true);
+			break;
+		case 50:
+			$("#pageSize > option:eq(3)").prop("selected", true);
+			break;
+		}
+    });
+	$("#searchDeptNo").change(function(){
+		display(1);
+		
+		switch(deptNo){
+		case 0:
+			$("#searchDeptNo > option:eq(0)").prop("selected", true);
+			break;
+		case 10:
+			$("#searchDeptNo > option:eq(1)").prop("selected", true);
+			break;
+		case 20:
+			$("#searchDeptNo > option:eq(2)").prop("selected", true);
+			break;
+		case 30:
+			$("#searchDeptNo > option:eq(3)").prop("selected", true);
+			break;
+		case 40:
+			$("#searchDeptNo > option:eq(4)").prop("selected", true);
+			break;
+		case 50:
+			$("#searchDeptNo > option:eq(5)").prop("selected", true);
+			break;
+		}
+	});
+	$("#resetBtn").click(function(){
+		stat='N';
+	    userStat=${loginUserInfo.posDvcd};
+		$("#search > option:eq(1)").prop("selected", true);
+		$("#keyword").val("");
+		$("#pageSize > option:eq(0)").prop("selected", true);
+		$("#searchDeptNo > option:eq(0)").prop("selected", true);
+		display(1);
+	});
     </script>
     <script src="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/plugins/navgoco/jquery.navgoco.min.js"></script>

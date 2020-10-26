@@ -35,14 +35,7 @@ public class EmployeeServiceinp implements EmployeeService {
 	
 	@Transactional
 	@Override
-	public void modifyEmployee(EmployeeVO employee) throws EmployeeNotFoundException {
-		Map<String, Object> map=new HashMap<String, Object>();
-		map.put("lgnId", employee.getLgnId());
-		map.put("empNo", employee.getEmpNo());
-		if(employeeDAO.selectEmployee(map)==null) {
-			throw new EmployeeNotFoundException("해당 사원번호와 일치하는 정보가 존재하지 않습니다.");
-		}
-		
+	public void modifyEmployee(EmployeeVO employee) throws EmployeeNotFoundException {		
 		employeeDAO.updateEmployee(employee);
 	}
 
@@ -56,8 +49,8 @@ public class EmployeeServiceinp implements EmployeeService {
 	}
 
 	@Override
-	public List<EmployeeVO> getEmployeeList() {
-		return employeeDAO.selectEmployeeList();
+	public List<EmployeeVO> getEmployeeList(Map<String, Object> map) {
+		return employeeDAO.selectEmployeeList(map);
 	}
 
 	@Override
@@ -78,7 +71,6 @@ public class EmployeeServiceinp implements EmployeeService {
 
 	@Override
 	public String selectLoginCheck(Map<String, Object> map) {
-		System.out.println("(String)map.get(\"lgnId\") = "+(String)map.get("lgnId"));
 		EmployeeVO employee=employeeDAO.selectIdChech((String)map.get("lgnId"));
 		if(employee==null) {
 			return "none";
@@ -87,5 +79,10 @@ public class EmployeeServiceinp implements EmployeeService {
 		} else {
 			return "success";
 		}
+	}
+
+	@Override
+	public int selectEmpCount(Map<String, Object> map) {
+		return employeeDAO.selectEmpCount(map);
 	}
 }

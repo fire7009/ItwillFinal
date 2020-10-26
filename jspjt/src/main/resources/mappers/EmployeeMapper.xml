@@ -10,32 +10,32 @@
 	</insert>
 	<update id="updateEmployee">
 		update employee
-		<set>
+		<trim prefix="set" prefixOverrides=",">
 			<if test="deptNo!=0">
 				dept_no=#{deptNo}
 			</if>
 			<if test="posDvcd!=0">
-				pos_dvcd=#{}
+				, pos_dvcd=#{posDvcd}
 			</if>
 			<if test="passwd!=null and passwd!=''">
-				passwd=#{}
+				, passwd=#{passwd}
 			</if>
 			<if test="filePath!=null and filePath!=''">
-				file_path=#{}
+				, file_path=#{filePath}
 			</if>
 			<if test="fileNm!=null and fileNm!=''">
-				file_nm=#{}
+				, file_nm=#{fileNm}
 			</if>
 			<if test="mobilePhnNo!=null and mobilePhnNo!=''">
-				mobile_phn_no=#{}
+				, mobile_phn_no=#{mobilePhnNo}
 			</if>
 			<if test="emailAddr!=null and emailAddr!=''">
-				email_addr=#{}
+				, email_addr=#{emailAddr}
 			</if>
-			<if test="resgn_yn!=null and resgn_yn!=''">
-				file_path=null,file_nm=null,resgn_yn=1, resgn_dt=sysdate
+			<if test="resgnYn!=null and resgnYn!=''">
+				, file_path='resign',file_nm='resign',resgn_yn='Y', resgn_dt=sysdate
 			</if>
-		</set>
+		</trim>
 		where emp_no=#{empNo}
 	</update>
 	
@@ -51,11 +51,34 @@
 		</trim>
 	</select>
 	
+	<select id="selectEmpCount" resultType="int">
+		select count(*) from employee
+		<where>
+			<if test="keyword!=null and keyword!=''">
+				${search} like '%'||#{keyword}||'%'
+			</if>
+			<if test="deptNo!=0">
+				and dept_no=#{deptNo}
+			</if>
+			and resgn_yn='N'
+		</where> 
+	</select>
+	
 	<select id="selectIdChech" resultType="com.js.pjt.vo.EmployeeVO">
 		select * from employee where LGN_ID=#{lgnId}
 	</select>
 	
 	<select id="selectEmployeeList" resultType="com.js.pjt.vo.EmployeeVO">
-		select * from employee order by empNo
+		select * from (select rownum rn, board.* from (select * from employee
+		<where>
+			<if test="keyword!=null and keyword!=''">
+				${search} like '%'||#{keyword}||'%'
+			</if>
+			<if test="deptNo!=0">
+				and dept_no=#{deptNo}
+			</if>
+			and resgn_yn='N'
+		</where> 
+		order by emp_no desc) board) where rn between #{startRow} and #{endRow}
 	</select>
 </mapper>

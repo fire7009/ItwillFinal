@@ -15,6 +15,7 @@ public interface EmployeeService {
 	EmployeeVO getEmployee(Map<String, Object> map) throws EmployeeNotFoundException;
 	EmployeeVO selectIdChech(String lgnId);
 	String selectLoginCheck(Map<String, Object> map);
-	List<EmployeeVO> getEmployeeList();
+	int selectEmpCount(Map<String, Object> map);
+	List<EmployeeVO> getEmployeeList(Map<String, Object> map);
 	void loginAuth(Map<String, Object> map) throws LoginAuthFailException;
 }

@@ -8,17 +8,17 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.js.pjt.vo.EmployeeVO;
 
-public class AdminAuthinterceptor extends HandlerInterceptorAdapter {
+public class AdminInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		HttpSession session=request.getSession();
-		EmployeeVO loginUserInfo=(EmployeeVO)session.getAttribute("loginUserInfo");
-		if(loginUserInfo==null) {
-			throw new Exception("login");
-		} else if(loginUserInfo.getPosDvcd()<20 || loginUserInfo.getDeptNo()!=10) {
-			throw new Exception("admin");			
+		EmployeeVO employee=(EmployeeVO)session.getAttribute("loginUserInfo");
+		if(employee==null) {
+			throw new Exception("login"); 
+		} else if(employee.getPosDvcd()<30) {
+			throw new Exception("posAdmin");
 		}
-		return true;
+		return super.preHandle(request, response, handler);
 	}
 }

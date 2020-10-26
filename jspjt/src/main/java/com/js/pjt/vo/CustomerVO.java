@@ -1,15 +1,24 @@
 package com.js.pjt.vo;
-/*
- 	CREATE TABLE customer(cust_no number(8) not null primary key, cust_nm varchar2(30));
- 	ï¿½Ì¸ï¿½      ï¿½ï¿½?       ï¿½ï¿½ï¿½ï¿½           
-	------- -------- ------------ 
-	CUST_NO NOT NULL NUMBER(8)    
-	CUST_NM          VARCHAR2(30) 
+/*         
+	ÀÌ¸§           ³Î?       À¯Çü            
+------------ -------- ------------- 
+CUST_NO      NOT NULL NUMBER(8)     
+CUST_NM      NOT NULL VARCHAR2(30)  
+CONTACT_ADDR NOT NULL VARCHAR2(100) 
+POST_CD      NOT NULL VARCHAR2(5)   
+BASE_ADDR    NOT NULL VARCHAR2(100) 
+DETL_ADDR             VARCHAR2(50)  
+REG_DTTM     NOT NULL DATE          
+DEL_YN       NOT NULL CHAR(1)       
+DEL_DTTM              DATE
+	
  */
 public class CustomerVO {
 	private int custNo;
 	private String custNm;
+	private String delYn;
 	private String contactAddr;
+	
 	public int getCustNo() {
 		return custNo;
 	}
@@ -27,6 +36,12 @@ public class CustomerVO {
 	}
 	public void setContactAddr(String contactAddr) {
 		this.contactAddr = contactAddr;
+	}
+	public String getDelYn() {
+		return delYn;
+	}
+	public void setDelYn(String delYn) {
+		this.delYn = delYn;
 	}
 
 	

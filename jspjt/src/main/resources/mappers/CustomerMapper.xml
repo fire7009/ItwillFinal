@@ -2,6 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.js.pjt.mapper.CustomerMapper">
 	<select id="selectCustomerList" resultType="com.js.pjt.vo.CustomerVO">
-		select cust_no as custNo, cust_nm as custNm from customer order by cust_no desc
+		select * from customer order by cust_no desc
 	</select>
 </mapper>
