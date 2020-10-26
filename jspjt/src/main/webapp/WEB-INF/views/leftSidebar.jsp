@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!--sidebar left start-->
+<!--sidebar left start -->
   <aside class="sidebar sidebar-left">
             <div class="sidebar-profile">
             	<c:choose>
