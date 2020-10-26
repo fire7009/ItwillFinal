@@ -126,8 +126,8 @@
                                 <div class="panel panel-solid-success widget-mini">
                                     <div class="panel-body">
                                         <i class="icon-bar-chart"></i>
-                                        <span class="total text-center">$3,200</span>
-                                        <span class="title text-center">Earnings</span>
+                                        <span class="total text-center" id="returnEsign"></span>
+                                        <span class="title text-center">반려된 결제</span>
                                     </div>
                                 </div>
                             </div>
@@ -135,7 +135,7 @@
                                 <div class="panel widget-mini">
                                     <div class="panel-body">
                                         <i class="icon-support"></i>
-                                        <span class="total text-center">2</span>
+                                        <span class="total text-center" id="waitEsign"></span>
                                         <span class="title text-center">대기중인 결제</span>
                                     </div>
                                 </div>
@@ -144,7 +144,7 @@
                                 <div class="panel widget-mini">
                                     <div class="panel-body">
                                         <i class="icon-envelope-open"></i>
-                                        <span class="total text-center">10</span>
+                                        <span class="total text-center" id="newMail"></span>
                                         <span class="title text-center">새메일</span>
                                     </div>
                                 </div>
@@ -375,7 +375,7 @@
 					var Icon = (data.weather[0].icon).substr(0, 3);
 					var Temp = Math.floor(data.main.temp)+ '℃';
 					var city = data.name;
-					alert(weatherIcon[Icon]);
+					//alert(weatherIcon[Icon]);
 					$('.CurrIcon').append('<canvas id='+weatherIcon[Icon]+'></canvas>');
 					$('.CurrTemp').append('<h1>'+Temp+'</h1>');
 					$('.City').append('<h1><b>' + city+ '</b></h1>');
@@ -383,7 +383,67 @@
 					
 					}
 						});
+				
+				$.ajax({
+		            type : 'get',
+		            url : '/pjt/mail/getMailCount',
+		            data:  {empNo: '${loginUserInfo.empNo}'},
+		            dataType : 'json',
+		            success : function(data) {
+		            	
+		            	$("#newMail").text(data.COUNT);
+		            },
+		            error : function(xhr, type) {
+		                alert('server error occoured')
+		            }
+		        });
+				
+				$.ajax({
+		            type : 'get',
+		            url : '/pjt/mail/getMailCount',
+		            data:  {empNo: '${loginUserInfo.empNo}'},
+		            dataType : 'json',
+		            success : function(data) {
+		            	
+		            	$("#newMail").text(data.COUNT);
+		            },
+		            error : function(xhr, type) {
+		                alert('server error occoured')
+		            }
+		        });
+				
+				$.ajax({
+		            type : 'get',
+		            url : '/pjt/esign/WaitEsignCount',
+		            data:  {empNo: '${loginUserInfo.empNo}'},
+		            dataType : 'json',
+		            success : function(data) {
+		            	
+		            	$("#waitEsign").text(data.COUNT);
+		            },
+		            error : function(xhr, type) {
+		                alert('server error occoured')
+		            }
+		        });
+				
+				$.ajax({
+		            type : 'get',
+		            url : '/pjt/esign/returnEsignCount',
+		            data:  {empNo: '${loginUserInfo.empNo}'},
+		            dataType : 'json',
+		            success : function(data) {
+		            	
+		            	$("#returnEsign").text(data.COUNT);
+		            },
+		            error : function(xhr, type) {
+		                alert('server error occoured')
+		            }
+		        });
+				
+				
+				
 				app.chartJs();
+				
 
 				});
 	</script>

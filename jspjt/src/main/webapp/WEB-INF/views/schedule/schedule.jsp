@@ -162,7 +162,9 @@
 								<div class="col-xs-12">
 									<label class="col-xs-4" for="edit-type">구분</label> 
 									<select class="inputModal" name="edit-type" id="edit-type">
-										<option value="10">사내일정</option>
+									<c:if test="${loginUserInfo.deptNo==20}">
+										<option value="10" >사내일정</option>
+									</c:if>
 										<option value="20" selected="selected">개인일정</option>
 									</select>
 								</div>
@@ -253,7 +255,7 @@
     
     <script src="${pageContext.request.contextPath}/resources/js/addEvents.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/main1.js"></script>  
-     <script src="${pageContext.request.contextPath}/resources/js/editEvent.js"></script>
+    <!--<script src="${pageContext.request.contextPath}/resources/js/editEvent.js"></script>-->
     <script src="${pageContext.request.contextPath}/resources/js/etcSetting.js"></script>
     
     
@@ -267,7 +269,7 @@
     /**
      * 
      */
-    var eventModal = $('#eventModal');
+    /*var eventModal = $('#eventModal');
 
     var modalTitle = $('.modal-title');
     var editAllDay = $('#edit-allDay');
@@ -280,13 +282,13 @@
     var empNo = $('#empNo');
 
     var addBtnContainer = $('.modalBtnContainer-addEvent');
-    var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
+    var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');*/
 
 
     /* ****************
      *  새로운 일정 생성
      * ************** */
-    var newEvent = function (start, end, eventType) {
+
     
     
     /* ****************
@@ -295,7 +297,7 @@
     var editEvent = function (event, element, view) {
     	
     	
-        $('#deleteEvent').data('id', event._id); //클릭한 이벤트 ID
+        $('#deleteEvent').data('id', event._id); 
 
         $('.popover.fade.top').remove();
         $(element).popover("hide");
@@ -309,7 +311,7 @@
         if (event.end === null) {
             event.end = event.start;
         }
-        //event.allDay === true && 
+       
         
         if (event.end.format('YYYY-MM-DD') !== event.start.format('YYYY-MM-DD')) {
         
@@ -321,7 +323,7 @@
         modalTitle.html('일정 수정');
         editTitle.val(event.title);
         editStart.val(event.start.format('YYYY-MM-DD HH:mm'));
-        alert(event.type);
+        //alert(event.type);
         editType.val(event.type);
         editDesc.val(event.description);
        
@@ -342,7 +344,7 @@
                 allDay: false
             };
     	
-        //업데이트 버튼 클릭시
+       
         $('#updateEvent').unbind();
         $('#updateEvent').on('click', function () {
 
@@ -397,7 +399,7 @@
                 }
             });
 
-        });
+       });
     };
 
     // 삭제버튼

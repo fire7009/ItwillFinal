@@ -12,9 +12,41 @@
 		                </div>
 		                <div class="profile-body dropdown">
 		                    <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-		                    <h4>${loginUserInfo.empNm }</h4>
+		                    <h4>${loginUserInfo.empNm }&nbsp;
+		                    	<c:if test="${loginUserInfo.posDvcd==10}">
+		                    		사원 
+		                    	</c:if>
+		                    	<c:if test="${loginUserInfo.posDvcd==20}">
+		                    		대리
+		                    	</c:if>
+		                    	<c:if test="${loginUserInfo.posDvcd==30}">
+		                    		과장
+		                    	</c:if>
+		                    	<c:if test="${loginUserInfo.posDvcd==40}">
+		                    		차장
+		                    	</c:if>
+		                    	<c:if test="${loginUserInfo.posDvcd==50}">
+		                    		부장
+		                    	</c:if>
+		                     </h4>
 		                    </a>
-		                    <small class="title">Front-end Developer</small>
+		                    <small class="title">
+		                    	<c:if test="${loginUserInfo.deptNo==10}">
+		                    		인사팀
+		                    	</c:if>
+		                    	<c:if test="${loginUserInfo.deptNo==20}">
+		                    		운영팀
+		                    	</c:if>
+		                    	<c:if test="${loginUserInfo.deptNo==30}">
+		                    		운송팀
+		                    	</c:if>
+		                    	<c:if test="${loginUserInfo.deptNo==40}">
+		                    		회계팀
+		                    	</c:if>
+		                    	<c:if test="${loginUserInfo.deptNo==50}">
+		                    		영업팀
+		                    	</c:if>
+		                    </small>
 		                </div>
 					</c:when>
 					<c:otherwise>
@@ -35,12 +67,12 @@
                 <ul class="nav nav-pills nav-stacked">
                     <li>
                         <a href="/pjt/mail/mail-inbox" title="Dashboard">
-                            <i class="fa  fa-fw fa-tachometer"></i> 메일
+                            <i class="fa  fa-fw icon-envelope-open"></i> 메일
                         </a>
                     </li>
                     <li >
                         <a href="/pjt/schedule/schedule" title="Dashboard">
-                            <i class="fa  fa-fw fa-tachometer"></i> 일정
+                            <i class="fa  fa-fw  fa-calendar"></i> 일정
                         </a>
                     </li>
                     
@@ -51,18 +83,18 @@
                         <ul class="nav-sub">
                           
                             <li>
-                                <a href="#" title="Sliders &amp; Progress">
+                                <a href="/pjt/esign/reqSign" title="Sliders &amp; Progress">
                                       		결제작성
                                 </a>
                             </li>
                             <li>
-                                <a href="/pjt/emp/emp_board" title="Sliders &amp; Progress">
+                                <a href="/pjt/esign/reqApproveList" title="Sliders &amp; Progress">
                                 
                                       		결제요청
                                 </a>
                             </li>
                             <li>
-                                <a href="/pjt/emp/emp_board" title="Sliders &amp; Progress">
+                                <a href="/pjt/esign/eSignList" title="Sliders &amp; Progress">
                                       		결제리스트
                                 </a>
                             </li>
@@ -72,7 +104,7 @@
                     
                     <li class="nav-dropdown">
                         <a href="#" title="UI Elements">
-                            <i class="fa fa-fw fa-file-text"></i> 운영관리
+                            <i class="fa fa-fw icon-user"></i> 운영관리
                         </a>
                         <ul class="nav-sub">
                           
@@ -104,7 +136,7 @@
                     
   					<li class="nav-dropdown">
                         <a href="#" title="UI Elements">
-                            <i class="fa fa-fw fa-file-text"></i> 운송관리
+                            <i class="fa fa-fw  fa-road"></i> 운송관리
                         </a>
                         <ul class="nav-sub">
                           
@@ -125,7 +157,7 @@
                     
                    	<li class="nav-dropdown">
                         <a href="#" title="UI Elements">
-                            <i class="fa fa-fw fa-file-text"></i> 물류관리
+                            <i class="fa fa-fw  fa-truck"></i> 물류관리
                         </a>
                         <ul class="nav-sub">
                           

@@ -45,7 +45,7 @@
 	
 	<!-- 승인 내역 추가 -->
 	<insert id="addApproveEsign" parameterType="com.js.pjt.vo.EsignAprVO">
-		insert into digt_auth_appr values(10,#{authNo},#{empNo},sysdate)
+		insert into digt_auth_appr values(AUTH_APPR_SEQ.NEXTVAL,#{authNo},#{empNo},sysdate)
 	</insert>
 	
 	
@@ -53,5 +53,20 @@
 	<update id="updateApprove" parameterType="com.js.pjt.vo.EsignAprVO">
 		update digt_auth set auth_dvcd=3, appr_yn='3' where auth_no=#{authNo}
 	</update>
+	
+	<!-- 결제 반려 업데이트 -->
+	<update id="updateReturn" parameterType="com.js.pjt.vo.EsignAprVO">
+		update digt_auth set auth_dvcd=2, appr_yn='2' where auth_no=#{authNo}
+	</update>
+	
+	<!-- 결제 대기 카운트 -->
+	<select id="waitCount" parameterType="int" resultType="hashmap">
+		select count(*) as count from digt_auth where auth_dvcd = 1 and req_empno=#{empNo} 
+	</select>
+	
+	<!-- 결제 반려 카운트 -->
+	<select id="returnCount" parameterType="int" resultType="hashmap">
+		select count(*) as count from digt_auth where auth_dvcd = 2 and req_empno=#{empNo} 
+	</select>
 
 </mapper>

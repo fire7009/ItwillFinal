@@ -61,6 +61,18 @@ public class EsignServiceImp implements EsignService {
 		dao.addApproveEsign(vo);
 	}
 
+	@Override
+	public HashMap<String, Object> waitCount(int empNo) {
+		// TODO Auto-generated method stub
+		return dao.waitCount(empNo);
+	}
+
+	@Override
+	public HashMap<String, Object> returnCount(int empNo) {
+		// TODO Auto-generated method stub
+		return dao.returnCount(empNo);
+	}
+
 	
 
 	

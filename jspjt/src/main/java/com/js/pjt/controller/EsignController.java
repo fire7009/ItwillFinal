@@ -127,6 +127,22 @@ public class EsignController {
 		
 	}
 	
+	@RequestMapping(value = "/WaitEsignCount", method = RequestMethod.GET)
+	@ResponseBody
+	public HashMap<String, Object> WaitEsignCount(@RequestParam int empNo) throws Exception {
+
+		logger.info("Welcome getEsign The client locale is {}.");
+		return service.waitCount(empNo);
+	}
+	
+	@RequestMapping(value = "/returnEsignCount", method = RequestMethod.GET)
+	@ResponseBody
+	public HashMap<String, Object> returnEsignCount(@RequestParam int empNo) throws Exception {
+
+		logger.info("Welcome getEsign The client locale is {}.");
+		return service.returnCount(empNo);
+	}
+	
 	
 
 }

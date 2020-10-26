@@ -62,4 +62,16 @@ public class EsignDAOImp implements EsignDAO {
 		sqlSession.getMapper(EsignMapper.class).addApproveEsign(vo);
 	}
 
+	@Override
+	public HashMap<String, Object> waitCount(int empNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(EsignMapper.class).waitCount(empNo);
+	}
+
+	@Override
+	public HashMap<String, Object> returnCount(int empNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(EsignMapper.class).returnCount(empNo);
+	}
+
 }

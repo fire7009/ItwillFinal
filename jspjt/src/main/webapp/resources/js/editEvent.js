@@ -2,7 +2,8 @@
  *  일정 편집
  * ************** */
 var editEvent = function (event, element, view) {
-	//alert(event._id);
+	//alert(event.type);
+	
 	
     $('#deleteEvent').data('id', event._id); //클릭한 이벤트 ID
 
@@ -46,9 +47,9 @@ var editEvent = function (event, element, view) {
             end: editEnd.val(),
             description: editDesc.val(),
             type: editType.val(),
-            username: '사나',
-            backgroundColor: editColor.val(),
-            textColor: '#ffffff',
+            //username: '사나',
+           //backgroundColor: editColor.val(),
+            //textColor: '#ffffff',
             allDay: false
         };
 	

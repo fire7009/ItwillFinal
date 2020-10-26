@@ -14,4 +14,6 @@ public interface EsignDAO {
 	public HashMap<String, Object> viewEsign(int authNo);
 	public void updateApprove(EsignAprVO vo);
 	public void addApproveEsign(EsignAprVO vo);
+	public HashMap<String, Object> waitCount(int empNo);
+	public HashMap<String, Object> returnCount(int empNo);
 }
