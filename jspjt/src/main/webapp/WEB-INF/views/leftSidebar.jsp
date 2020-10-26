@@ -119,7 +119,7 @@
                                 </a>
                             </li>
                             <li>
-                  ${pageContext.request.contextPath}           <a href="$${pageContext.request.contextPath}geContext.request.contextPath}/notice" title="Sliders &amp; Progress">
+                                     <a href="${pageContext.request.contextPath}/notice" title="Sliders &amp; Progress">
                                       		사원게시판
                                 </a>
                             </li>
