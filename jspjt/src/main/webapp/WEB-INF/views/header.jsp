@@ -1,35 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!DOCTYPE html>
-<html class="no-js">
-<!--<![endif]-->
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>NeuBoard</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/plugins/bootstrap/css/bootstrap.min.css">
-    <!-- Fonts  -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/simple-line-icons.css">
-    <!-- CSS Animate -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/animate.css">
-    <!-- Custom styles for this theme -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
-    <!-- Feature detection -->
-    <script src="${pageContext.request.contextPath}/resources/assets/js/vendor/modernizr-2.6.2.min.js"></script>
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="assets/js/vendor/html5shiv.js"></script>
-    <script src="assets/js/vendor/respond.min.js"></script>
-    <![endif]-->
-</head>
-
 <section id="main-wrapper" class="theme-default">
 		<header id="header">
 			<!--logo start-->
