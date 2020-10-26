@@ -117,7 +117,7 @@
 						$("#lgnMsg").text(msg);
 						submitResult=false;
 					} else if(text=="success"){
-						submit();
+						f.submit();
 					}
 				},
 				error: function(xhr) {

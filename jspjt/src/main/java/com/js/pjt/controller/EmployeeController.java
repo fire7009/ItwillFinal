@@ -94,6 +94,7 @@ public class EmployeeController {
 		employeeService.loginAuth(map);
 		
 		EmployeeVO employee=employeeService.getEmployee(map);
+		
 		session.setAttribute("loginUserInfo", employee);
 		/*
 		String uploadDir=context.getServletContext().getRealPath("/WEB-INF/upload");
